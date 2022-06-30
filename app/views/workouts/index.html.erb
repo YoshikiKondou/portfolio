@@ -1,0 +1,79 @@
+<h1>トレーニング一覧</h1>
+<% if flash[:success] %>
+  <p class="success">
+    <%= flash[:success] %>
+  </p>
+<% elsif flash[:failure] %>
+  <p class="failure">
+    <%= flash[:failure] %>
+  </p>
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>トレーニング日</th>
+      <th>トレーニング内容</th>
+      <th>重量</th>
+      <th>回数</th>
+      <th>セット数</th>
+      <th>睡眠</th>
+      <th>食事</th>
+      <th>モチベーション</th>
+      <th>疲労度</th>
+      <th>メンタル</th>
+      </tr>
+  </thead>
+  <tbody>
+    <% if @workouts.count > 0 %>
+      <% @workouts.each do |workout| %>
+        <tr>
+          <td>
+            <%= workout.start_time.strftime("%Y年%m月%d日") %>
+          </td>
+          <td>
+            <%= workout.menu %>
+          </td>
+          <td>
+            <%= workout.weight %>
+          </td>
+          <td>
+            <%= workout.rep %>
+          </td>
+          <td>
+            <%= workout.set %>
+          </td>
+          <td>
+            <%= workout.sleep %>            
+          </td>
+          <td>
+            <%= workout.eat %>            
+          </td>
+          <td>
+            <%= workout.motivation %>            
+          </td>
+          <td>
+            <%= workout.fatigue %>            
+          </td>
+          <td>
+            <%= workout.mental %>            
+          </td>
+           <td>
+            <%= link_to "確認", workout_path(workout) %>
+          </td>
+          <td>
+            <%= link_to "編集", edit_workout_path(workout) %>
+          </td>
+          <td>
+           <%= link_to "削除", workout_path(workout), data: {turbo_method: :delete, confirm: "本当に削除しますか？"} %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <td>現在トレーニング履歴はありません</td>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to("トレーニング新規登録", "/workouts/new") %>
+</p>

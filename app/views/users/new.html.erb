@@ -1,0 +1,34 @@
+<div class="container device">
+  <div class="device_frame">
+    <%= render 'layouts/shared/error', obj: @user %>
+    <% if flash[:failure] %>
+      <p class="failure"><%= flash[:failure] %></p>
+    <% end %>
+    <p class="my-4">新しいアカウントを作成</p>
+    <div class="device_inner">
+      <%= form_with url: users_path do |f| %>
+        <div class="field form-row">
+          <%= f.label :name, "名前" %>
+          <%= f.text_field :name, autocomplete: "name", placeholder: "ユーザー名", type: "text", name: "user[name]", id: "user_name" %>
+        </div>
+        <div class="field form-row">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.text_field :email, autocomplete: "email", placeholder: "メールアドレス", type: "email",  name: "user[email]", id: "user_email" %>
+        </div>
+        <div class="field form-row">
+          <%= f.label :pasword, "パスワード" %>
+          <%= f.text_field :password, autocomplete: "new-password", placeholder: "パスワード", type: "password", name: "user[password]", id: "user_password" %>
+        </div>
+        <div class="field form-row">
+          <%= f.label :password, "パスワード確認用" %>
+          <%= f.text_field :password, autocomplete: "new-password", placeholder: "パスワード確認", type: "password", name: "user[password]", id: "user_password" %>
+        </div>
+        <%= f.submit "新しいアカウントを作成", name: "commit" %>
+      <% end %>
+      <p>
+        <%= link_to("すでにアカウントをお持ちの方はログイン", "/users/new") %>
+      </p>
+      <br>
+    </div>
+  </div>
+</div>

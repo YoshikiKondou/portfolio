@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  menu: MyString
+  weight: 1
+  rep: 1
+  set: 1
+  memo: MyText
+  sleep: 1
+  eat: 1
+  motivation: 1
+  fatigue: 1
+  mental: 1
+
+two:
+  user: two
+  menu: MyString
+  weight: 1
+  rep: 1
+  set: 1
+  memo: MyText
+  sleep: 1
+  eat: 1
+  motivation: 1
+  fatigue: 1
+  mental: 1

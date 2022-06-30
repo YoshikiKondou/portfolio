@@ -1,0 +1,59 @@
+<h2>トレーニング新規作成</h2>
+<div class="workout new">
+  <% if flash[:failure] %>
+    <p class="failure"><%= flash[:failure] %></p>
+  <% end %>
+  <%= render 'layouts/shared/error', obj: @workout %>
+  <%= form_with model: @workout do |f| %>
+    <div class="field form-row">
+      <%= f.label :start_time, "日付：" %>
+      <%= f.datetime_select :start_time, include_blank: "選択して下さい" %>
+    </div>
+    <div class="field form-row">
+      <%= f.label :menu, "トレーニング種目：" %>
+      <%= f.select :menu, [["ベンチプレス", "ベンチプレス"], ["スクワット", "スクワット"], ["デッドリフト", "デッドリフト"], ["バーベルカール", "バーベルカール"], ["フレンチプレス", "フレンチプレス"], ["ショルダープレス", "ショルダープレス"]], include_blank: "選択して下さい" %>
+    </div>
+    <div class="field form-row addition">
+      <%= f.label :weight, "重量：" %>
+      <%= f.number_field :weight, autocomplete: "weight", name: "workout[weight]", id: "workout_weight" %> kg
+    </div>
+    <div class="field form-row addition">
+      <%= f.label :rep, "回数：" %>
+      <%= f.number_field :rep, autocomplete: "rep", name: "workout[rep]", id: "workout_rep" %> 回
+    </div>
+    <div class="field form-row">
+      <%= f.label :set, "セット数：" %>
+      <%= f.select :set, [*(1..10)],include_blank: "選択して下さい" %> セット
+    </div>
+    <div class="field form-row">
+      <%= f.label :memo, "メモ：" %>
+      <%= f.text_area :memo, rows: "3", name: "workout[memo]", id: "workout_memo" %>
+    </div>
+  
+    <p>-----------------------------------------------------</p>
+
+    <h4>体調チェック ※ 1 : 悪い 〜 5 : 良い</h4>
+    <div class="field form-row">
+      <%= f.label :sleep, "睡眠：" %>
+      <%= f.select :sleep, [*(1..5)], include_blank: "選択して下さい" %>
+    </div>
+    <div class="field form-row">
+      <%= f.label :eat, "食事：" %>
+      <%= f.select :eat, [*(1..5)], include_blank: "選択して下さい" %>
+    </div>
+    <div class="field form-row">
+      <%= f.label :motivation, "モチベーション：" %>
+      <%= f.select :motivation, [*(1..5)], include_blank: "選択して下さい" %>
+    </div>
+    <div class="field form-row">
+      <%= f.label :fatigue, "疲労：" %>
+      <%= f.select :fatigue, [*(1..5)], include_blank: "選択して下さい" %>
+    </div>
+    <div class="field form-row">
+      <%= f.label :mental, "メンタル：" %>
+      <%= f.select :mental, [*(1..5)], include_blank: "選択して下さい" %>
+    </div>
+    <br>
+    <%= f.submit '記録する'%>
+  <% end %>
+</div>

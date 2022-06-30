@@ -1,0 +1,55 @@
+<h2>トレーニング内容詳細</h2>
+<div class="workout new">
+  <div class="field form-row">
+    <th>トレーニング日:</th>
+    <%= @workout.start_time %>
+  </div>
+  <div class="field form-row">
+    <th>トレーニング内容:</th>
+    <%= @workout.menu %>
+  </div>
+  <div class="field form-row addition">
+    <th>重量:</th>
+    <%= @workout.weight %> kg
+  </div>
+  <div class="field form-row addition">
+    <th>回数:</th>
+    <%= @workout.rep %> 回
+  </div>
+  <div class="field form-row">
+    <th>セット数:</th>
+    <%= @workout.set %> セット
+  </div>
+  <div class="field form-row">
+    <th>メモ:</th>
+    <%= @workout.memo %>
+  </div>
+
+  <p>-----------------------------------------------------</p>
+
+  <h4>体調チェック ※ 1 : 悪い 〜 5 : 良い</h4>
+  <div class="field form-row">
+    <th>睡眠:</th>
+    <%= @workout.sleep %>
+  </div>
+  <div class="field form-row">
+    <th>食事:</th>
+    <%= @workout.eat %>
+  </div>
+  <div class="field form-row">
+    <th>モチベーション:</th>
+    <%= @workout.motivation %>
+  </div>
+  <div class="field form-row">
+    <th>疲労度:</th>
+    <%= @workout.fatigue %>
+  </div>
+  <div class="field form-row">
+    <th>メンタル:</th>
+    <%= @workout.mental %>
+  </div>
+  
+  <li><%= link_to "編集", edit_workout_path(@workout.id) %></li>
+  <li><%= link_to "削除", workout_path(workout), data: {turbo_method: :delete, confirm: "本当に削除しますか？"} %></li>
+</div>
+  
