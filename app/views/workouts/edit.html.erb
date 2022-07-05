@@ -7,15 +7,15 @@
   <%= form_with model: @workout do |f| %>
     <div class="field form-row">
       <%= f.label :start_time, "日付：" %>
-      <%= f.datetime_select :start_time %>
+      <%= f.datetime_field :start_time %>
     </div>
     <div class="field form-row">
       <%= f.label :menu, "トレーニング種目：" %>
-      <%= f.select :menu,  [["ベンチプレス", "ベンチプレス"], ["スクワット", "スクワット"], ["デッドリフト", "デッドリフト"], ["バーベルカール", "バーベルカール"], ["フレンチプレス", "フレンチプレス"], ["ショルダープレス", "ショルダープレス"]] %>
+      <%= f.select :menu, [["ベンチプレス", "ベンチプレス"], ["スクワット", "スクワット"], ["デッドリフト", "デッドリフト"], ["バーベルカール", "バーベルカール"], ["フレンチプレス", "フレンチプレス"], ["ショルダープレス", "ショルダープレス"]] %>
     </div>
     <div class="field form-row addition">
       <%= f.label :weight, "重量：" %>
-      <%= f.number_field :weight, autocomplete: "weight", name: "workout[weight]", id: "workout_weight" %> kg
+      <%= f.number_field :weight, autocomplete: "weight", name: "workout[][weight]", id: "workout_weight" %> kg
     </div>
     <div class="field form-row addition">
       <%= f.label :rep, "回数：" %>

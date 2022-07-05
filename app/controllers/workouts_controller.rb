@@ -45,6 +45,7 @@ class WorkoutsController < ApplicationController
 
   def graph
     @workouts = Workout.all
+    @workouts = Workout.where('workouts.menu LIKE(?)', "%#{params[:search]}%") if params[:search].present?
     @workout_by_day = @workouts.group("date(start_time)")
     @chartlabels = @workout_by_day.size.map(&:first).to_json.html_safe
     @sleepdata = @workout_by_day.sum(:sleep).map(&:second).to_json.html_safe
@@ -66,17 +67,17 @@ class WorkoutsController < ApplicationController
 
     def workout_params
       params.require(:workout).permit(
-        :menu,
-        :weight,
-        :rep,
-        :set,
         :memo,
         :sleep,
         :eat,
         :motivation,
-        :fatigue, 
+        :fatigue,
         :mental,
-        :start_time
+        :start_time,
+        menu: [],
+        weight: [],
+        rep: [],
+        set: []
       ).merge(user_id: session[:user_id])
     end
 end

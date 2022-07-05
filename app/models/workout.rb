@@ -9,8 +9,4 @@ class Workout < ApplicationRecord
   validates :motivation, { presence: true }
   validates :fatigue, { presence: true }
   validates :mental, { presence: true }
-
-  def self.volume(weight, rep)
-    weight * rep
-  end
 end

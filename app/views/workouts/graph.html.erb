@@ -1,6 +1,14 @@
 <h1>筋トレ記録推移を見る</h1>
-<canvas id="myChart" width="200" height="100"> </canvas>
 
+<%= form_with model: @workout, method: :get do |f| %>
+  <div class="field form-row">
+    <%= f.label :search, "トレーニング種目を選択する：" %>
+    <%= f.select :search, [["ベンチプレス", "ベンチプレス"], ["スクワット", "スクワット"], ["デッドリフト", "デッドリフト"], ["バーベルカール", "バーベルカール"], ["フレンチプレス", "フレンチプレス"], ["ショルダープレス", "ショルダープレス"]], include_blank: "選択して下さい" %>
+  </div>
+  <%= f.submit '記録推移を見る'%>
+<% end %>
+
+<canvas id="myChart" width="200" height="100"> </canvas>
 <script>
   var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
@@ -111,3 +119,4 @@
 </script>
 
 <li><%= link_to("トレーニング一覧へ戻る", "/workouts")%></li>
+

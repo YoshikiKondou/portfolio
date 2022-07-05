@@ -7,24 +7,34 @@
   <%= form_with model: @workout do |f| %>
     <div class="field form-row">
       <%= f.label :start_time, "日付：" %>
-      <%= f.datetime_select :start_time, include_blank: "選択して下さい" %>
+      <%= f.datetime_field :start_time, include_blank: "選択して下さい" %>
     </div>
-    <div class="field form-row">
-      <%= f.label :menu, "トレーニング種目：" %>
-      <%= f.select :menu, [["ベンチプレス", "ベンチプレス"], ["スクワット", "スクワット"], ["デッドリフト", "デッドリフト"], ["バーベルカール", "バーベルカール"], ["フレンチプレス", "フレンチプレス"], ["ショルダープレス", "ショルダープレス"]], include_blank: "選択して下さい" %>
+    <p>-----------------------------------------------------</p>
+    <div class="form_count" id="form_list">
+      <div class="field form-row">
+        種目：<select name="workout[][menu]" id="workout_menu">
+          <option value="">選択して下さい</option>
+          <% [["ベンチプレス"], ["スクワット"], ["デッドリフト"], ["バーベルカール"], ["フレンチプレス"], ["ショルダープレス"]].each do |v| %>
+            <option value="<%= v[0] %>"><%= v[0] %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="field form-row addition">
+        <%= f.label :weight, "重量：" %>
+        <%= f.number_field :weight, autocomplete: "weight", name: "workout[][weight]" %> kg
+      </div>
+      <div class="field form-row addition">
+        <%= f.label :rep, "回数：" %>
+        <%= f.number_field :rep, autocomplete: "rep", name: "workout[][rep]" %> 回
+      </div>
+      <div class="field form-row">
+        <%= f.label :rep, "セット数：" %>
+        <%= f.number_field :rep, autocomplete: "set", name: "workout[][set]" %> セット
+      </div>
     </div>
-    <div class="field form-row addition">
-      <%= f.label :weight, "重量：" %>
-      <%= f.number_field :weight, autocomplete: "weight", name: "workout[weight]", id: "workout_weight" %> kg
-    </div>
-    <div class="field form-row addition">
-      <%= f.label :rep, "回数：" %>
-      <%= f.number_field :rep, autocomplete: "rep", name: "workout[rep]", id: "workout_rep" %> 回
-    </div>
-    <div class="field form-row">
-      <%= f.label :set, "セット数：" %>
-      <%= f.select :set, [*(1..10)],include_blank: "選択して下さい" %> セット
-    </div>
+    <div class = "add_form_btn" id = "add_form_btn">メニューを追加する</div>
+    <div class = "remove_form_btn" id = "remove_form_btn">メニューを削除する</div>
+    <p>-----------------------------------------------------</p>
     <div class="field form-row">
       <%= f.label :memo, "メモ：" %>
       <%= f.text_area :memo, rows: "3", name: "workout[memo]", id: "workout_memo" %>

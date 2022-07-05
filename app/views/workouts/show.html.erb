@@ -50,6 +50,6 @@
   </div>
   
   <li><%= link_to "編集", edit_workout_path(@workout.id) %></li>
-  <li><%= link_to "削除", workout_path(workout), data: {turbo_method: :delete, confirm: "本当に削除しますか？"} %></li>
+  <li><%= link_to "削除", workout_path(@workout), data: {turbo_method: :delete, confirm: "本当に削除しますか？"} %></li>
 </div>
   
