@@ -7,12 +7,12 @@
   <%= form_with model: @workout do |f| %>
     <div class="field form-row">
       <%= f.label :start_time, "日付：" %>
-      <%= f.datetime_field :start_time, include_blank: "選択して下さい" %>
+      <%= f.datetime_field :start_time, include_blank: "選択して下さい", name: "workout[start_time]" %>
     </div>
     <p>-----------------------------------------------------</p>
     <div class="form_count" id="form_list">
       <div class="field form-row">
-        種目：<select name="workout[][menu]" id="workout_menu">
+        種目：<select name="workout[workout_menus][][menu]" id="workout_menu">
           <option value="">選択して下さい</option>
           <% [["ベンチプレス"], ["スクワット"], ["デッドリフト"], ["バーベルカール"], ["フレンチプレス"], ["ショルダープレス"]].each do |v| %>
             <option value="<%= v[0] %>"><%= v[0] %></option>
@@ -21,15 +21,15 @@
       </div>
       <div class="field form-row addition">
         <%= f.label :weight, "重量：" %>
-        <%= f.number_field :weight, autocomplete: "weight", name: "workout[][weight]" %> kg
+        <%= f.number_field :weight, autocomplete: "weight", name: "workout[workout_menus][][weight]" %> kg
       </div>
       <div class="field form-row addition">
         <%= f.label :rep, "回数：" %>
-        <%= f.number_field :rep, autocomplete: "rep", name: "workout[][rep]" %> 回
+        <%= f.number_field :rep, autocomplete: "rep", name: "workout[workout_menus][][rep]" %> 回
       </div>
       <div class="field form-row">
         <%= f.label :rep, "セット数：" %>
-        <%= f.number_field :rep, autocomplete: "set", name: "workout[][set]" %> セット
+        <%= f.number_field :rep, autocomplete: "set", name: "workout[workout_menus][][set]" %> セット
       </div>
     </div>
     <div class = "add_form_btn" id = "add_form_btn">メニューを追加する</div>

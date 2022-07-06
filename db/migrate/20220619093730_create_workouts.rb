@@ -13,6 +13,7 @@ class CreateWorkouts < ActiveRecord::Migration[7.0]
       t.integer :fatigue
       t.integer :mental
       t.datetime :start_time
+      t.string :workout_menus
 
       t.timestamps
     end

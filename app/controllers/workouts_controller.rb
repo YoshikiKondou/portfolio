@@ -74,10 +74,7 @@ class WorkoutsController < ApplicationController
         :fatigue,
         :mental,
         :start_time,
-        menu: [],
-        weight: [],
-        rep: [],
-        set: []
+        workout_menus: [%w(menu weight rep set)]
       ).merge(user_id: session[:user_id])
     end
 end
