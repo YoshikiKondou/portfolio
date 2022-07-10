@@ -18,7 +18,7 @@ class WorkoutsController < ApplicationController
 
   def create
     @workout = Workout.new(workout_params)
-    if @workout.save
+    if @workout.save!
       flash[:success] = "トレーニングを記録しました"
       redirect_to("/workouts")
     else
@@ -74,7 +74,7 @@ class WorkoutsController < ApplicationController
         :fatigue,
         :mental,
         :start_time,
-        workout_menus: [%w(menu weight rep set)]
+        workout_menus: [:menu, :weight, :rep, :set, :_destroy]
       ).merge(user_id: session[:user_id])
     end
 end

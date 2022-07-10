@@ -9,6 +9,12 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
+    <script type="importmap"> {
+      "imports": {
+        "jquery": "https://ga.jspm.io/npm:jquery@3.6.0/dist/jquery.js", 
+        "cocoon": "https://ga.jspm.io/npm:cocoon@0.1.1/lib/index.js"
+        }
+    }</script>
   </head>
 
   <body>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/workouts/graph'
   resources :users, only: [:new, :create, :edit, :update]
   resources :workouts
+  resources :workout_menus
   get '/', to: 'home#top'
 end
 

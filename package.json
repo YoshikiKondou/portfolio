@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "chart.js": "^2.7.1"
+    "chart.js": "^2.7.1",
+    "cocoon-js-vanilla": "^1.2.0"
   }
 }

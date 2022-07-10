@@ -11,35 +11,17 @@
     </div>
     <p>-----------------------------------------------------</p>
     <div class="form_count" id="form_list">
-      <div class="field form-row">
-        種目：<select name="workout[workout_menus][][menu]" id="workout_menu">
-          <option value="">選択して下さい</option>
-          <% [["ベンチプレス"], ["スクワット"], ["デッドリフト"], ["バーベルカール"], ["フレンチプレス"], ["ショルダープレス"]].each do |v| %>
-            <option value="<%= v[0] %>"><%= v[0] %></option>
-          <% end %>
-        </select>
-      </div>
-      <div class="field form-row addition">
-        <%= f.label :weight, "重量：" %>
-        <%= f.number_field :weight, autocomplete: "weight", name: "workout[workout_menus][][weight]" %> kg
-      </div>
-      <div class="field form-row addition">
-        <%= f.label :rep, "回数：" %>
-        <%= f.number_field :rep, autocomplete: "rep", name: "workout[workout_menus][][rep]" %> 回
-      </div>
-      <div class="field form-row">
-        <%= f.label :rep, "セット数：" %>
-        <%= f.number_field :rep, autocomplete: "set", name: "workout[workout_menus][][set]" %> セット
-      </div>
+      <%= f.fields_for :workout_menus do |t| %>
+        <%= render "layouts/shared/workout_menu_fields", f: t %>
+      <% end %>
     </div>
-    <div class = "add_form_btn" id = "add_form_btn">メニューを追加する</div>
-    <div class = "remove_form_btn" id = "remove_form_btn">メニューを削除する</div>
+    <div id="detail-association-insertion-point"></div>
+    <%= link_to_add_association "+フォームを追加", f, :workout_menus, class: "btn btn-secondary btn-block", data: { association_insertion_node: '#detail-association-insertion-point', association_insertion_method: 'after'} %>
     <p>-----------------------------------------------------</p>
     <div class="field form-row">
       <%= f.label :memo, "メモ：" %>
       <%= f.text_area :memo, rows: "3", name: "workout[memo]", id: "workout_memo" %>
     </div>
-  
     <p>-----------------------------------------------------</p>
 
     <h4>体調チェック ※ 1 : 悪い 〜 5 : 良い</h4>

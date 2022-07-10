@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_19_093730) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_09_123029) do
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "age"
@@ -22,12 +22,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_093730) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "workouts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "workout_menus", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "menu"
     t.integer "weight"
     t.integer "rep"
     t.integer "set"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "workouts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id"
     t.text "memo"
     t.integer "sleep"
     t.integer "eat"
@@ -35,7 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_093730) do
     t.integer "fatigue"
     t.integer "mental"
     t.datetime "start_time"
-    t.string "workout_menus"
+    t.integer "workout_menus"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
