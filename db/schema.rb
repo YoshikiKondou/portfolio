@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_09_123029) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_10_034701) do
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "age"
@@ -23,26 +23,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_123029) do
   end
 
   create_table "workout_menus", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "workout_id", null: false
     t.string "menu"
     t.integer "weight"
     t.integer "rep"
     t.integer "set"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["workout_id"], name: "index_workout_menus_on_workout_id"
   end
 
   create_table "workouts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
+    t.decimal "body_weight", precision: 10
+    t.string "part"
     t.text "memo"
     t.integer "sleep"
     t.integer "eat"
     t.integer "motivation"
     t.integer "fatigue"
-    t.integer "mental"
+    t.integer "muscle"
     t.datetime "start_time"
-    t.integer "workout_menus"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "workout_menus", "workouts"
 end

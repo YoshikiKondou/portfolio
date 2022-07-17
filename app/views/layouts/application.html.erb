@@ -9,54 +9,53 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
-    <script type="importmap"> {
-      "imports": {
-        "jquery": "https://ga.jspm.io/npm:jquery@3.6.0/dist/jquery.js", 
-        "cocoon": "https://ga.jspm.io/npm:cocoon@0.1.1/lib/index.js"
-        }
-    }</script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
   </head>
 
   <body>
-    <header>
-      <div class="header-left-nav">
-        <h1>筋トレ記録アプリ</h1>
-      </div>
-      <div class="header-right">
-        <% if current_user? %>
-          <div class="header-right-nav">
-            <div class="nav-item d-sm-inline-block"><%= @user.name %></div> 
-            <div class="nav-item">
-              <% if @user.image? %> 
-                <%= image_tag @user.image.url %> 
-              <% else %>
-                <img class="mx-3 p-1" alt="メニュー" src="">
-              <% end %> 
-              <ul class="header-nav-menu">
-                <li><%= link_to("トレーニング一覧", "/workouts")%></li>
-                <li><%= link_to("トレーニング新規作成", "/workouts/new", data: {"turbo"=>false}) %></li>
-                <li><%= link_to("記録推移", "/workouts/graph") %></li>
-                <li><%= link_to "アカウント編集", edit_user_path(:user_id) %></li>
-                <li><%= link_to("ログアウト", "/users/logout") %></li>
-              </ul>
+    <div class="container">
+      <header>
+        <div class="header-left-nav">
+          <h1>筋トレ記録アプリ</h1>
+        </div>
+        <div class="header-right">
+          <% if current_user? %>
+            <div class="header-right-nav">
+              <div class="nav-item d-sm-inline-block"><%= @user.name %></div> 
+              <div class="nav-item">
+                <% if @user.image? %> 
+                  <%= image_tag @user.image.url %> 
+                <% else %>
+                  <img class="mx-3 p-1" alt="メニュー" src="">
+                <% end %> 
+                <ul class="header-nav-menu">
+                  <li><%= link_to("トレーニング一覧", "/workouts")%></li>
+                  <li><%= link_to("トレーニング新規作成", "/workouts/new", data: {"turbo"=>false}) %></li>
+                  <li><%= link_to("記録推移", "/workouts/graph") %></li>
+                  <li><%= link_to "アカウント編集", edit_user_path(:user_id) %></li>
+                  <li><%= link_to("ログアウト", "/users/logout") %></li>
+                </ul>
+              </div>
             </div>
-          </div>
-        <% else %>
-          <div class="header-right-nav">
-            <div class="nav-item">
-              <p>
-                <%= link_to("ログイン", "/users/sign_in") %>
-              </p>
-              <p>
-                <%= link_to("登録する", "/users/new") %>
-              </p>
+          <% else %>
+            <div class="header-right-nav">
+              <div class="nav-item">
+                <p>
+                  <%= link_to("ログイン", "/users/sign_in") %>
+                </p>
+                <p>
+                  <%= link_to("登録する", "/users/new") %>
+                </p>
+              </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-    </header>
-    <footer>
-    </footer>
-    <%= yield %>
+          <% end %>
+        </div>
+      </header>
+      <footer>
+      </footer>
+      <%= yield %>
+    </div>
   </body>
 </html>

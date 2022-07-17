@@ -1,0 +1,19 @@
+<div class="nested-fields">
+  <div class="field form-row">
+    <%= f.label :menu, "種目：" %>
+    <%= f.select :menu, Workout::SELECT_OPTIONS, include_blank: "選択して下さい", class: "js-searchable" %>
+  </div>
+  <div class="field form-row addition">
+    <%= f.label :weight, "重量：" %>
+    <%= f.number_field :weight, autocomplete: "weight" %> kg
+  </div>
+  <div class="field form-row addition">
+    <%= f.label :rep, "回数：" %>
+    <%= f.number_field :rep, autocomplete: "rep" %> 回
+  </div>
+  <div class="field form-row">
+    <%= f.label :set, "セット：" %>
+    <%= f.number_field :set, autocomplete: "set" %>セット
+  </div>
+  <%= link_to_remove_association "削除", f, class: "btn btn-secondary btn-block" %>
+</div>

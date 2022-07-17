@@ -1,9 +1,9 @@
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:edit, :show, :update, :destroy]
-  before_action :set_login_user
+  
 
   def index
-    @workouts = Workout.where(user_id: session[:user_id]).order(start_time: "desc")
+    @workouts = Workout.where(user_id: session[:user_id]).order(start_time: "desc").includes(:workout_menus)
   end
 
   def show
@@ -11,6 +11,7 @@ class WorkoutsController < ApplicationController
 
   def new
     @workout = Workout.new
+    @workout_menus = @workout.workout_menus.build
   end
 
   def edit
@@ -28,7 +29,7 @@ class WorkoutsController < ApplicationController
   end
 
   def update
-    if @workout.update(workout_params)
+    if @workout.update(update_workout_params)
       flash[:success] = "トレーニング内容を更新しました"
       redirect_to("/workouts")
     else
@@ -44,16 +45,18 @@ class WorkoutsController < ApplicationController
   end
 
   def graph
+    @first_time = params.dig(:workout_menus, :search).present?
     @workouts = Workout.all
-    @workouts = Workout.where('workouts.menu LIKE(?)', "%#{params[:search]}%") if params[:search].present?
+    @workouts = Workout.eager_load(:workout_menus).where('workout_menus.menu LIKE(?)', "%#{params[:workout_menus][:search]}%") if params.dig(:workout_menus, :search).present?
     @workout_by_day = @workouts.group("date(start_time)")
     @chartlabels = @workout_by_day.size.map(&:first).to_json.html_safe
     @sleepdata = @workout_by_day.sum(:sleep).map(&:second).to_json.html_safe
     @eatdata = @workout_by_day.sum(:eat).map(&:second).to_json.html_safe
     @motivationdata = @workout_by_day.sum(:motivation).map(&:second).to_json.html_safe
     @fatiguedata = @workout_by_day.sum(:fatigue).map(&:second).to_json.html_safe
-    @mentaldata = @workout_by_day.sum(:mental).map(&:second).to_json.html_safe
-    @totalvolume = @workout_by_day.sum("weight * rep").map(&:second).to_json.html_safe
+    @muscledata = @workout_by_day.sum(:muscle).map(&:second).to_json.html_safe
+    @workouts_by_day = @workouts.includes(:workout_menus).group("date(start_time)")
+    @totalvolume = @workouts_by_day.sum("weight * rep").map(&:second).to_json.html_safe
   end
 
   private
@@ -67,14 +70,31 @@ class WorkoutsController < ApplicationController
 
     def workout_params
       params.require(:workout).permit(
+        :start_time,
+        :body_weight,
+        :part,
         :memo,
         :sleep,
         :eat,
         :motivation,
         :fatigue,
-        :mental,
+        :muscle,
+        workout_menus_attributes: [:menu, :weight, :rep, :set, :_destroy]
+      ).merge(user_id: session[:user_id])
+    end
+
+    def update_workout_params
+      params.require(:workout).permit(
         :start_time,
-        workout_menus: [:menu, :weight, :rep, :set, :_destroy]
+        :body_weight,
+        :part,
+        :memo,
+        :sleep,
+        :eat,
+        :motivation,
+        :fatigue,
+        :muscle,
+        workout_menus_attributes: [:menu, :weight, :rep, :set, :_destroy, :id]
       ).merge(user_id: session[:user_id])
     end
 end

@@ -5,26 +5,18 @@
   <% end %>
   <%= render 'layouts/shared/error', obj: @workout %>
   <%= form_with model: @workout do |f| %>
-    <div class="field form-row">
+     <div class="field form-row">
       <%= f.label :start_time, "日付：" %>
-      <%= f.datetime_field :start_time %>
+      <%= f.datetime_field :start_time, include_blank: "選択して下さい", name: "workout[start_time]" %>
     </div>
-    <div class="field form-row">
-      <%= f.label :menu, "トレーニング種目：" %>
-      <%= f.select :menu, [["ベンチプレス", "ベンチプレス"], ["スクワット", "スクワット"], ["デッドリフト", "デッドリフト"], ["バーベルカール", "バーベルカール"], ["フレンチプレス", "フレンチプレス"], ["ショルダープレス", "ショルダープレス"]] %>
+    <p>-----------------------------------------------------</p>
+    <div class="form_count" id="form_list">
+      <%= f.fields_for :workout_menus do |form| %>
+        <%= render "workouts/edit_workout_menu_fields", f: form %>
+      <% end %>
     </div>
-    <div class="field form-row addition">
-      <%= f.label :weight, "重量：" %>
-      <%= f.number_field :weight, autocomplete: "weight", name: "workout[][weight]", id: "workout_weight" %> kg
-    </div>
-    <div class="field form-row addition">
-      <%= f.label :rep, "回数：" %>
-      <%= f.number_field :rep, autocomplete: "rep", name: "workout[rep]", id: "workout_rep" %> 回
-    </div>
-    <div class="field form-row">
-      <%= f.label :set, "セット数：" %>
-      <%= f.select :set, [*(1..10)] %> セット
-    </div>
+    <div id="detail-association-insertion-point"></div>
+    <%= link_to_add_association "+メニューを追加", f, :workout_menus, class: "btn btn-secondary btn-block", data: { association_insertion_node: '#detail-association-insertion-point', association_insertion_method: 'after'} %>
     <div class="field form-row">
       <%= f.label :memo, "メモ：" %>
       <%= f.text_area :memo, rows: "3", name: "workout[memo]", id: "workout_memo" %>

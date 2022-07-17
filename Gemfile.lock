@@ -193,6 +193,15 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     rubyzip (2.3.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
+    select2-rails (4.0.13)
     selenium-webdriver (4.2.1)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -210,6 +219,7 @@ GEM
       railties (>= 6.0.0)
     strscan (3.0.3)
     thor (1.2.1)
+    tilt (2.0.10)
     timeout (0.3.0)
     turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
@@ -252,6 +262,8 @@ DEPENDENCIES
   mysql2 (~> 0.5)
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.2)
+  sassc-rails
+  select2-rails
   selenium-webdriver
   sprockets-rails
   stimulus-rails

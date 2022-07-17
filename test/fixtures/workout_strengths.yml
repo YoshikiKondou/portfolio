@@ -1,17 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  workout: one
-  menu: MyString
-  string: MyString
+  workout_menus: one
   weight: 1
   rep: 1
-  set: 1
 
 two:
-  workout: two
-  menu: MyString
-  string: MyString
+  workout_menus: two
   weight: 1
   rep: 1
-  set: 1

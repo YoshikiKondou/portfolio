@@ -20,7 +20,7 @@
       <th>食事</th>
       <th>モチベーション</th>
       <th>疲労度</th>
-      <th>メンタル</th>
+      <th>筋肉の張り</th>
       </tr>
   </thead>
   <tbody>
@@ -31,16 +31,32 @@
             <%= workout.start_time.strftime("%Y年%m月%d日") %>
           </td>
           <td>
-            <%= workout.menu %>
+            <% workout.workout_menus.each do |workout_menu| %>
+              <br>
+              <%= workout_menu.menu %>
+              <br>
+            <% end %>
           </td>
           <td>
-            <%= workout.weight %>
+            <% workout.workout_menus.each do |workout_menu| %>
+              <br>
+              <%= workout_menu.weight %>
+              <br>
+            <% end %>
           </td>
           <td>
-            <%= workout.rep %>
+            <% workout.workout_menus.each do |workout_menu| %>
+              <br>
+              <%= workout_menu.rep %>
+              <br>
+            <% end %>
           </td>
           <td>
-            <%= workout.set %>
+            <% workout.workout_menus.each do |workout_menu| %>
+              <br>
+              <%= workout_menu.set %>
+              <br>
+            <% end %>
           </td>
           <td>
             <%= workout.sleep %>            
@@ -55,7 +71,7 @@
             <%= workout.fatigue %>            
           </td>
           <td>
-            <%= workout.mental %>            
+            <%= workout.muscle %>            
           </td>
            <td>
             <%= link_to "確認", workout_path(workout) %>

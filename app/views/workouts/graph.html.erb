@@ -1,14 +1,15 @@
 <h1>筋トレ記録推移を見る</h1>
 
-<%= form_with model: @workout, method: :get do |f| %>
-  <div class="field form-row">
-    <%= f.label :search, "トレーニング種目を選択する：" %>
-    <%= f.select :search, [["ベンチプレス", "ベンチプレス"], ["スクワット", "スクワット"], ["デッドリフト", "デッドリフト"], ["バーベルカール", "バーベルカール"], ["フレンチプレス", "フレンチプレス"], ["ショルダープレス", "ショルダープレス"]], include_blank: "選択して下さい" %>
-  </div>
+<%= form_with model: @workout, method: :get, local: :true do |f| %>
+  <%= f.fields_for :workout_menus do |form| %>
+    <%= render "workouts/search_workout_menu_fields", f: form %>
+  <% end %>
   <%= f.submit '記録推移を見る'%>
 <% end %>
 
-<canvas id="myChart" width="200" height="100"> </canvas>
+<div style="opacity: <%= @first_time ? 1 : 0 %>">
+<canvas id="myChart"></canvas>
+</div>
 <script>
   var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
@@ -17,7 +18,7 @@
       labels: <%= @chartlabels %>,
       datasets: [{
         label: "重量×回数",
-        data: <%= @totalvolume %>, // 縦軸にとる累積投稿数データを埋め込む
+        data:  <%= @totalvolume %>,// 縦軸にとる累積投稿数データを埋め込む
         backgroundColor: 'rgba(255, 80, 120, 0.2)',
         borderColor: 'rgba(255, 80, 120, 1.0)',
         type: 'line', // 'line'でグラフタイプを折線グラフに指定
@@ -52,12 +53,12 @@
         yAxisID: "y-axis-1", 
         data: <%= @fatiguedata %>
       }, {
-        label: "メンタル",
+        label: "筋肉の張り",
         borderWidth:1,
         backgroundColor: "#a7d8bf",
         borderColor: "#a7d8bf",
         yAxisID: "y-axis-1", 
-        data: <%= @mentaldata %>
+        data: <%= @muscledata %>
       }]
     },
     options: {

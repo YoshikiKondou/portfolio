@@ -1,22 +1,33 @@
 <h2>トレーニング新規作成</h2>
 <div class="workout new">
+  <%= link_to "picture.jpeg", "data-lightbox": "picture.jpeg" do %>
+    <%= image_tag "picture.jpeg", height: '250', :style=>"width:300;"%>
+  <% end %>
   <% if flash[:failure] %>
     <p class="failure"><%= flash[:failure] %></p>
   <% end %>
   <%= render 'layouts/shared/error', obj: @workout %>
-  <%= form_with model: @workout do |f| %>
+  <%= form_with model: @workout, local: true do |f| %>
     <div class="field form-row">
       <%= f.label :start_time, "日付：" %>
       <%= f.datetime_field :start_time, include_blank: "選択して下さい", name: "workout[start_time]" %>
     </div>
+    <div class="field form-row">
+      <%= f.label :body_weight, "体重：" %>
+      <%= f.number_field :body_weight, step: "0.1", name: "workout[body_weight]" %>kg
+    </div>
+    <div class="field form-row">
+      <%= f.label :part, "部位：" %>
+      <%= f.select :part, ["胸", "二頭", "三頭", "背中", "四頭", "ハム、尻部", "腹筋"], include_blank: "選択して下さい" %>
+    </div>
     <p>-----------------------------------------------------</p>
     <div class="form_count" id="form_list">
-      <%= f.fields_for :workout_menus do |t| %>
-        <%= render "layouts/shared/workout_menu_fields", f: t %>
+      <%= f.fields_for :workout_menus do |form| %>
+        <%= render "workouts/workout_menu_fields", f: form %>
       <% end %>
     </div>
     <div id="detail-association-insertion-point"></div>
-    <%= link_to_add_association "+フォームを追加", f, :workout_menus, class: "btn btn-secondary btn-block", data: { association_insertion_node: '#detail-association-insertion-point', association_insertion_method: 'after'} %>
+    <%= link_to_add_association "種目を追加", f, :workout_menus, class: "btn btn-secondary btn-block", data: { association_insertion_node: '#detail-association-insertion-point', association_insertion_method: 'after' } %>
     <p>-----------------------------------------------------</p>
     <div class="field form-row">
       <%= f.label :memo, "メモ：" %>
@@ -42,8 +53,8 @@
       <%= f.select :fatigue, [*(1..5)], include_blank: "選択して下さい" %>
     </div>
     <div class="field form-row">
-      <%= f.label :mental, "メンタル：" %>
-      <%= f.select :mental, [*(1..5)], include_blank: "選択して下さい" %>
+      <%= f.label :muscle, "筋肉の状態：" %>
+      <%= f.select :muscle, [*(1..5)], include_blank: "選択して下さい" %>
     </div>
     <br>
     <%= f.submit '記録する'%>
