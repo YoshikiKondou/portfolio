@@ -9,6 +9,14 @@
       <%= f.label :start_time, "日付：" %>
       <%= f.datetime_field :start_time, include_blank: "選択して下さい", name: "workout[start_time]" %>
     </div>
+    <div class="field form-row">
+      <%= f.label :body_weight, "体重：" %>
+      <%= f.number_field :body_weight, step: "0.1", name: "workout[body_weight]" %>kg
+    </div>
+    <div class="field form-row">
+      <%= f.label :part, "部位：" %>
+      <%= f.select :part, ["胸", "腕", "背中", "脚", "四頭", "ハム、尻部", "腹筋"], include_blank: "選択して下さい" %>
+    </div>
     <p>-----------------------------------------------------</p>
     <div class="form_count" id="form_list">
       <%= f.fields_for :workout_menus do |form| %>

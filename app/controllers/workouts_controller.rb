@@ -4,6 +4,7 @@ class WorkoutsController < ApplicationController
 
   def index
     @workouts = Workout.where(user_id: session[:user_id]).order(start_time: "desc").includes(:workout_menus)
+    @workouts = Workout.where('part LIKE(?)', "%#{params[:search]}%") if params[:search].present?
   end
 
   def show
@@ -45,7 +46,7 @@ class WorkoutsController < ApplicationController
   end
 
   def graph
-    @first_time = params.dig(:workout_menus, :search).present?
+    @menu_search = params.dig(:workout_menus, :search).present?
     @workouts = Workout.all
     @workouts = Workout.eager_load(:workout_menus).where('workout_menus.menu LIKE(?)', "%#{params[:workout_menus][:search]}%") if params.dig(:workout_menus, :search).present?
     @workout_by_day = @workouts.group("date(start_time)")

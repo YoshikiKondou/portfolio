@@ -8,10 +8,22 @@
     <%= flash[:failure] %>
   </p>
 <% end %>
+<div class="max_weight">
+  <p>MAX重量早見表を確認する</p>
+  <%= link_to "picture.jpeg", "data-lightbox": "picture.jpeg" do %>
+    <%= image_tag "picture.jpeg", height: '250', :style=>"width:300;"%>
+  <% end %>
+</div>
+<%= form_with model: @workout, method: :get, local: :true do |f| %>
+  <%= f.select :search, ["胸", "腕", "背中", "脚", "四頭", "ハム、尻部", "腹筋"], include_blank: "選択して下さい" %>
+  <%= f.submit '部位で検索する'%>
+<% end %>
 <table>
   <thead>
     <tr>
       <th>トレーニング日</th>
+      <th>体重</th>
+      <th>部位</th>
       <th>トレーニング内容</th>
       <th>重量</th>
       <th>回数</th>
@@ -29,6 +41,12 @@
         <tr>
           <td>
             <%= workout.start_time.strftime("%Y年%m月%d日") %>
+          </td>
+          <td>
+            <%= workout.body_weight %>
+          </td>
+          <td>
+            <%= workout.part %>
           </td>
           <td>
             <% workout.workout_menus.each do |workout_menu| %>
