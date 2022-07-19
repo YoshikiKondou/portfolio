@@ -25,9 +25,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_034701) do
   create_table "workout_menus", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "workout_id", null: false
     t.string "menu"
-    t.integer "weight"
-    t.integer "rep"
-    t.integer "set"
+    t.integer "first_set_weight"
+    t.integer "second_set_weight"
+    t.integer "third_set_weight"
+    t.integer "fourth_set_weight"
+    t.integer "fifth_set_weight"
+    t.integer "first_set_rep"
+    t.integer "second_set_rep"
+    t.integer "third_set_rep"
+    t.integer "fourth_set_rep"
+    t.integer "fifth_set_rep"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["workout_id"], name: "index_workout_menus_on_workout_id"

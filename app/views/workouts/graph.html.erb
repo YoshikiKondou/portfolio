@@ -64,7 +64,7 @@
     options: {
       title: {
         display: true,
-        text: '筋トレの伸びと体調の相関性について', //グラフの見出し
+        text: '重量の伸び', //グラフの見出し
         padding:3
       },
       scales: {
@@ -80,11 +80,6 @@
           id: "y-axis-2",   // Y軸のID
           type: "linear",   // linear固定 
           position: "left", // どちら側に表示される軸か？
-          ticks: {          // スケール
-            max: 1000,
-            min: 0,
-            stepSize: 100
-          },
           scaleLabel: {
             display: true,
             labelString: "重量×回数(kg)",

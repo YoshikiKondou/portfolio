@@ -25,9 +25,11 @@
       <th>体重</th>
       <th>部位</th>
       <th>トレーニング内容</th>
-      <th>重量</th>
-      <th>回数</th>
-      <th>セット数</th>
+      <th>1set</th>
+      <th>2set</th>
+      <th>3set</th>
+      <th>4set</th>
+      <th>5set</th>
       <th>睡眠</th>
       <th>食事</th>
       <th>モチベーション</th>
@@ -58,21 +60,35 @@
           <td>
             <% workout.workout_menus.each do |workout_menu| %>
               <br>
-              <%= workout_menu.weight %>
+              <%= workout_menu.first_set_weight %>×<%= workout_menu.first_set_rep %>
               <br>
             <% end %>
           </td>
           <td>
             <% workout.workout_menus.each do |workout_menu| %>
               <br>
-              <%= workout_menu.rep %>
+              <%= workout_menu.second_set_weight %>×<%= workout_menu.second_set_rep %>
               <br>
             <% end %>
           </td>
           <td>
             <% workout.workout_menus.each do |workout_menu| %>
               <br>
-              <%= workout_menu.set %>
+              <%= workout_menu.third_set_weight %>×<%= workout_menu.third_set_rep %>
+              <br>
+            <% end %>
+          </td>
+          <td>
+            <% workout.workout_menus.each do |workout_menu| %>
+              <br>
+              <%= workout_menu.fourth_set_weight %>×<%= workout_menu.fourth_set_rep %>
+              <br>
+            <% end %>
+          </td>
+          <td>
+            <% workout.workout_menus.each do |workout_menu| %>
+              <br>
+              <%= workout_menu.fifth_set_weight %>×<%= workout_menu.fifth_set_rep %>
               <br>
             <% end %>
           </td>

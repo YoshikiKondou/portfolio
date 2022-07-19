@@ -1,0 +1,33 @@
+<canvas id="myChart" width="200" height="100"> </canvas>
+<script> 
+  var ctx = document.getElementById("myChart").getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: <%= @chartlabels %>,  
+      datasets: [{
+        label: "体重推移",
+        data: <%= @bodyweightdata %>, // 縦軸にとる累積投稿数データを埋め込む
+        backgroundColor: "red",
+        borderColor: "#121554",
+        fill: false
+      }]
+    },
+    options: {
+      scales: {
+        xAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: "日付",
+          }
+        }],
+        yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: "体重(kg)",
+          }
+        }],
+      },
+    }
+  });
+</script>

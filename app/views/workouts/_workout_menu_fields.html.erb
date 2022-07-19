@@ -4,16 +4,34 @@
     <%= f.select :menu, Workout::SELECT_OPTIONS, include_blank: "選択して下さい", class: "js-searchable" %>
   </div>
   <div class="field form-row addition">
-    <%= f.label :weight, "重量：" %>
-    <%= f.number_field :weight, autocomplete: "weight" %> kg
+    <%= f.label :first_set_weight, "重量：" %>
+    <%= f.number_field :first_set_weight, autocomplete: "weight" %> kg
+    <%= f.label :first_set_rep, "×回数：" %>
+    <%= f.number_field :first_set_rep, autocomplete: "rep" %> 回
   </div>
   <div class="field form-row addition">
-    <%= f.label :rep, "回数：" %>
-    <%= f.number_field :rep, autocomplete: "rep" %> 回
+    <%= f.label :second_set_weight, "重量：" %>
+    <%= f.number_field :second_set_weight, autocomplete: "weight" %> kg
+    <%= f.label :second_set_rep, "×回数：" %>
+    <%= f.number_field :second_set_rep, autocomplete: "rep" %> 回
   </div>
-  <div class="field form-row">
-    <%= f.label :set, "セット：" %>
-    <%= f.number_field :set, autocomplete: "set" %>セット
+  <div class="field form-row addition">
+    <%= f.label :third_set_weight, "重量：" %>
+    <%= f.number_field :third_set_weight, autocomplete: "weight" %> kg
+    <%= f.label :third_set_rep, "×回数：" %>
+    <%= f.number_field :third_set_rep, autocomplete: "rep" %> 回
+  </div>
+  <div class="field form-row addition">
+    <%= f.label :fourth_set_weight, "重量：" %>
+    <%= f.number_field :fourth_set_weight, autocomplete: "weight" %> kg
+    <%= f.label :fourth_set_rep, "×回数：" %>
+    <%= f.number_field :fourth_set_rep, autocomplete: "rep" %> 回
+  </div>
+  <div class="field form-row addition">
+    <%= f.label :fifth_set_weight, "重量：" %>
+    <%= f.number_field :fifth_set_weight, autocomplete: "weight" %> kg
+    <%= f.label :fifth_set_rep, "×回数：" %>
+    <%= f.number_field :fifth_set_rep, autocomplete: "rep" %> 回
   </div>
   <%= link_to_remove_association "削除", f, class: "btn btn-secondary btn-block" %>
 </div>

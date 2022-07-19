@@ -57,7 +57,14 @@ class WorkoutsController < ApplicationController
     @fatiguedata = @workout_by_day.sum(:fatigue).map(&:second).to_json.html_safe
     @muscledata = @workout_by_day.sum(:muscle).map(&:second).to_json.html_safe
     @workouts_by_day = @workouts.includes(:workout_menus).group("date(start_time)")
-    @totalvolume = @workouts_by_day.sum("weight * rep").map(&:second).to_json.html_safe
+    @totalvolume = @workouts_by_day.sum("first_set_weight * first_set_rep").map(&:second).to_json.html_safe
+  end
+
+  def body_weight_graph
+    @workouts = Workout.all
+    @workout_by_day = @workouts.group("date(start_time)")
+    @chartlabels = @workout_by_day.size.map(&:first).to_json.html_safe
+    @bodyweightdata = @workout_by_day.sum(:body_weight).map(&:second).to_json.html_safe
   end
 
   private
@@ -80,7 +87,7 @@ class WorkoutsController < ApplicationController
         :motivation,
         :fatigue,
         :muscle,
-        workout_menus_attributes: [:menu, :weight, :rep, :set, :_destroy]
+        workout_menus_attributes: [:menu, :first_set_weight, :second_set_weight, :third_set_weight, :fourth_set_weight, :fifth_set_weight, :first_set_rep, :second_set_rep, :third_set_rep, :fourth_set_rep, :fifth_set_rep, :_destroy]
       ).merge(user_id: session[:user_id])
     end
 
@@ -95,7 +102,7 @@ class WorkoutsController < ApplicationController
         :motivation,
         :fatigue,
         :muscle,
-        workout_menus_attributes: [:menu, :weight, :rep, :set, :_destroy, :id]
+        workout_menus_attributes: [:menu, :first_set_weight, :second_set_weight, :third_set_weight, :fourth_set_weight, :fifth_set_weight, :first_set_rep, :second_set_rep, :third_set_rep, :fourth_set_rep, :fifth_set_rep, :_destroy, :id]
       ).merge(user_id: session[:user_id])
     end
 end
