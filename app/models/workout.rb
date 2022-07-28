@@ -3,13 +3,14 @@ class Workout < ApplicationRecord
   has_many :workout_menus, dependent: :destroy
   accepts_nested_attributes_for :workout_menus, allow_destroy: true
   validates_associated :workout_menus
-  validates :start_time, { presence: true }
-  validates :part, { presence: true }
-  validates :sleep, { presence: true }
-  validates :eat, { presence: true }
-  validates :motivation, { presence: true }
-  validates :fatigue, { presence: true }
-  validates :muscle, { presence: true }
+  validates :start_time, presence: true
+  validates :part, presence: true
+  validates :body_weight, numericality: { greater_than: 30, less_than: 150 }, allow_blank: true
+  validates :sleep, presence: true
+  validates :eat, presence: true
+  validates :motivation, presence: true
+  validates :fatigue, presence: true
+  validates :muscle, presence: true
 
   SELECT_OPTIONS = [
     ['胸', [
@@ -42,11 +43,12 @@ class Workout < ApplicationRecord
     ['肩', [
       ['バックプレス', 'バックプレス'],
       ['フロントプレス', 'フロントプレス'],
-      ['ダンベル・ショルダープレス', 'ダンベル・ショルダープレス'],
+      ['スミスマシン・ショルダープレス', 'スミスマシン・ショルダープレス'],
+      ['ダンベルショルダープレス', 'ダンベルショルダープレス'],
       ['アーノルドプレス', 'アーノルドプレス'],
-      ['マシン・ショルダープレス', 'マシン・ショルダープレス'],
+      ['マシンショルダープレス', 'マシンショルダープレス'],
       ['サイドレイズ',  'サイドレイズ'],
-      ['インクライン・サイドレイズ', 'インクライン・サイドレイズ'],
+      ['インクラインサイドレイズ', 'インクラインサイドレイズ'],
       ['フロントレイズ', 'フロントレイズ'],
       ['リアレイズ', 'リアレイズ'],
       ['リアデルト', 'リアデルト'],
@@ -56,8 +58,8 @@ class Workout < ApplicationRecord
     ['二頭', [
       ['バーベルカール', 'バーベルカール'],
       ['ダンベルカール', 'ダンベルカール'],
-      ['インクライン・ダンベルカール', 'インクライン・ダンベルカール'],
-      ['ワンハンド・ダンベルカール', 'ワンハンド・ダンベルカール'],
+      ['インクラインダンベルカール', 'インクラインダンベルカール'],
+      ['ワンハンドダンベルカール', 'ワンハンドダンベルカール'],
       ['ハンマーカール', 'ハンマーカール'],
       ['ケーブルカール', 'ケーブルカール'],
       ['マシン・カール', 'マシン・カール']
@@ -67,16 +69,18 @@ class Workout < ApplicationRecord
         ['フレンチプレス', 'フレンチプレス'],
         ['スカルクラッシャー', 'スカルクラッシャー'],
         ['ナローベンチプレス', 'ナローベンチプレス'],
-        ['プレスダウン', 'プレスダウン']
+        ['プレスダウン', 'プレスダウン'],
+        ['オーバーヘッドエクステンション', 'オーバーヘッドエクステンション'],
+        ['トライセプスエクステンション', 'トライセプスエクステンション']
       ]
     ],
     ['脚', [
       ['スクワット', 'スクワット'],
-      ['ハック・スクワット', 'ハック・スクワット'],
-      ['ブルガリアン・スクワット', 'ブルガリアン・スクワット'],
-      ['ルーマニアン・デッドリフト', 'ルーマニアン・デッドリフト'],
-      ['レッグ・エクステンション', 'レッグ・エクステンション'],
-      ['レッグ・カール', 'レッグ・カール'],
+      ['ハックスクワット', 'ハックスクワット'],
+      ['ブルガリアンスクワット', 'ブルガリアンスクワット'],
+      ['ルーマニアンデッドリフト', 'ルーマニアンデッドリフト'],
+      ['レッグエクステンション', 'レッグエクステンション'],
+      ['レッグカール', 'レッグカール'],
       ['ヒップスラスト', 'ヒップスラスト'],
       ['ヒップアブダクション', 'ヒップアブダクション'],
       ['ヒップアダクション', 'ヒップアブダクション'],
@@ -88,7 +92,8 @@ class Workout < ApplicationRecord
       ['立ちコロ（アブローラー）', '立コロ（アブローラー）'],
       ['膝コロ（アブローラー）', '膝コロ（アブローラー）'],
       ['シットアップ', 'プランク'],
-      ['トルソーローテーション', 'トルソーローテーション']
+      ['トルソーローテーション', 'トルソーローテーション'],
+      ['レッグレイズ', 'レッグレイズ']
     ]
   ],
   ]

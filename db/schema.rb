@@ -25,11 +25,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_034701) do
   create_table "workout_menus", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "workout_id", null: false
     t.string "menu"
-    t.integer "first_set_weight"
-    t.integer "second_set_weight"
-    t.integer "third_set_weight"
-    t.integer "fourth_set_weight"
-    t.integer "fifth_set_weight"
+    t.float "first_set_weight"
+    t.float "second_set_weight"
+    t.float "third_set_weight"
+    t.float "fourth_set_weight"
+    t.float "fifth_set_weight"
     t.integer "first_set_rep"
     t.integer "second_set_rep"
     t.integer "third_set_rep"
@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_034701) do
   create_table "workouts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
     t.decimal "body_weight", precision: 10
+    t.decimal "float", precision: 10
     t.string "part"
     t.text "memo"
     t.integer "sleep"

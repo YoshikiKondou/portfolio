@@ -1,37 +1,39 @@
 <div class="nested-fields">
-  <div class="field form-row">
-    <%= f.label :menu, "種目：" %>
-    <%= f.select :menu, Workout::SELECT_OPTIONS, include_blank: "選択して下さい", class: "js-searchable" %>
+  <div class="form-group">
+    <%= f.label :menu, "種目：", class: "col-form-label" %>
+    <%= f.select :menu, Workout::SELECT_OPTIONS, include_blank: "選択して下さい", class: "js-searchable form-control form-control-sm" %>
   </div>
-  <div class="field form-row addition">
-    <%= f.label :first_set_weight, "重量：" %>
-    <%= f.number_field :first_set_weight, autocomplete: "weight" %> kg
-    <%= f.label :first_set_rep, "×回数：" %>
-    <%= f.number_field :first_set_rep, autocomplete: "rep" %> 回
+  <div class="row">
+    <div class="col">
+      <%= f.number_field :first_set_weight, step: "0.1", autocomplete: "weight", placeholder: "重量", class: "form-control form-control-sm w-25" %> 
+    </div>
+    <div class="col">
+      <%= f.number_field :first_set_rep, autocomplete: "rep", placeholder: "回数", class: "form-control form-control-sm w-25" %> 
+    </div>
   </div>
-  <div class="field form-row addition">
-    <%= f.label :second_set_weight, "重量：" %>
-    <%= f.number_field :second_set_weight, autocomplete: "weight" %> kg
-    <%= f.label :second_set_rep, "×回数：" %>
-    <%= f.number_field :second_set_rep, autocomplete: "rep" %> 回
+  <div class="form-inline form-group">
+    <%= f.label :second_set_weight, "重量：", class: "col-form-label" %>
+    <%= f.number_field :second_set_weight, step: "0.1", autocomplete: "weight", class: "form-control form-control-sm" %> kg
+    <%= f.label :second_set_rep, "×回数：", class: "col-form-label" %>
+    <%= f.number_field :second_set_rep, autocomplete: "rep", class: "form-control form-control-sm" %> 回
   </div>
-  <div class="field form-row addition">
-    <%= f.label :third_set_weight, "重量：" %>
-    <%= f.number_field :third_set_weight, autocomplete: "weight" %> kg
-    <%= f.label :third_set_rep, "×回数：" %>
-    <%= f.number_field :third_set_rep, autocomplete: "rep" %> 回
+  <div class="form-inline form-group">
+    <%= f.label :third_set_weight, "重量：", class: "col-form-label" %>
+    <%= f.number_field :third_set_weight, step: "0.1", autocomplete: "weight", class: "form-control form-control-sm" %> kg
+    <%= f.label :third_set_rep, "×回数：", class: "col-form-label" %>
+    <%= f.number_field :third_set_rep, autocomplete: "rep", class: "form-control form-control-sm" %> 回
   </div>
-  <div class="field form-row addition">
-    <%= f.label :fourth_set_weight, "重量：" %>
-    <%= f.number_field :fourth_set_weight, autocomplete: "weight" %> kg
-    <%= f.label :fourth_set_rep, "×回数：" %>
-    <%= f.number_field :fourth_set_rep, autocomplete: "rep" %> 回
+  <div class="form-inline form-group">
+    <%= f.label :fourth_set_weight, "重量：", class: "col-form-label" %>
+    <%= f.number_field :fourth_set_weight, step: "0.1", autocomplete: "weight", class: "form-control form-control-sm" %> kg
+    <%= f.label :fourth_set_rep, "×回数：", class: "col-form-label" %>
+    <%= f.number_field :fourth_set_rep, autocomplete: "rep", class: "form-control form-control-sm" %> 回
   </div>
-  <div class="field form-row addition">
-    <%= f.label :fifth_set_weight, "重量：" %>
-    <%= f.number_field :fifth_set_weight, autocomplete: "weight" %> kg
-    <%= f.label :fifth_set_rep, "×回数：" %>
-    <%= f.number_field :fifth_set_rep, autocomplete: "rep" %> 回
+  <div class="form-inline form-group">
+    <%= f.label :fifth_set_weight, "重量：", class: "col-form-label" %>
+    <%= f.number_field :fifth_set_weight, step: "0.1", autocomplete: "weight", class: "form-control form-control-sm" %> kg
+    <%= f.label :fifth_set_rep, "×回数：", class: "col-form-label" %>
+    <%= f.number_field :fifth_set_rep, autocomplete: "rep", class: "form-control form-control-sm" %> 回
   </div>
   <%= link_to_remove_association "削除", f, class: "btn btn-secondary btn-block" %>
 </div>

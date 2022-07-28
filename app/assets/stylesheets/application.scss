@@ -9,9 +9,16 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
+ *= require_self
  *
  */
- @import "bootstrap-sprockets";
- @import "bootstrap"; 
- @import "select2";
- @import "select2-bootstrap"; 
+@import "application.bootstrap";
+
+ #background {
+  background-image: url("main.jpg");
+  height: 700px;
+}
+
+ .nav-item {
+  color: red;
+}

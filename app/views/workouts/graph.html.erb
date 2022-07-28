@@ -4,7 +4,7 @@
   <%= f.fields_for :workout_menus do |form| %>
     <%= render "workouts/search_workout_menu_fields", f: form %>
   <% end %>
-  <%= f.submit '記録推移を見る'%>
+  <%= f.submit '記録推移を見る' %>
 <% end %>
 
 <div style="opacity: <%= @menu_search ? 1 : 0 %>">
@@ -18,43 +18,43 @@
       labels: <%= @chartlabels %>,
       datasets: [{
         label: "重量×回数",
-        data:  <%= @totalvolume %>,// 縦軸にとる累積投稿数データを埋め込む
+        data:  <%= @totalvolume %>,
         backgroundColor: 'rgba(255, 80, 120, 0.2)',
         borderColor: 'rgba(255, 80, 120, 1.0)',
-        type: 'line', // 'line'でグラフタイプを折線グラフに指定
+        type: 'line',
         yAxisID: "y-axis-2",
         fill: false
       }, {
         label: "睡眠",
-        borderWidth:1,
+        borderWidth: 1,
         backgroundColor: "#121554",
         borderColor: "#121554",
         yAxisID: "y-axis-1", 
         data: <%= @sleepdata %>
       }, {
         label: "食事",
-        borderWidth:1,
+        borderWidth: 1,
         backgroundColor: "#1d3681",
         borderColor: "#1d3681",
         yAxisID: "y-axis-1", 
         data: <%= @eatdata %>
       }, {
         label: "モチベーション",
-        borderWidth:1,
+        borderWidth: 1,
         backgroundColor: "#2e70a7",
         borderColor: "#2e70a7",
         yAxisID: "y-axis-1", 
         data: <%= @motivationdata %>
       }, {
         label: "疲労",
-        borderWidth:1,
+        borderWidth: 1,
         backgroundColor: "#4eadc7",
         borderColor: "#4eadc7",
         yAxisID: "y-axis-1", 
         data: <%= @fatiguedata %>
       }, {
-        label: "筋肉の張り",
-        borderWidth:1,
+        label: "筋肉の状態",
+        borderWidth: 1,
         backgroundColor: "#a7d8bf",
         borderColor: "#a7d8bf",
         yAxisID: "y-axis-1", 
@@ -64,22 +64,22 @@
     options: {
       title: {
         display: true,
-        text: '重量の伸び', //グラフの見出し
+        text: '重量の伸び',
         padding:3
       },
       scales: {
         xAxes: [{
-          stacked: true, //積み上げ棒グラフにする設定
-          categoryPercentage:0.4, //棒グラフの太さ
+          stacked: true,
+          categoryPercentage:0.4,
           scaleLabel: {
             display: true,
             labelString: "日付",
           }
         }],
         yAxes: [{
-          id: "y-axis-2",   // Y軸のID
-          type: "linear",   // linear固定 
-          position: "left", // どちら側に表示される軸か？
+          id: "y-axis-2",
+          type: "linear", 
+          position: "left",
           scaleLabel: {
             display: true,
             labelString: "重量×回数(kg)",
@@ -97,22 +97,21 @@
             display: true,
             labelString: "体調(１〜３０)",
           },
-          stacked: true //積み上げ棒グラフにする設定
+          stacked: true
         }]
       },
       legend: {
         labels: {
-          boxWidth:30,
-          padding:20 //凡例の各要素間の距離
+          boxWidth: 30,
+          padding: 20
         },
         display: true
       },
       tooltips:{
-        mode:'label' //マウスオーバー時に表示されるtooltip
+        mode:'label'
       }
     }
   });
 </script>
 
-<li><%= link_to("トレーニング一覧へ戻る", "/workouts")%></li>
-
+<li><%= link_to("トレーニング一覧へ戻る", "/workouts") %></li>

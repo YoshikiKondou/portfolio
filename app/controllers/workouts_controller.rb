@@ -1,6 +1,6 @@
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:edit, :show, :update, :destroy]
-  
+  before_action :set_user_id
 
   def index
     @workouts = Workout.where(user_id: session[:user_id]).order(start_time: "desc").includes(:workout_menus)
@@ -25,7 +25,7 @@ class WorkoutsController < ApplicationController
       redirect_to("/workouts")
     else
       flash[:failure] = "トレーニングの記録ができませんでした"
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -35,14 +35,14 @@ class WorkoutsController < ApplicationController
       redirect_to("/workouts")
     else
       flash[:failure] = "トレーニング内容を更新できませんでした"
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @workout.destroy
     flash[:success] = "トレーニングを削除しました"
-	  redirect_to("/workouts")
+    redirect_to("/workouts")
   end
 
   def graph

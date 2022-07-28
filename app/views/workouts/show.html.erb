@@ -1,33 +1,62 @@
 <h2>トレーニング内容詳細</h2>
 <div class="workout new">
   <div class="field form-row">
-    <th>トレーニング日:</th>
-    <%= @workout.start_time %>
+    <th>日付:</th>
+    <%= @workout.start_time.strftime("%F") %>
   </div>
   <div class="field form-row">
-    <th>トレーニング内容:</th>
-    <%= @workout.menu %>
-  </div>
-  <div class="field form-row addition">
-    <th>重量:</th>
-    <%= @workout.weight %> kg
-  </div>
-  <div class="field form-row addition">
-    <th>回数:</th>
-    <%= @workout.rep %> 回
+    <th>体重:</th>
+    <%= @workout.body_weight %>kg
   </div>
   <div class="field form-row">
-    <th>セット数:</th>
-    <%= @workout.set %> セット
+    <th>部位:</th>
+    <%= @workout.part %>
   </div>
-  <div class="field form-row">
-    <th>メモ:</th>
-    <%= @workout.memo %>
-  </div>
+  <% @workout.workout_menus.each do |workout_menu| %>
+    <div class="field form-row">
+      <th>種目:</th>
+      <%= workout_menu.menu %>
+    </div>
+    <div class="field form-row">
+      <th>1st set:</th>
+      <%= workout_menu.first_set_weight %> kg×<%= workout_menu.first_set_rep %> 回
+    </div>
+     <% if workout_menu.second_set_weight? %>
+      <div class="field form-row">
+        <th>2nd set:</th>
+        <%= workout_menu.second_set_weight %> kg×<%= workout_menu.second_set_rep %> 回
+      </div>
+    <% end %>
+    <% if workout_menu.third_set_weight? %>
+      <div class="field form-row">
+        <th>3d set:</th>
+        <%= workout_menu.third_set_weight %> kg×<%= workout_menu.third_set_rep %> 回
+      </div>
+    <% end %>
+    <% if workout_menu.fourth_set_weight? %>
+      <div class="field form-row">
+        <th>4th set:</th>
+        <%= workout_menu.fourth_set_weight %> kg×<%= workout_menu.fourth_set_rep %> 回
+      </div>
+    <% end %>
+    <% if workout_menu.fifth_set_weight? %>
+      <div class="field form-row">
+        <th>5th set:</th>
+        <%= workout_menu.fifth_set_weight %> kg×<%= workout_menu.fifth_set_rep %> 回
+      </div>
+    <% end %>
+    <br>
+  <% end %>
+  <% if @workout.memo? %>
+    <div class="field form-row">
+      <th>メモ:</th>
+      <%= @workout.memo %>
+    </div>
+  <% end %>
 
   <p>-----------------------------------------------------</p>
 
-  <h4>体調チェック ※ 1 : 悪い 〜 5 : 良い</h4>
+  <h5>体調チェック ※ 1 : 悪い 〜 5 : 良い</h5>
   <div class="field form-row">
     <th>睡眠:</th>
     <%= @workout.sleep %>
@@ -45,11 +74,11 @@
     <%= @workout.fatigue %>
   </div>
   <div class="field form-row">
-    <th>メンタル:</th>
-    <%= @workout.mental %>
+    <th>筋肉の状態:</th>
+    <%= @workout.muscle %>
   </div>
   
   <li><%= link_to "編集", edit_workout_path(@workout.id) %></li>
-  <li><%= link_to "削除", workout_path(@workout), data: {turbo_method: :delete, confirm: "本当に削除しますか？"} %></li>
+  <li><%= link_to "削除", workout_path(@workout), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %></li>
 </div>
   

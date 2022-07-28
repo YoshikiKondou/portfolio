@@ -8,37 +8,33 @@
   </div>
   <div class="device_inner">
     <%= form_with model: @user, url: user_path, html: { method: :patch, multipart: true } do |f| %>
-      <div class="field form-row">
-        <%= f.label :name, "名前（変更する場合のみ入力）" %>
-        <%= f.text_field :name, autocomplete: "name", placeholder: "ユーザー名", type: "text", name: "user[name]", id: "user_name" %>
+      <div class="form-group">
+        <%= f.label :name, "名前（変更する場合のみ入力)", class: "col-form-label" %>
+        <%= f.text_field :name, autocomplete: "name", placeholder: "ユーザー名", type: "text", name: "user[name]", id: "user_name", class: "form-control form-control-sm" %>
       </div>
-      <div class="field form-row">
-        <%= f.label :age, "年齢" %>
-        <%= f.number_field :name, autocomplete: "age", placeholder: "年齢", type: "integer", name: "user[age]", id: "user_age" %>
+      <div class="form-group">
+        <%= f.label :age, "年齢", class: "col-form-label" %>
+        <%= f.number_field :age, autocomplete: "age", placeholder: "年齢", type: "integer", name: "user[age]", id: "user_age", class: "form-control form-control-sm" %>
       </div>
-      <div class="field form-row">
-        <%= f.label :email, "メールアドレス" %>
-        <%= f.text_field :email, autocomplete: "email", placeholder: "メールアドレス", type: "email", name: "user[email]", id: "user_email" %>
+      <div class="form-group">
+        <%= f.label :email, "メールアドレス", class: "col-form-label" %>
+        <%= f.text_field :email, autocomplete: "email", placeholder: "メールアドレス", type: "email", name: "user[email]", id: "user_email", class: "form-control form-control-sm" %>
       </div>
-      <div class="field form-row">
-        <%= f.label :pasword, "パスワード（変更する場合のみ入力）" %>
-        <%= f.text_field :password, autocomplete: "new-password", placeholder: "パスワード", type: "password", name: "user[password]", id: "user_password" %>
+      <div class="form-group">
+        <%= f.label :pasword, "パスワード（変更する場合のみ入力)", class: "col-form-label" %>
+        <%= f.text_field :password, placeholder: "パスワード", type: "password", name: "user[password]", id: "user_password", class: "form-control form-control-sm" %>
       </div>
-      <div class="field form-row">
-        <%= f.label :pasword, "パスワード確認用" %>
-        <%= f.text_field :password, autocomplete: "new-password", placeholder: "パスワード確認用", type: "password", name: "user[password_confirmation]", id: "user_password_confirmation" %>
+      <div class="form-group">
+        <%= f.label :password_confirmation, "パスワード確認用", class: "col-form-label" %>
+        <%= f.text_field :password_confirmation, placeholder: "パスワード確認用", type: "password", name: "user[password_confirmation]", id: "user_password_confirmation", class: "form-control form-control-sm" %>
       </div>
-      <div class="field form-row">
-        <%= f.label :user_current_pasword, "現在のパスワード" %>
-        <%= f.text_field :password, autocomplete: "new-password", placeholder: "現在のパスワードを入力", type: "password", name: "user[current_password]", id: "user_current_password" %>
+      <div class="form-group">
+        <%= f.label :introduction, "自己紹介", class: "col-form-label" %>
+        <%= f.text_area :introduction, rows: "5", placeholder: "自己紹介を入力", name: "user[introduction]", id: "user_introduction", class: "form-control form-control-sm" %>
       </div>
-      <div class="field form-row">
-        <%= f.label :introduction, "自己紹介" %>
-        <%= f.text_area :introduction, rows: "5", placeholder: "自己紹介を入力", name: "user[introduction]", id: "user_introduction" %>
-      </div>
-      <div class="field form-row">
-        <%= f.label :image, "画像を選択" %>
-        <%= f.file_field :image, id: "item-image", class: "hidden" %>
+      <div class="form-group">
+        <%= f.label :image, "画像を選択", class: "col-form-label" %>
+        <%= f.file_field :image, id: "item-image" %>
       </div>
       <%= f.submit "更新", name: "commit" %>
     <% end %>

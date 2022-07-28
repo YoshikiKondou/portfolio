@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = "ユーザー登録が完了しました"
-      redirect_to("/")
+      redirect_to("/workouts")
     else
       flash[:failure] = "ユーサー登録できませんでした"
       render("users/new")
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if @user && @user&.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       flash[:success] = "ログインしました"
-      redirect_to("/")
+      redirect_to("/workouts")
     else
       @user = User.new
       flash[:failure] = "ログインできませんでした"
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     @user.image = params[:user][:image] if params[:user][:image].present?
     if @user.update(user_params)
       flash[:success] = "ユーザー情報を更新しました"
-      redirect_to("/")
+      redirect_to("/workouts")
     else
       flash[:failure] = "ユーザー情報を更新できませんでした"
       render :edit
@@ -59,11 +59,11 @@ class UsersController < ApplicationController
     params.require(:user).permit(
     :name,
     :email,
+    :age,
     :image_name,
     :password,
     :password_confirmation,
     :introduction
     )
   end
-
 end

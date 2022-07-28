@@ -10,4 +10,4 @@ pin "select2", to: "https://ga.jspm.io/npm:select2@4.1.0-rc.0/dist/js/select2.js
 pin "cocoon", to: "https://ga.jspm.io/npm:cocoon@0.1.1/lib/index.js"
 pin "cocoon-js-vanilla", to: "https://ga.jspm.io/npm:cocoon-js-vanilla@1.2.0/index.js"
 pin "@popperjs/core", to: "https://ga.jspm.io/npm:@popperjs/core@2.11.5/lib/index.js"
-pin "bootstrap", to: "https://ga.jspm.io/npm:bootstrap@5.1.3/dist/js/bootstrap.esm.js"
+pin "bootstrap", to: "https://ga.jspm.io/npm:bootstrap@5.2.0/dist/js/bootstrap.esm.js"
