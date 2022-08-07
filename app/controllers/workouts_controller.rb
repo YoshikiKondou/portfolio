@@ -30,7 +30,7 @@ class WorkoutsController < ApplicationController
   end
 
   def update
-    if @workout.update(update_workout_params)
+    if @workout.update(workout_params)
       flash[:success] = "トレーニング内容を更新しました"
       redirect_to("/workouts")
     else
@@ -78,21 +78,6 @@ class WorkoutsController < ApplicationController
     end
 
     def workout_params
-      params.require(:workout).permit(
-        :start_time,
-        :body_weight,
-        :part,
-        :memo,
-        :sleep,
-        :eat,
-        :motivation,
-        :fatigue,
-        :muscle,
-        workout_menus_attributes: [:menu, :first_set_weight, :second_set_weight, :third_set_weight, :fourth_set_weight, :fifth_set_weight, :first_set_rep, :second_set_rep, :third_set_rep, :fourth_set_rep, :fifth_set_rep, :_destroy]
-      ).merge(user_id: session[:user_id])
-    end
-
-    def update_workout_params
       params.require(:workout).permit(
         :start_time,
         :body_weight,

@@ -2,7 +2,7 @@
   <div class="form-row mb-2">
     <div class="col-md-3">
       <%= f.label :menu, "種目：", class: "col-form-label" %>
-      <%= f.select :menu, Workout::SELECT_OPTIONS, {  }, { class: "form-control  js-searchable", required: true } %>
+      <%= f.select :menu, Workout::SELECT_OPTIONS, { include_blank: "選択して下さい" }, { class: "form-control", id: "select-field", required: true } %>
     </div>
   </div>
   <div class="row">

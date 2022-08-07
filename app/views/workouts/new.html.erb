@@ -1,11 +1,10 @@
 <div class="container p-lg-4 bg-light">
   <h2 class="my-3">トレーニング新規作成</h2>
-  <div class="max_weight">
-    <p>MAX重量早見表を確認する</p>
-    <%= link_to "picture.jpg", "data-lightbox": "picture.jpg" do %>
-      <%= image_tag "picture.jpg", height: '250', :style=>"width:300;"%>
-    <% end %>
+  <p>MAX重量早見表を確認する(画像をクリック)</p>
+  <div class="course-item">
+    <%= image_tag "picture.jpg", height: '150', :style=>"width:200;", class: "course-item-img" %>
   </div>
+  <div id="grayDisplay"></div>
     <%= render 'layouts/shared/error', obj: @user %>
     <% if flash[:failure] %>
       <p class="failure"><%= flash[:failure] %></p>

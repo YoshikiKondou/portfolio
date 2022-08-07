@@ -9,12 +9,13 @@
       <%= flash[:failure] %>
     </p>
   <% end %>
-  <div class="max_weight">
-    <p>MAX重量早見表を確認する</p>
-    <%= link_to "picture.jpg", "data-lightbox": "picture.jpg" do %>
-      <%= image_tag "picture.jpg", height: '250', :style=>"width:300;"%>
-    <% end %>
+    
+  <p>MAX重量早見表を確認する(画像をクリック)</p>
+  <div class="course-item">
+    <%= image_tag "picture.jpg", height: '150', :style=>"width:200;", class: "course-item-img" %>
   </div>
+  <div id="grayDisplay"></div>
+
   <%= form_with model: @workout, method: :get, local: :true do |f| %>
     <div class="form-row mb-2">
       <div class="col-md-3">
