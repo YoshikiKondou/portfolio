@@ -1,27 +1,36 @@
-<div class="container device">
-  <%= render 'layouts/shared/error', obj: @user %>
-  <% if flash[:failure] %>
-    <p class="failure"><%= flash[:failure] %></p>
-  <% end %>
-  <div class="device_frame">
-    <p>ログイン</p>
-    <div class="device_inner">
-      <%= form_with model: @user, url: users_login_path do |f| %>
-        <div class="form-group">
-          <%= f.label :email, "メールアドレス", class: "col-form-label" %>
-          <%= f.text_field :email, autocomplete: "email", placeholder: "メールアドレス", type: "email",  name: "user[email]", id: "user_email", class: "form-control form-control-sm" %>
+<div class="container p-lg-5 bg-light">
+  <h4 class="my-4">ログイン</h4>
+    <%= render 'layouts/shared/error', obj: @user %>
+    <% if flash[:failure] %>
+      <p class="failure"><%= flash[:failure] %></p>
+    <% end %>
+  <%= form_with model: @user, url: users_login_path, class: "needs-validation" do |f| %>
+    <div class="form-row mb-4">
+      <div class="col-md-4">
+        <%= f.label :email, "メールアドレス", class: "col-form-label" %>
+        <%= f.text_field :email, autocomplete: "email", placeholder: "メールアドレス", type: "email",  name: "user[email]", id: "user_email", class: "form-control" %>
+        <div class="invalid-feedback">
+          入力してください
         </div>
-        <div class="form-group">
-          <%= f.label :pasword, "パスワード", class: "col-form-label" %>
-          <%= f.text_field :password, autocomplete: "new-password", placeholder: "パスワード", type: "password", name: "user[password]", id: "user_password", class: "form-control form-control-sm" %>
+      </div>
+    </div>
+    <div class="form-row mb-4">
+      <div class="col-md-4">
+        <%= f.label :password, "パスワード", class: "col-form-label" %>
+          <%= f.text_field :password, autocomplete: "new-password", placeholder: "パスワード", type: "password", name: "user[password]", id: "user_password", class: "form-control" %>
+        <div class="invalid-feedback">
+          入力してください
         </div>
-        <div class="form-group">
-          <%= f.submit "ログイン", name: "commit" %>
-        </div>
-       <% end %>   
+        <small id="passwordHelpBlock" class="form-text text-muted">パスワードは、6文字以上で入力してください</small>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <%= f.submit "ログイン", name: "commit", class: "btn btn-primary btn-block" %>
+      </div>
       <p>
         <%= link_to("新しいアカウントを作成", "/users/new") %>
-      </p><br>
+      </p>
     </div>
-  </div>
+  <% end %>
 </div>

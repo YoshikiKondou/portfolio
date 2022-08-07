@@ -46,9 +46,10 @@ class WorkoutsController < ApplicationController
   end
 
   def graph
-    @menu_search = params.dig(:workout_menus, :search).present?
     @workouts = Workout.all
-    @workouts = Workout.eager_load(:workout_menus).where('workout_menus.menu LIKE(?)', "%#{params[:workout_menus][:search]}%") if params.dig(:workout_menus, :search).present?
+    @search_params = workout_search_params
+    @workouts = Workout.eager_load(:workout_menus).search(@search_params).includes(:workout_menus)
+    @menu_search = @search_params.present?
     @workout_by_day = @workouts.group("date(start_time)")
     @chartlabels = @workout_by_day.size.map(&:first).to_json.html_safe
     @sleepdata = @workout_by_day.sum(:sleep).map(&:second).to_json.html_safe
@@ -63,7 +64,7 @@ class WorkoutsController < ApplicationController
   def body_weight_graph
     @workouts = Workout.all
     @workout_by_day = @workouts.group("date(start_time)")
-    @chartlabels = @workout_by_day.size.map(&:first).to_json.html_safe
+    @chartlabels = @workout_by_day.size.map(&:first).sort { |a,b| a <=> b }.to_json.html_safe
     @bodyweightdata = @workout_by_day.sum(:body_weight).map(&:second).to_json.html_safe
   end
 
@@ -104,5 +105,13 @@ class WorkoutsController < ApplicationController
         :muscle,
         workout_menus_attributes: [:menu, :first_set_weight, :second_set_weight, :third_set_weight, :fourth_set_weight, :fifth_set_weight, :first_set_rep, :second_set_rep, :third_set_rep, :fourth_set_rep, :fifth_set_rep, :_destroy, :id]
       ).merge(user_id: session[:user_id])
+    end
+
+    def workout_search_params
+      params.fetch(:search, {}).permit(
+        :from_start_time,
+        :to_start_time,
+        workout_menus: [:menu]
+      )
     end
 end

@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     :name,
     :email,
     :age,
-    :image_name,
+    :image,
     :password,
     :password_confirmation,
     :introduction

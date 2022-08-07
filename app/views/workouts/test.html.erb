@@ -1,0 +1,25 @@
+@search_params = workout_search_params
+    @workouts = Workout.search(@search_params).includes(:workout_menus)
+    @workouts = Workout.eager_load(:workout_menus).where('workout_menus.menu LIKE(?)', "#{params[:workout_menus][:search]}") if params.dig(:workout_menus, :search).present?
+
+     <%= f.label :start_time, "日付：", class: "col-form-label" %>
+      <%= f.datetime_field :start_time, include_blank: "選択して下さい", class: "form-control", value: @search_params[:from_start_time] %> ~ 
+      <%= f.datetime_field :start_time, include_blank: "選択して下さい", class: "form-control", value: @search_params[:to_start_time] %>
+
+      scope :search, -> (search_params) do
+    return if search_params.blank?
+
+    menu_like(search_params[:menu]).from_start_time(search_params[:from_start_time]).to_start_time(search_params[:to_start_time])
+  end
+  scope :menu_like, -> (menu) { where('workout_menus.menu LIKE ?', "#{menu}") if menu.present? }
+  scope :from_start_time, -> (from) { where('? <= start_time', from) if from.present? }
+  scope :to_start_time, -> (to) { where('start_time <= ?', to) if to.present? }
+
+
+      def workout_search_params
+      params.fetch(:search, {}).permit(
+        :from_start_time, 
+        :to_start_time, 
+        workout_menus_attributes: [:menu]
+      )
+    end

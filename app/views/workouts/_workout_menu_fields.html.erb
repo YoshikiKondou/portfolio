@@ -1,39 +1,75 @@
 <div class="nested-fields">
-  <div class="form-group">
-    <%= f.label :menu, "種目：", class: "col-form-label" %>
-    <%= f.select :menu, Workout::SELECT_OPTIONS, include_blank: "選択して下さい", class: "js-searchable form-control form-control-sm" %>
+  <div class="form-row mb-2">
+    <div class="col-md-3">
+      <%= f.label :menu, "種目：", class: "col-form-label" %>
+      <%= f.select :menu, Workout::SELECT_OPTIONS, {  }, { class: "form-control  js-searchable", required: true } %>
+    </div>
   </div>
   <div class="row">
-    <div class="col">
-      <%= f.number_field :first_set_weight, step: "0.1", autocomplete: "weight", placeholder: "重量", class: "form-control form-control-sm w-25" %> 
+    <div class="col-sm col-md-2">
+      <div class="form-row mb-1">
+        <%= f.label :first_set_weight, "重量：", class: "col-form-label col-form-label-sm" %>
+        <%= f.number_field :first_set_weight, step: "0.1", autocomplete: "weight", placeholder: "重量(kg)", class: "form-control form-control-sm" %>
+      </div>
     </div>
-    <div class="col">
-      <%= f.number_field :first_set_rep, autocomplete: "rep", placeholder: "回数", class: "form-control form-control-sm w-25" %> 
+    <div class="col-sm col-md-2">
+      <div class="form-row mb-1">
+        <%= f.label :first_set_rep, "回数：", class: "col-form-label col-form-label-sm" %>
+        <%= f.number_field :first_set_rep, autocomplete: "rep", placeholder: "回数(rep)", class: "form-control form-control-sm" %>
+      </div>
+    </div>
+    <div class="col-sm col-md-2">
+      <div class="form-row mb-1">
+        <%= f.label :second_set_weight, "重量：", class: "col-form-label col-form-label-sm" %>
+        <%= f.number_field :second_set_weight, step: "0.1", autocomplete: "weight", placeholder: "重量(kg)", class: "form-control form-control-sm" %>
+      </div>
+    </div>
+    <div class="col-sm col-md-2">
+      <div class="form-row mb-1">
+        <%= f.label :second_set_rep, "回数：", class: "col-form-label col-form-label-sm" %>
+        <%= f.number_field :second_set_rep, autocomplete: "rep", placeholder: "回数(rep)", class: "form-control form-control-sm" %>
+      </div>
     </div>
   </div>
-  <div class="form-inline form-group">
-    <%= f.label :second_set_weight, "重量：", class: "col-form-label" %>
-    <%= f.number_field :second_set_weight, step: "0.1", autocomplete: "weight", class: "form-control form-control-sm" %> kg
-    <%= f.label :second_set_rep, "×回数：", class: "col-form-label" %>
-    <%= f.number_field :second_set_rep, autocomplete: "rep", class: "form-control form-control-sm" %> 回
+  <div class="row">
+    <div class="col-sm col-md-2">
+      <div class="form-row mb-1">
+        <%= f.label :third_set_weight, "重量：", class: "col-form-label col-form-label-sm" %>
+        <%= f.number_field :third_set_weight, step: "0.1", autocomplete: "weight", placeholder: "重量(kg)", class: "form-control form-control-sm" %>
+      </div>
+    </div>
+    <div class="col-sm col-md-2">
+      <div class="form-row mb-1">
+        <%= f.label :third_set_rep, "回数：", class: "col-form-label col-form-label-sm" %>
+        <%= f.number_field :third_set_rep, autocomplete: "rep", placeholder: "回数(rep)", class: "form-control form-control-sm" %>
+      </div>
+    </div>
+    <div class="col-sm col-md-2">
+      <div class="form-row mb-1">
+        <%= f.label :fourth_set_weight, "重量：", class: "col-form-label col-form-label-sm" %>
+        <%= f.number_field :fourth_set_weight, step: "0.1", autocomplete: "weight", placeholder: "重量(kg)", class: "form-control form-control-sm" %>
+      </div>
+    </div>
+    <div class="col-sm col-md-2">
+      <div class="form-row mb-1">
+        <%= f.label :fourth_set_rep, "回数：", class: "col-form-label col-form-label-sm" %>
+        <%= f.number_field :fourth_set_rep, autocomplete: "rep", placeholder: "回数(rep)", class: "form-control form-control-sm" %>
+      </div>
+    </div>
   </div>
-  <div class="form-inline form-group">
-    <%= f.label :third_set_weight, "重量：", class: "col-form-label" %>
-    <%= f.number_field :third_set_weight, step: "0.1", autocomplete: "weight", class: "form-control form-control-sm" %> kg
-    <%= f.label :third_set_rep, "×回数：", class: "col-form-label" %>
-    <%= f.number_field :third_set_rep, autocomplete: "rep", class: "form-control form-control-sm" %> 回
-  </div>
-  <div class="form-inline form-group">
-    <%= f.label :fourth_set_weight, "重量：", class: "col-form-label" %>
-    <%= f.number_field :fourth_set_weight, step: "0.1", autocomplete: "weight", class: "form-control form-control-sm" %> kg
-    <%= f.label :fourth_set_rep, "×回数：", class: "col-form-label" %>
-    <%= f.number_field :fourth_set_rep, autocomplete: "rep", class: "form-control form-control-sm" %> 回
-  </div>
-  <div class="form-inline form-group">
-    <%= f.label :fifth_set_weight, "重量：", class: "col-form-label" %>
-    <%= f.number_field :fifth_set_weight, step: "0.1", autocomplete: "weight", class: "form-control form-control-sm" %> kg
-    <%= f.label :fifth_set_rep, "×回数：", class: "col-form-label" %>
-    <%= f.number_field :fifth_set_rep, autocomplete: "rep", class: "form-control form-control-sm" %> 回
+  <div class="row">
+    <div class="col-sm col-md-2">
+      <div class="form-row mb-1">
+        <%= f.label :fifth_set_weight, "重量：", class: "col-form-label col-form-label-sm" %>
+        <%= f.number_field :fifth_set_weight, step: "0.1", autocomplete: "weight", placeholder: "重量(kg)", class: "form-control form-control-sm" %>
+      </div>
+    </div>
+    <div class="col-sm col-md-2">
+      <div class="form-row mb-1">
+        <%= f.label :fifth_set_rep, "回数：", class: "col-form-label col-form-label-sm" %>
+        <%= f.number_field :fifth_set_rep, autocomplete: "rep", placeholder: "回数(rep)", class: "form-control form-control-sm" %>
+      </div>
+    </div>
   </div>
   <%= link_to_remove_association "削除", f, class: "btn btn-secondary btn-block" %>
 </div>

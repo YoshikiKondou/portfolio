@@ -19,6 +19,24 @@
   height: 700px;
 }
 
- .nav-item {
-  color: red;
+ .btn-block {
+  background-color: red;
+}
+
+ .header {
+  background-image: url("fire.jpg");
+}
+
+ .footer {
+  background-image: url("fire.jpg");
+}
+
+#icon-img {
+  vertical-align: middle;
+  border-style: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
