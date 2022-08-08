@@ -1,4 +1,5 @@
 <div class="nested-fields">
+  <div class="row border">
   <div class="form-row mb-2">
     <div class="col-md-3">
       <%= f.label :menu, "種目：", class: "col-form-label" %>
@@ -70,6 +71,7 @@
         <%= f.number_field :fifth_set_rep, autocomplete: "rep", placeholder: "回数(rep)", class: "form-control form-control-sm" %>
       </div>
     </div>
+  </div>
   </div>
   <%= link_to_remove_association "削除", f, class: "btn btn-secondary btn-block" %>
 </div>
