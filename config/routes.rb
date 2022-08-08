@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :workouts
   resources :workout_menus
   get '/', to: 'home#top'
+  root 'home#top'
 end
-
