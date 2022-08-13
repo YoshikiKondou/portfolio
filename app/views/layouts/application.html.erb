@@ -18,10 +18,10 @@
   </head>
 
   <body>
-    <header>
+    <header class="sticky-top">
       <nav class="navbar navbar-expand-lg navbar-light bg-light header">
         <div class="container-fluid">
-          <a class="navbar-brand fs-3" href="/workouts">Be Stronger 〜筋トレ記録アプリ〜</a>
+          <h3>Be Stronger 〜筋トレ記録アプリ〜</h3>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -31,7 +31,7 @@
               <% if @user.image? %> 
                 <%= image_tag @user.image.url, id: "icon-img" %> 
               <% end %>
-              <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
                 <li class="nav-item"><%= link_to("トレーニング一覧", "/workouts", data: {"turbo"=>false}, class: "nav-link")%></li>
                 <li class="nav-item"><%= link_to("トレーニング新規作成", "/workouts/new", data: {"turbo"=>false}, class: "nav-link") %></li>
                 <li class="nav-item"><%= link_to("記録推移", "/workouts/graph", class: "nav-link") %></li>
@@ -42,7 +42,7 @@
             <% else %>
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item white"><%= link_to("ログイン", "/users/sign_in", data: {"turbo"=>false}, class: "nav-link") %></li>
-                <li class="nav-item white"><%= link_to("登録する", "/users/new", data: {"turbo"=>false}, class: "nav-link") %></li>
+                <li class="nav-item white"><%= link_to("新規登録", "/users/new", data: {"turbo"=>false}, class: "nav-link") %></li>
               </ul>
             <% end %>
           </div>
@@ -55,7 +55,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-12 text-center">
-              <p class="mb-0">2022 be_stronger All Rights Reserved</p>
+              <p class="mb-0">2022 be_stronger All Rights Reserved</p> 
             </div>
           </div>
         </div>

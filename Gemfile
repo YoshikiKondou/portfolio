@@ -37,6 +37,7 @@ gem "bootsnap", require: false
 gem 'bcrypt'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'high_voltage'
 # Use Sass to process CSS
 gem 'jquery-rails'
 gem "font-awesome-rails"

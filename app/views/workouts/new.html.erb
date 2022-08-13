@@ -10,7 +10,7 @@
     <% if flash[:failure] %>
       <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
     <% end %>
-    <%= form_with model: @workout, local: true, html: {novalidate: true} do |f| %>
+    <%= form_with model: @workout, local: true, class: "needs-validation", html: {novalidate: true} do |f| %>
       <div class="form-row mb-1">
         <div class="col-md-8">
           <%= f.label :start_time, class: "col-form-label col-sm-2 col-form-label-sm" do %>
@@ -24,9 +24,7 @@
       </div>
       <div class="form-row mb-1">
         <div class="col-md-2">
-          <%= f.label :body_weight, class: "col-form-label col-form-label-sm" do %>
-            体重 <span class="badge bg-danger">必須</span>
-          <% end %>
+          <%= f.label :body_weight, "体重", class: "col-form-label col-form-label-sm" %>
           <%= f.number_field :body_weight, placeholder: "体重(kg)", step: "0.1", class: "form-control", required: true %>
           <div class="invalid-feedback">
             入力してください
