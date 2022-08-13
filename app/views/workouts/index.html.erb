@@ -1,13 +1,9 @@
-<div class="container p-lg-5 bg-light">
+<div class="container-fluid p-lg-5 bg-light  mb-5">
   <h1>トレーニング一覧</h1>
   <% if flash[:success] %>
-    <p class="success">
-      <%= flash[:success] %>
-    </p>
+    <p class="success alert alert-success" role="alert"><%= flash[:success] %></p>
   <% elsif flash[:failure] %>
-    <p class="failure">
-      <%= flash[:failure] %>
-    </p>
+    <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
   <% end %>
     
   <p>MAX重量早見表を確認する(画像をクリック)</p>
@@ -20,7 +16,7 @@
     <div class="form-row mb-2">
       <div class="col-md-3">
         <%= f.select :search, ["胸", "腕", "背中", "脚", "四頭", "ハム、尻部", "腹筋"], {include_blank: "選択して下さい"}, {class: "form-control mb-3 mt-3", required: true } %>
-        <%= f.submit '部位で検索する', name: "commit", class: "btn btn-primary btn-block mb-1" %>
+        <%= f.submit '部位で検索する', name: "commit", class: "btn btn-primary btn-block mb-1 bg-danger" %>
     </div>
   </div>
   <% end %>

@@ -1,38 +1,39 @@
-<div class="container p-lg-5 bg-light">
-<h3 class="my-4">体重推移</h3>
-
-  <canvas id="myChart"> </canvas>
-  <script> 
-    var ctx = document.getElementById("myChart").getContext('2d');
-    var myChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: <%= @chartlabels %>,  
-        datasets: [{
-          label: "体重推移",
-          data: <%= @bodyweightdata %>, // 縦軸にとる累積投稿数データを埋め込む
-          backgroundColor: "red",
-          borderColor: "#121554",
-          fill: false
-        }]
-      },
-      options: {
-        scales: {
-          xAxes: [{
-            stacked: true,
-            scaleLabel: {
-              display: true,
-              labelString: "日付",
-            }
-          }],
-          yAxes: [{
-            scaleLabel: {
-              display: true,
-              labelString: "体重(kg)",
-            }
-          }],
+<div class="container-fluid p-lg-5 bg-light">
+  <div class="container">
+    <h3 class="my-4">体重推移</h3>
+    <canvas id="myChart"> </canvas>
+    <script> 
+      var ctx = document.getElementById("myChart").getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: <%= @chartlabels %>,  
+          datasets: [{
+            label: "体重推移",
+            data: <%= @bodyweightdata %>, // 縦軸にとる累積投稿数データを埋め込む
+            backgroundColor: "red",
+            borderColor: "#121554",
+            fill: false
+          }]
         },
-      }
-    });
-  </script>
+        options: {
+          scales: {
+            xAxes: [{
+              stacked: true,
+              scaleLabel: {
+                display: true,
+                labelString: "日付",
+              }
+            }],
+            yAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: "体重(kg)",
+              }
+            }],
+          },
+        }
+      });
+    </script>
+  </div>
 </div>

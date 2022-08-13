@@ -1,77 +1,65 @@
-<div class="container p-lg-5 bg-light">
-  <h4 class="my-4">アカウント編集</h4>
-  <%= render 'layouts/shared/error', obj: @user %>
-  <% if flash[:failure] %>
-    <p class="failure"><%= flash[:failure] %></p>
-  <% end %>
-  <%= form_with model: @user, url: user_path, html: { method: :patch, multipart: true }, class: "needs-validation" do |f| %>
-    <div class="form-row mb-4">
-      <div class="col-md-4">
-        <%= f.label :name, "名前(変更する場合のみ入力)", class: "col-form-label" %>
-        <%= f.text_field :name, autocomplete: "name", placeholder: "ユーザー名", type: "text", name: "user[name]", id: "user_name", class: "form-control" %>
-        <div class="invalid-feedback">
-          入力してください
+<div class="container-fluid p-lg-5 bg-light mb-5">
+  <div class="container">
+    <h3 class="my-4">アカウント編集</h3>
+    <%= render 'layouts/shared/error', obj: @user %>
+    <% if flash[:failure] %>
+      <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
+    <% end %>
+    <%= form_with model: @user, url: user_path, html: { method: :patch, multipart: true }, class: "needs-validation" do |f| %>
+      <div class="form-row mb-4">
+        <div class="col-md-4">
+          <%= f.label :name, "名前(変更する場合のみ入力)", class: "col-form-label" %>
+          <%= f.text_field :name, autocomplete: "name", placeholder: "ユーザー名", type: "text", name: "user[name]", id: "user_name", class: "form-control" %>
         </div>
       </div>
-    </div>
-    <div class="form-row mb-4">
-      <div class="col-md-2">
-        <%= f.label :age, "年齢", class: "col-form-label" %>
-        <%= f.number_field :age, autocomplete: "age", placeholder: "年齢", type: "integer", name: "user[age]", id: "user_age", class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-row mb-4">
-      <div class="col-md-5">
-        <%= f.label :email, "メールアドレス", class: "col-form-label" %>
-        <%= f.text_field :email, autocomplete: "email", placeholder: "メールアドレス", type: "email",  name: "user[email]", id: "user_email", class: "form-control" %>
-        <div class="invalid-feedback">
-          入力してください
+      <div class="form-row mb-4">
+        <div class="col-md-2">
+          <%= f.label :age, "年齢", class: "col-form-label" %>
+          <%= f.number_field :age, autocomplete: "age", placeholder: "年齢", type: "integer", name: "user[age]", id: "user_age", class: "form-control" %>
         </div>
       </div>
-    </div>
-    <div class="form-row mb-4">
-      <div class="col-md-4">
-       <%= f.label :pasword, "パスワード(変更する場合のみ入力)", class: "col-form-label" %>
-          <%= f.text_field :password, autocomplete: "new-password", placeholder: "パスワード", type: "password", name: "user[password]", id: "user_password", class: "form-control" %>
-        <div class="invalid-feedback">
-          入力してください
+      <div class="form-row mb-4">
+        <div class="col-md-5">
+          <%= f.label :email, "メールアドレス", class: "col-form-label" %>
+          <%= f.text_field :email, autocomplete: "email", placeholder: "メールアドレス", type: "email",  name: "user[email]", id: "user_email", class: "form-control" %>
         </div>
       </div>
-    </div>
-    <div class="form-row mb-4">
-      <div class="col-md-4">
-        <%= f.label :password_confirmation, "パスワード確認用", class: "col-form-label" %>
-          <%= f.text_field :password_confirmation, placeholder: "パスワード確認", type: "password", name: "user[password]", id: "user_password", class: "form-control" %>
-        <div class="invalid-feedback">
-          入力してください
-        </div>
-        <small id="passwordHelpBlock" class="form-text text-muted">パスワードは、6文字以上で入力してください</small>
-      </div>
-    </div>
-    <div class="form-row mb-4">
-      <div class="col-md-6">
-        <%= f.label :introduction, "自己紹介", class: "col-form-label" %>
-        <%= f.text_area :introduction, rows: "5", placeholder: "自己紹介を入力", name: "user[introduction]", id: "user_introduction", class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-row mb-4">
-      <%= f.label :image, "画像を選択", class: "col-form-label" %>
-      <div class="input-group">
-        <div class="custom-file">
-          <%= f.file_field :image, class: "custom-file-input", id: "customFile" %>
-          <label class="custom-file-label" for="customFile" data-browse="参照">ファイル選択...</label>
-        </div>
-        <div class="input-group-append">
-          <button type="button" class="btn btn-outline-danger ms-2 reset">取消</button>
+      <div class="form-row mb-4">
+        <div class="col-md-4">
+        <%= f.label :pasword, "パスワード(変更する場合のみ入力)", class: "col-form-label" %>
+            <%= f.text_field :password, autocomplete: "new-password", placeholder: "パスワード", type: "password", name: "user[password]", id: "user_password", class: "form-control" %>
         </div>
       </div>
-    </div>
-    
-    <div class="form-group row">
-      <div class="col-sm-12">
-          <%= f.submit "更新", name: "commit", class: "btn btn-primary btn-block" %>
+      <div class="form-row mb-4">
+        <div class="col-md-4">
+          <%= f.label :password_confirmation, "パスワード確認用", class: "col-form-label" %>
+            <%= f.text_field :password_confirmation, placeholder: "パスワード確認", type: "password", name: "user[password]", id: "user_password", class: "form-control" %>
+          <small id="passwordHelpBlock" class="form-text text-muted">パスワードは、6文字以上で入力してください</small>
+        </div>
       </div>
-    </div>
-  <% end %>
+      <div class="form-row mb-4">
+        <div class="col-md-6">
+          <%= f.label :introduction, "自己紹介", class: "col-form-label" %>
+          <%= f.text_area :introduction, rows: "5", placeholder: "自己紹介を入力", name: "user[introduction]", id: "user_introduction", class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-row mb-4">
+        <%= f.label :image, "画像を選択", class: "col-form-label" %>
+        <div class="input-group">
+          <div class="custom-file">
+            <%= f.file_field :image, class: "custom-file-input", id: "customFile" %>
+            <label class="custom-file-label" for="customFile" data-browse="参照">ファイル選択...</label>
+          </div>
+          <div class="input-group-append">
+            <button type="button" class="btn btn-outline-danger ms-2 reset">取消</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-12">
+            <%= f.submit "更新", name: "commit", class: "btn btn-primary btn-block bg-danger" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

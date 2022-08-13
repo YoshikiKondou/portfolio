@@ -1,7 +1,9 @@
 <div class="nested-fields">
-  <div class="field form-row mb-4">
-    <div class="col-md-3">
-      <%= f.label :menu, "種目：", class: "col-form-label" %>
+  <div class="form-row mb-2">
+    <div class="col-md-4">
+      <%= f.label :menu, class: "col-form-label" do %>
+        種目 <span class="badge bg-danger">必須</span>
+      <% end %>
       <%= f.select :menu, Workout::SELECT_OPTIONS, { include_blank: "選択して下さい" }, { class: "form-control", id: "select-field", required: true } %>
     </div>
   </div>

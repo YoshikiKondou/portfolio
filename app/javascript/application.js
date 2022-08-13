@@ -3,8 +3,8 @@ import "controllers"
 import "jquery"
 import "cocoon"
 import "cocoon-js-vanilla";
-import "select2";
 import "bootstrap"
+import "select2";
 
 $('.custom-file-input').on('change',function(){
   $(this).next('.custom-file-label').html($(this)[0].files[0].name);
@@ -15,10 +15,15 @@ $('.reset').click(function(){
   $('.custom-file-input').val('');
 })
 
-
-$( '#select-field' ).select2( {
+$('#select-field').select2({
   theme: 'bootstrap-5',
-} );
+});
+
+$('#workout_menus').on('cocoon:after-insert', function() {
+  $('#select-field').select2({
+    theme: 'bootstrap-5',
+  }); 
+});
 
 $(".course-item img").click(function () {
   // まず、クリックした画像の HTML(<img>タグ全体)を#frayDisplay内にコピー
@@ -35,3 +40,16 @@ $("#grayDisplay").click(function () {
   $("#grayDisplay").fadeOut(200);
   return false;
 });
+
+(function () {
+  var forms = document.querySelectorAll('.needs-validation');
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  })
+})();

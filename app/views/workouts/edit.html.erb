@@ -1,85 +1,87 @@
-<div class="container p-lg-5 bg-light">
-  <h3 class="my-4">トレーニング編集</h3>
-  <div class="max_weight">
-    <p>MAX重量早見表を確認する</p>
-    <%= link_to "picture.jpg", "data-lightbox": "picture.jpg" do %>
-      <%= image_tag "picture.jpg", height: '250', :style=>"width:300;"%>
+<div class="container-fluid p-lg-5 bg-light  mb-5">
+  <div class="container">
+    <h3 class="my-4">トレーニング編集</h3>
+    <div class="max_weight">
+      <p>MAX重量早見表を確認する</p>
+      <%= link_to "picture.jpg", "data-lightbox": "picture.jpg" do %>
+        <%= image_tag "picture.jpg", height: '250', :style=>"width:300;"%>
+      <% end %>
+    </div>
+      <%= render 'layouts/shared/error', obj: @user %>
+      <% if flash[:failure] %>
+        <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
+      <% end %>
+    <%= form_with model: @workout, local: true do |f| %>
+      <div class="form-row mb-1">
+        <div class="col-md-3">
+          <%= f.label :start_time, "日付：", class: "col-form-label col-sm-2 col-form-label-sm" %>
+          <%= f.datetime_field :start_time, include_blank: "選択して下さい", name: "workout[start_time]", class: "form-control" %>
+          <div class="invalid-feedback">
+            入力してください
+          </div>
+        </div>
+      </div>
+      <div class="form-row mb-1">
+        <div class="col-md-2">
+          <%= f.label :body_weight, "体重：", class: "col-form-label col-form-label-sm" %>
+          <%= f.number_field :body_weight, placeholder: "体重(kg)", step: "0.1", class: "form-control" %>
+          <div class="invalid-feedback">
+            入力してください
+          </div>
+        </div>
+      </div>
+      <div class="form-row mb-1">
+        <div class="col-md-2">
+          <%= f.label :part, "部位：", class: "col-form-label col-form-label-sm" %>
+          <%= f.select :part, ["胸", "腕", "背中", "肩", "脚", "四頭", "ハム、尻部", "腹筋"], { include_blank: "選択して下さい" }, { class: "form-control", required: true } %>
+        </div>
+      </div>
+      <%= f.fields_for :workout_menus do |form| %>
+        <%= render "workouts/workout_menu_fields", f: form %>
+      <% end %>
+      <div id="detail-association-insertion-point"></div>
+      <%= link_to_add_association "種目を追加", f, :workout_menus, class: "btn btn-secondary btn-block", data: { association_insertion_node: '#detail-association-insertion-point', association_insertion_method: 'before' } %>
+      <div class="form-row mb-4">
+        <div class="col-md-6">
+          <%= f.label :memo, "メモ：", class: "col-form-label" %>
+          <%= f.text_area :memo, rows: "3", name: "workout[memo]", class: "form-control form-control" %>
+        </div>
+      </div>
+      <h4>体調チェック ※ 1 : 悪い 〜 5 : 良い</h4>
+      <div class="row">
+        <div class="col-sm col-md-2">
+          <div class="form-row mb-2">
+            <%= f.label :sleep, "睡眠：", class: "col-form-label col-form-label-sm" %>
+            <%= f.select :sleep, [*(1..5)], {include_blank: "選択して下さい"}, { class: "form-control", required: true } %>
+          </div>
+        </div>
+        <div class="col-sm col-md-2">
+          <div class="form-row mb-2">
+            <%= f.label :eat, "食事：", class: "col-form-label col-form-label-sm" %>
+            <%= f.select :eat, [*(1..5)], {include_blank: "選択して下さい"}, { class: "form-control", required: true } %>
+          </div>
+        </div>
+        <div class="col-sm col-md-2">
+          <div class="form-row mb-2">
+            <%= f.label :motivation, "モチベーション：", class: "col-form-label col-form-label-sm" %>
+            <%= f.select :motivation, [*(1..5)], {include_blank: "選択して下さい"}, { class: "form-control", required: true } %>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-sm col-md-2">
+          <div class="form-row mb-2">
+            <%= f.label :fatigue, "疲労：", class: "col-form-label col-form-label-sm" %>
+            <%= f.select :fatigue, [*(1..5)], {include_blank: "選択して下さい"}, { class: "form-control", required: true } %>
+          </div>
+        </div>
+        <div class="col-sm col-md-2">
+          <div class="form-row mb-2">
+            <%= f.label :muscle, "筋肉の状態：", class: "col-form-label col-form-label-sm" %>
+            <%= f.select :muscle, [*(1..5)], {include_blank: "選択して下さい"}, { class: "form-control", required: true } %>
+          </div>
+        </div>
+      </div>
+    <%= f.submit '更新する', name: "commit", class: "btn btn-primary btn-block col-md-1" %>
     <% end %>
   </div>
-    <%= render 'layouts/shared/error', obj: @user %>
-    <% if flash[:failure] %>
-      <p class="failure"><%= flash[:failure] %></p>
-    <% end %>
-  <%= form_with model: @workout, local: true do |f| %>
-    <div class="form-row mb-1">
-      <div class="col-md-3">
-        <%= f.label :start_time, "日付：", class: "col-form-label col-sm-2 col-form-label-sm" %>
-        <%= f.datetime_field :start_time, include_blank: "選択して下さい", name: "workout[start_time]", class: "form-control" %>
-        <div class="invalid-feedback">
-          入力してください
-        </div>
-      </div>
-    </div>
-    <div class="form-row mb-1">
-      <div class="col-md-2">
-        <%= f.label :body_weight, "体重：", class: "col-form-label col-form-label-sm" %>
-        <%= f.number_field :body_weight, placeholder: "体重(kg)", step: "0.1", class: "form-control" %>
-        <div class="invalid-feedback">
-          入力してください
-        </div>
-      </div>
-    </div>
-    <div class="form-row mb-1">
-      <div class="col-md-2">
-        <%= f.label :part, "部位：", class: "col-form-label col-form-label-sm" %>
-        <%= f.select :part, ["胸", "腕", "背中", "肩", "脚", "四頭", "ハム、尻部", "腹筋"], { include_blank: "選択して下さい" }, { class: "form-control", required: true } %>
-      </div>
-    </div>
-    <%= f.fields_for :workout_menus do |form| %>
-      <%= render "workouts/workout_menu_fields", f: form %>
-    <% end %>
-    <div id="detail-association-insertion-point"></div>
-    <%= link_to_add_association "種目を追加", f, :workout_menus, class: "btn btn-secondary btn-block", data: { association_insertion_node: '#detail-association-insertion-point', association_insertion_method: 'before' } %>
-    <div class="form-row mb-4">
-      <div class="col-md-6">
-        <%= f.label :memo, "メモ：", class: "col-form-label" %>
-        <%= f.text_area :memo, rows: "3", name: "workout[memo]", class: "form-control form-control" %>
-      </div>
-    </div>
-    <h4>体調チェック ※ 1 : 悪い 〜 5 : 良い</h4>
-    <div class="row">
-      <div class="col-sm col-md-2">
-        <div class="form-row mb-2">
-          <%= f.label :sleep, "睡眠：", class: "col-form-label col-form-label-sm" %>
-          <%= f.select :sleep, [*(1..5)], {include_blank: "選択して下さい"}, { class: "form-control", required: true } %>
-        </div>
-      </div>
-      <div class="col-sm col-md-2">
-        <div class="form-row mb-2">
-          <%= f.label :eat, "食事：", class: "col-form-label col-form-label-sm" %>
-          <%= f.select :eat, [*(1..5)], {include_blank: "選択して下さい"}, { class: "form-control", required: true } %>
-        </div>
-      </div>
-      <div class="col-sm col-md-2">
-        <div class="form-row mb-2">
-          <%= f.label :motivation, "モチベーション：", class: "col-form-label col-form-label-sm" %>
-          <%= f.select :motivation, [*(1..5)], {include_blank: "選択して下さい"}, { class: "form-control", required: true } %>
-        </div>
-      </div>
-    <div class="row">
-      <div class="col-sm col-md-2">
-        <div class="form-row mb-2">
-          <%= f.label :fatigue, "疲労：", class: "col-form-label col-form-label-sm" %>
-          <%= f.select :fatigue, [*(1..5)], {include_blank: "選択して下さい"}, { class: "form-control", required: true } %>
-        </div>
-      </div>
-      <div class="col-sm col-md-2">
-        <div class="form-row mb-2">
-          <%= f.label :muscle, "筋肉の状態：", class: "col-form-label col-form-label-sm" %>
-          <%= f.select :muscle, [*(1..5)], {include_blank: "選択して下さい"}, { class: "form-control", required: true } %>
-        </div>
-      </div>
-    </div>
-  <%= f.submit '更新する', name: "commit", class: "btn btn-primary btn-block col-md-1" %>
-  <% end %>
 </div>
