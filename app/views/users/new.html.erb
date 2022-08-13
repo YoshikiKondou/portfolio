@@ -1,10 +1,6 @@
 <div class="container-fluid p-lg-5 bg-light  mb-5">
   <div class="container">
     <h3 class="my-4">新しいアカウントを作成</h3>
-    <%= render 'layouts/shared/error', obj: @user %>
-    <% if flash[:failure] %>
-      <p class="failure alert alert-danger " role="alert"><%= flash[:failure] %></p>
-    <% end %>
     <%= form_with url: users_path, class: "needs-validation", html: {novalidate: true} do |f| %>
       <div class="form-row mb-4">
         <div class="col-md-6">

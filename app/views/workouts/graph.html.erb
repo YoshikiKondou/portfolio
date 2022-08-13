@@ -24,7 +24,9 @@
       </div>
     <% end %>
     <div style="opacity: <%= @menu_search ? 1 : 0 %>">
-      <canvas id="myChart"></canvas>
+      <div class="wrap-chart">
+        <canvas id="myChart"></canvas>
+      </div>
     </div>
     <script>
       var ctx = document.getElementById("myChart");
@@ -125,7 +127,8 @@
           },
           tooltips:{
             mode:'label'
-          }
+          },
+          maintainAspectRatio: false,
         }
       });
     </script>
