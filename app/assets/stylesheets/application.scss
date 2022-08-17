@@ -73,13 +73,13 @@
 
 @media (max-width: 960px) {
   .wrap-chart {
-      height: 500px;
+    height: 500px;
   }
 }
 
 @media (max-width: 480px) {
   .wrap-chart {
-      height: 400px;
+    height: 400px;
   }
 }
 
@@ -94,6 +94,14 @@ h2 {
   position: relative;
   padding: 0.25em 0;
   width: 600px;
+}
+
+@media (max-width: 500px){
+  h2 {
+    position: relative;
+    padding: 0.25em 0;
+    width: 350px;
+  }
 }
 
 h2:after {
@@ -157,11 +165,11 @@ h2:after {
 }
 
 .feature-wrapper{
-  display:flex;
+  display: flex;
 }
 
 .feature{
   @media (max-width: 550px){
-    order:1;
+    order: 1;
   }
 }
