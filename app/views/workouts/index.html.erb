@@ -1,5 +1,5 @@
 <div class="container-fluid p-lg-5 bg-light  mb-5">
-  <div class="col-sm-4">
+  <div class="col-sm">
     <h2 class="mb-5">トレーニング一覧</h2>
   </div>
   <% if flash[:success] %>
@@ -7,54 +7,68 @@
   <% elsif flash[:failure] %>
     <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
   <% end %>
-
-  <div class="box1">
-    <span class="box-title">MAX重量早見表(画像をクリック)</span>
-    <div class="course-item">
-      <%= image_tag "picture.jpg", height: '150', :style=>"width:200;", class: "course-item-img" %>
+  <div class="row feature-wrapper">
+    <div class="col-sm-3 feature">
+      <div class="form-group pt-5">
+        <%= form_with model: @workout, method: :get, local: :true do |f| %>
+          <div class="form-row mb-2">
+            <div class="col-md-9">
+              <%= f.select :search, ["胸", "腕", "背中", "脚", "四頭", "ハム、尻部", "腹筋"], {include_blank: "部位を選択"}, {class: "form-control mb-3 mt-3", required: true } %>
+              <%= f.submit '部位で絞り込む', name: "commit", class: "btn btn-primary btn-block mb-1 mt-3 bg-danger" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div id="grayDisplay"></div>
+    <div class="col-sm-5">
+      <div class="form-group mb-1">
+        <div class="box1">
+          <span class="box-title">MAX重量早見表(画像をクリック)</span>
+          <div class="course-item">
+            <%= image_tag "picture.jpg", height: '150', :style=>"width:200;", class: "course-item-img" %>
+          </div>
+          <div id="grayDisplay"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <%= form_with model: @workout, method: :get, local: :true do |f| %>
-    <div class="form-row mb-2">
-      <div class="col-md-3">
-        <%= f.select :search, ["胸", "腕", "背中", "脚", "四頭", "ハム、尻部", "腹筋"], {include_blank: "選択して下さい"}, {class: "form-control mb-3 mt-3", required: true } %>
-        <%= f.submit '部位で検索する', name: "commit", class: "btn btn-primary btn-block mb-1 bg-danger" %>
-    </div>
-  </div>
-  <% end %>
-
-  <table class="table table-bordered text-nowrap table-bordered table-hover">
+  <table class="table table-bordered text-nowrap table-bordered table-hover mt-3">
     <thead>
       <tr>
-        <th class="text-center">日付</th>
-        <th class="text-center">体重</th>
-        <th class="text-center">部位</th>
-        <th class="text-center">トレーニング内容</th>
-        <th class="text-center">1set</th>
-        <th class="text-center">2set</th>
-        <th class="text-center">3set</th>
-        <th class="text-center">4set</th>
-        <th class="text-center">5set</th>
-        <th class="text-center">睡眠</th>
-        <th class="text-center">食事</th>
-        <th class="text-center">やる気</th>
-        <th class="text-center">疲労度</th>
-        <th class="text-center">筋肉の状態</th>
+        <th class="text-center" scope="col">日付</th>
+        <th class="text-center" scope="col">体重</th>
+        <th class="text-center" scope="col">部位</th>
+        <th class="text-center" scope="col">トレーニング内容</th>
+        <th class="text-center" scope="col">1set</th>
+        <th class="text-center" scope="col">2set</th>
+        <th class="text-center" scope="col">3set</th>
+        <th class="text-center" scope="col">4set</th>
+        <th class="text-center" scope="col">5set</th>
+        <th class="text-center" scope="col">睡眠</th>
+        <th class="text-center" scope="col">食事</th>
+        <th class="text-center" scope="col">やる気</th>
+        <th class="text-center" scope="col">疲労度</th>
+        <th class="text-center" scope="col">筋肉の状態</th>
     </thead>
     <tbody>
       <% if @workouts.count > 0 %>
         <% @workouts.each do |workout| %>
           <tr class="align-middle lh-2">
             <td>
-              <%= workout.start_time.strftime("%F") %>
+              <div class="text-center">
+                <%= workout.start_time.strftime("%m月%-d日") %> 
+              </div>
             </td>
             <td>
-              <%= workout.body_weight %>
+              <div class="text-center">
+                <%= workout.body_weight %>kg
+              </div>
             </td>
             <td>
-              <%= workout.part %>
+              <div class="text-center">
+                <%= workout.part %>
+              </div>
             </td>
             <td class="text-left">
               <% workout.workout_menus.each do |workout_menu| %>
@@ -64,30 +78,39 @@
             </td>
             <td>
               <% workout.workout_menus.each do |workout_menu| %>
-                <%= workout_menu.first_set_weight %>×<%= workout_menu.first_set_rep %>
-                <br>
+                <div class="text-center">
+                  <%= workout_menu.first_set_weight %>×<%= workout_menu.first_set_rep %> 
+                  <br>
+                </div>
               <% end %>
             </td>
             <td>
               <% workout.workout_menus.each do |workout_menu| %>
                 <% if workout_menu.second_set_weight? %>
-                  <%= workout_menu.second_set_weight %>×<%= workout_menu.second_set_rep %>
-                  <br>
+                  <div class="text-center">
+                    <%= workout_menu.second_set_weight %>×<%= workout_menu.second_set_rep %> 
+                    <br>
+                  </div>
                 <% end %>
               <% end %>
             </td>
             <td>
               <% workout.workout_menus.each do |workout_menu| %>
                 <% if workout_menu.third_set_weight? %>
-                  <%= workout_menu.third_set_weight %>×<%= workout_menu.third_set_rep %>
-                  <br>
+                  <div class="text-center">
+                    <%= workout_menu.third_set_weight %>×<%= workout_menu.third_set_rep %> 
+                    <br>
+                  </div>
                 <% end %>
               <% end %>
             </td>
             <td>
               <% workout.workout_menus.each do |workout_menu| %>
                 <% if workout_menu.fourth_set_weight? %>
-                  <%= workout_menu.fourth_set_weight %>×<%= workout_menu.fourth_set_rep %>
+                  <div class="text-center">
+                    <%= workout_menu.fourth_set_weight %>×<%= workout_menu.fourth_set_rep %> 
+                    <br>
+                  </div>
                   <br>
                 <% end %>
               <% end %>
@@ -95,34 +118,53 @@
             <td>
               <% workout.workout_menus.each do |workout_menu| %>
                 <% if workout_menu.fifth_set_weight? %>
-                  <%= workout_menu.fifth_set_weight %>×<%= workout_menu.fifth_set_rep %>
+                  <div class="text-center">
+                    <%= workout_menu.fifth_set_weight %>×<%= workout_menu.fifth_set_rep %>
+                    <br>
+                  </div>
                   <br>
                 <% end %>
               <% end %>
             </td>
             <td>
-              <%= workout.sleep %>            
+              <div class="text-center">
+                <%= workout.sleep %> 
+              </div>           
             </td>
             <td>
-              <%= workout.eat %>            
+              <div class="text-center">
+                <%= workout.eat %> 
+              </div>
             </td>
             <td>
-              <%= workout.motivation %>            
+              <div class="text-center">
+                <%= workout.motivation %> 
+              </div>
             </td>
             <td>
-              <%= workout.fatigue %>            
+              <div class="text-center">
+                <%= workout.fatigue %> 
+              </div> 
             </td>
             <td>
-              <%= workout.muscle %>            
+              <div class="text-center">
+                <%= workout.muscle %> 
+              </div>
             </td>
             <td>
-              <%= link_to "確認", workout_path(workout) %>
+              <div class="text-center">
+                <%= link_to "確認", workout_path(workout) %>
+              </div>
             </td>
             <td>
-              <%= link_to "編集", edit_workout_path(workout) %>
+              <div class="text-center">
+                <%= link_to "編集", edit_workout_path(workout) %>
+              </div>
             </td>
             <td>
-            <%= link_to "削除", workout_path(workout), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+              <div class="text-center">
+                <%= link_to "削除", workout_path(workout), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+              </div>
             </td>
           </tr>
         <% end %>
@@ -215,8 +257,4 @@
       <td>現在トレーニング履歴はありません</td>
     <% end %>
   </div>
-
-  <p>
-    <%= link_to("トレーニング新規作成", "/workouts/new") %>
-  </p>
 </div>

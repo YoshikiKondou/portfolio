@@ -93,6 +93,7 @@
 h2 {
   position: relative;
   padding: 0.25em 0;
+  width: 600px;
 }
 
 h2:after {
@@ -153,4 +154,14 @@ h2:after {
 .box div {
   margin: 0; 
   padding: 0;
+}
+
+.feature-wrapper{
+  display:flex;
+}
+
+.feature{
+  @media (max-width: 550px){
+    order:1;
+  }
 }
