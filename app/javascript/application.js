@@ -18,13 +18,12 @@ $('.reset').click(function(){
 
 //動的form作成時のselect2適応
 $('#select-field').select2({
-  theme: 'bootstrap-5',
+  theme: 'bootstrap-5'
 });
 
-$('form').on('cocoon:after-insert', function() {
-  $('#select-field').select2({
-    theme: 'bootstrap-5',
-  }); 
+
+$('#select-field').on('cocoon:after-insert', function(e, insertedItem) {
+  $(insertedItem).addClass('select2-hidden-accessible');
 });
 
 //画像拡大時の動作

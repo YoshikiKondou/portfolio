@@ -10,8 +10,7 @@ class UsersController < ApplicationController
       flash[:success] = "ユーザー登録が完了しました"
       redirect_to("/workouts")
     else
-      flash[:failure] = "ユーサー登録できませんでした"
-      render("users/new")
+      render :new, status: :unprocessable_entity
     end
   end
 

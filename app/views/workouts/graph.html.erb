@@ -1,21 +1,21 @@
 <div class="container-fluid p-lg-5 bg-light  mb-5">
   <div class="container">
-    <h2 class="my-4">重量推移</h2>
+    <div class="col-sm-4">
+      <h2 class="my-4">重量推移</h2>
+    </div>
     <%= form_with(scope: :search, model: @workout, method: :get, local: :true) do |f| %>
       <%= f.fields_for :workout_menus do |form| %>
         <%= render "workouts/search_workout_menu_fields", f: form %>
       <% end %>
-      <div class="row">
-        <div class="col-sm col-md-2">
-          <div class="form-row mb-5">
-            <%= f.label :start_time, "トレーニング日：", class: "col-form-label" %>
-            <%= f.datetime_field :from_start_time, include_blank: "選択して下さい", class: "form-control", value: @search_params[:from_start_time] %>
-          </div>
-        </div>
-        <div class="col-sm col-md-2">
-          <div class="form-row mb-5">
-            <%= f.label :start_time, "トレーニング日：", class: "col-form-label" %>
-            <%= f.datetime_field :to_start_time, include_blank: "選択して下さい", class: "form-control", value: @search_params[:to_start_time] %>
+      <div class="form-group mb-4" id="datepicker-daterange">
+        <%= f.label :start_time, class: "col-form-label" do %>
+          トレーニング日 <span class="badge bg-secondary">任意</span>
+        <% end %>
+        <div class="col-sm-9 form-inline  col-md-4">
+          <div class="input-daterange input-group">
+            <%= f.datetime_field :from_start_time, class: "form-control", value: @search_params[:from_start_time] %>
+            <span class="input-group-addon ms-2 inline"> 〜 </span>
+            <%= f.datetime_field :to_start_time, class: "form-control ms-2", value: @search_params[:to_start_time] %>
           </div>
         </div>
       </div>

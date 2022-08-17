@@ -1,16 +1,20 @@
 <div class="container-fluid p-lg-5 bg-light  mb-5">
-  <h1>トレーニング一覧</h1>
+  <div class="col-sm-4">
+    <h2 class="mb-5">トレーニング一覧</h2>
+  </div>
   <% if flash[:success] %>
     <p class="success alert alert-success" role="alert"><%= flash[:success] %></p>
   <% elsif flash[:failure] %>
     <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
   <% end %>
-    
-  <p>MAX重量早見表を確認する(画像をクリック)</p>
-  <div class="course-item">
-    <%= image_tag "picture.jpg", height: '150', :style=>"width:200;", class: "course-item-img" %>
+
+  <div class="box1">
+    <span class="box-title">MAX重量早見表(画像をクリック)</span>
+    <div class="course-item">
+      <%= image_tag "picture.jpg", height: '150', :style=>"width:200;", class: "course-item-img" %>
+    </div>
+    <div id="grayDisplay"></div>
   </div>
-  <div id="grayDisplay"></div>
 
   <%= form_with model: @workout, method: :get, local: :true do |f| %>
     <div class="form-row mb-2">
@@ -197,6 +201,15 @@
           <th>筋肉の状態:</th>
           <%= workout.muscle %>
         </div>
+        <button>
+          <%= link_to "確認", workout_path(workout) %>
+        </button>
+        <button>
+          <%= link_to "編集", edit_workout_path(workout) %>
+        </button>
+        <button>
+          <%= link_to "削除", workout_path(workout), data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %> 
+        </button>
       <% end %>
     <% else %>
       <td>現在トレーニング履歴はありません</td>

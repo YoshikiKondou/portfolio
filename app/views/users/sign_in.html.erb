@@ -1,6 +1,12 @@
 <div class="container-fluid p-lg-5 bg-light mb-5">
   <div class="container">
-    <h4 class="my-4">ログイン</h4>
+    <div class="col-sm-4">
+      <h2 class="my-4">ログイン</h2>
+    </div>
+    <%= render 'layouts/shared/error', obj: @user %>
+    <% if flash[:failure] %>
+      <p class="failure"><%= flash[:failure] %></p>
+    <% end %>
     <%= form_with model: @user, url: users_login_path, class: "needs-validation", html: {novalidate: true} do |f| %>
       <div class="form-row mb-4">
         <div class="col-md-4">

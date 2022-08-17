@@ -1,19 +1,17 @@
 <div class="container-fluid p-lg-4 bg-light  mb-5">
   <div class="container">
-    <h2 class="my-3">トレーニング新規作成</h2>
-    <p>MAX重量早見表を確認する(画像をクリック)</p>
-    <div class="course-item">
-      <%= image_tag "picture.jpg", height: '150', :style=>"width:200;", class: "course-item-img" %>
+    <div class="col-sm-4">
+      <h2 class="my-3 mb-5">トレーニング新規作成</h2>
     </div>
-    <div id="grayDisplay"></div>
     <%= render 'layouts/shared/error', obj: @user %>
     <% if flash[:failure] %>
       <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
     <% end %>
     <%= form_with model: @workout, local: true, class: "needs-validation", html: {novalidate: true} do |f| %>
+      
       <div class="form-row mb-1">
-        <div class="col-md-8">
-          <%= f.label :start_time, class: "col-form-label col-sm-2 col-form-label-sm" do %>
+        <div class="col-md-2">
+          <%= f.label :start_time, class: "col-form-label col-sm-4 col-form-label-sm" do %>
             日付 <span class="badge bg-danger">必須</span>
           <% end %>
           <%= f.datetime_field :start_time, include_blank: "選択して下さい", name: "workout[start_time]", class: "form-control", required: true %>
@@ -24,14 +22,16 @@
       </div>
       <div class="form-row mb-1">
         <div class="col-md-2">
-          <%= f.label :body_weight, "体重", class: "col-form-label col-form-label-sm" %>
+          <%= f.label :body_weight, class: "col-form-label col-form-label-sm" do %>
+            体重 <span class="badge bg-secondary">任意</span>
+          <% end %>
           <%= f.number_field :body_weight, placeholder: "体重(kg)", step: "0.1", class: "form-control", required: true %>
           <div class="invalid-feedback">
             入力してください
           </div>
         </div>
       </div>
-      <div class="form-row mb-1">
+      <div class="form-row mb-4">
         <div class="col-md-2">
           <%= f.label :part, class: "col-form-label col-form-label-sm" do %>
             部位 <span class="badge bg-danger">必須</span>
@@ -42,6 +42,15 @@
           </div>
         </div>
       </div>
+      
+      <div class="box1">
+        <span class="box-title">MAX重量早見表(画像をクリック)</span>
+        <div class="course-item">
+          <%= image_tag "picture.jpg", height: '150', :style=>"width:200;", class: "course-item-img" %>
+        </div>
+        <div id="grayDisplay"></div>
+      </div>
+      
       <%= f.fields_for :workout_menus do |form| %>
         <%= render "workouts/workout_menu_fields", f: form %>
       <% end %>
