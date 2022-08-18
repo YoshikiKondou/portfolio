@@ -1,7 +1,7 @@
 <div class="container-fluid p-lg-5 bg-light  mb-5">
   <h2>トレーニング内容詳細</h2>
-  <div class="workout-mini mb-2">
-    <div class="mini mt-1">
+  <div class="workout-mini mb-2 mt-5">
+    <div class="mini mt-5 mb-5">
       <div class="field form-row">
         <th>日付:</th>
         <%= @workout.start_time.strftime("%F") %>
@@ -19,21 +19,33 @@
           <th>種目:</th>
           <%= workout_menu.menu %>
         </div>
-        <div class="box20 m-1 ms-2">
+        <div class="box20 m-1 ms-2 col-4">
           <div class="detail-menu">
-            1st set:<%= workout_menu.first_set_weight %> kg×<%= workout_menu.first_set_rep %> 回
-            <% if workout_menu.second_set_weight? %>
-                2nd set:<%= workout_menu.second_set_weight %> kg×<%= workout_menu.second_set_rep %> 回
-            <% end %>
-            <% if workout_menu.third_set_weight? %>
-                3rd set:<%= workout_menu.third_set_weight %> kg×<%= workout_menu.third_set_rep %> 回
-            <% end %>
-            <% if workout_menu.fourth_set_weight? %>
-                4th set:<%= workout_menu.fourth_set_weight %> kg×<%= workout_menu.fourth_set_rep %> 回
-            <% end %>
-            <% if workout_menu.fifth_set_weight? %>
-                5th set:<%= workout_menu.fifth_set_weight %> kg×<%= workout_menu.fifth_set_rep %> 回
-            <% end %>
+            <div class="row">
+              <div class="col-auto ms-4">
+                <span class="condition-detail">1st set: </span><%= workout_menu.first_set_weight %> kg×<%= workout_menu.first_set_rep %> 回
+              </div>
+              <div class="col-auto ms-4">
+                <% if workout_menu.second_set_weight? %>
+                  <span class="condition-detail">2nd set: </span><%= workout_menu.second_set_weight %> kg×<%= workout_menu.second_set_rep %> 回
+                <% end %>
+              </div>
+              <div class="col-auto ms-4">
+                <% if workout_menu.third_set_weight? %>
+                    <span class="condition-detail">3rd set: </span><%= workout_menu.third_set_weight %> kg×<%= workout_menu.third_set_rep %> 回
+                <% end %>
+              </div>
+              <div class="col-auto ms-4">
+                <% if workout_menu.fourth_set_weight? %>
+                    <span class="condition-detail">4th set: </span><%= workout_menu.fourth_set_weight %> kg×<%= workout_menu.fourth_set_rep %> 回
+                <% end %>
+              </div>
+              <div class="col-auto ms-4">
+                <% if workout_menu.fifth_set_weight? %>
+                    <span class="condition-detail">5th set: </span><%= workout_menu.fifth_set_weight %> kg×<%= workout_menu.fifth_set_rep %> 回
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
