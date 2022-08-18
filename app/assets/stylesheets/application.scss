@@ -173,3 +173,65 @@ h2:after {
     order: 1;
   }
 }
+
+@media screen and (max-width: 1300px){
+  .condition {display:none}
+}
+
+@media screen and (max-width: 1300px){
+  .condition {display:none}
+}
+
+@media screen and (max-width: 590px){
+  .condition-detail {display:none}
+}
+
+@media screen and (max-width: 950px){
+  .table {display:none}
+}
+
+@media screen and (min-width: 950px){
+  .workout-index {display:none}
+}
+
+.workout-mini{
+  color: #2c2c2f;
+  border-top: solid 3px #f11a13;
+  border-bottom: solid 3px #f11a13;
+}
+.workout-mini div {
+  margin: 0; 
+  padding: 0;
+}
+
+.box20 {
+  position: relative;
+  padding: 0.25em 1em;
+  margin: 2em 0;
+  top: 0;
+}
+.box20:before, .box20:after{ 
+  position: absolute;
+  top: 0;
+  content:'';
+  width: 10px;
+  height: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+}
+.box20:before{
+  border-left: dotted 2px #f11a13;
+  border-top: dotted 2px #f11a13;
+  border-bottom: dotted 2px #f11a13;
+  left: 0;
+}
+.box20:after{
+  border-top: dotted 2px #f11a13;
+  border-right: dotted 2px #f11a13;
+  border-bottom: dotted 2px #f11a13;
+  right: 0;
+}
+.box20 p {
+  margin: 0; 
+  padding: 0;
+}
