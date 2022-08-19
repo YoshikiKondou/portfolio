@@ -62,7 +62,7 @@
             </td>
             <td>
               <div class="text-center">
-                <%= workout.body_weight %>kg
+                80kg
               </div>
             </td>
             <td>
@@ -186,7 +186,7 @@
               </div>
               <div class="mt-1">
                 <th>体重:</th>
-                <%= workout.body_weight %>kg
+                  80kg
               </div>
               <div class="mt-1">
                 <th>部位:</th>
@@ -240,21 +240,21 @@
                   </div>
                 </div>
               </div>
-              <div class="row mt-2">
+              <div class="row mt-2 ms-1">
                   <div class="col-2">
-                    睡<span class="condition-detail">眠</span>:<%= workout.sleep %>
+                    睡眠:<%= workout.sleep %>
                   </div>
                   <div class="col-2">
-                    食<span class="condition-detail">事</span>:<%= workout.eat %>
+                    食事:<%= workout.eat %>
                   </div>
                   <div class="col-2">
-                    や<span class="condition-detail">る気</span>:<%= workout.motivation %>
+                    意欲:<%= workout.motivation %>
                   </div>
                   <div class="col-2">
-                    疲<span class="condition-detail">労</span>:<%= workout.fatigue %>
+                    疲労:<%= workout.fatigue %>
                   </div>
                   <div class="col-3">
-                    筋<span class="condition-detail">肉の状態</span>:<%= workout.muscle %>
+                    筋肉<span class="condition-detail">の状態</span>:<%= workout.muscle %>
                   </div>
               </div>
                 <%= link_to "編集", edit_workout_path(workout), class: 'btn btn-danger btn-sm' %>

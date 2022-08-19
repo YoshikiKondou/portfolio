@@ -2,7 +2,6 @@ class CreateWorkouts < ActiveRecord::Migration[7.0]
   def change
     create_table :workouts do |t|
       t.integer :user_id
-      t.float :body_weight
       t.string :part
       t.text :memo
       t.integer :sleep

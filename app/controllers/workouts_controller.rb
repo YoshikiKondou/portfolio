@@ -80,7 +80,6 @@ class WorkoutsController < ApplicationController
     def workout_params
       params.require(:workout).permit(
         :start_time,
-        :body_weight,
         :part,
         :memo,
         :sleep,

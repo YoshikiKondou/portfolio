@@ -62,7 +62,10 @@ class UsersController < ApplicationController
     :image,
     :password,
     :password_confirmation,
-    :introduction
+    :introduction,
+    :target_protein,
+    :target_fat,
+    :target_carbohydrate
     )
   end
 end

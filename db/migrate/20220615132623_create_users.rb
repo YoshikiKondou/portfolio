@@ -7,6 +7,9 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :password_digest
       t.string :image
       t.text :introduction
+      t.float :target_protein
+      t.float :target_fat
+      t.float :target_carbohydrate
       t.timestamps
     end
   end

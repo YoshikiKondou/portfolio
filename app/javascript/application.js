@@ -56,3 +56,59 @@ $("#grayDisplay").click(function () {
     }, false);
   })
 })();
+
+//カロリー計算機能
+
+const P1 = document.getElementById('P1');
+const F1 = document.getElementById('F1');
+const C1 = document.getElementById('C1');
+const X = document.getElementById('X');
+
+P1.addEventListener('input', () => {
+  P2.textContent = Number(P1.value) * 4;
+});
+
+F1.addEventListener('input', () => {
+  F2.textContent = Number(F1.value) * 9;
+});
+
+C1.addEventListener('input', () => {
+  C2.textContent = Number(C1.value) * 4;
+});
+    
+const inputs = document.querySelectorAll('input');
+
+inputs.forEach(input => {
+  input.addEventListener('input', () => {
+    X.textContent = Number(P1.value) * 4 + Number(F1.value) * 9 + Number(C1.value) * 4;
+  });
+});
+
+//電卓
+
+function clickbutton(target) {
+  let result = document.getElementById("result");
+  let target_value = target.innerHTML;
+  const operator = ["+", "-", "*", "/", "."];
+  
+  if (target_value == "AC") {
+      result.innerHTML = "0";
+  } else if (target_value == "=") {
+        result.innerHTML = eval(result.innerHTML);
+  } else {
+    if (operator.includes(target_value) && operator.includes(result.innerHTML.slice(-1))) return
+    if (result.innerHTML == "0") {
+        result.innerHTML = target_value;
+    } else if (result.innerHTML == "00") {
+        result.innerHTML = target_value;
+    } else if (result.innerHTML == "+") {
+        result.innerHTML = target_value;
+    } else if (result.innerHTML == "*") {
+        result.innerHTML = target_value;     
+    } else if (result.innerHTML == ".") {
+        result.innerHTML = eval("0." + target_value);
+    } else {
+        result.innerHTML += target_value; 
+    }
+  }
+}

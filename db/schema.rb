@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_10_034701) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_18_141433) do
+  create_table "diets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.float "body_weight"
+    t.float "protein"
+    t.float "fat"
+    t.float "carbohydrate"
+    t.datetime "record_time"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_diets_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "age"
@@ -18,6 +30,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_034701) do
     t.string "password_digest"
     t.string "image"
     t.text "introduction"
+    t.float "target_protein"
+    t.float "target_fat"
+    t.float "target_carbohydrate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,8 +57,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_034701) do
 
   create_table "workouts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
-    t.decimal "body_weight", precision: 10
-    t.decimal "float", precision: 10
     t.string "part"
     t.text "memo"
     t.integer "sleep"
@@ -56,5 +69,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_10_034701) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "diets", "users"
   add_foreign_key "workout_menus", "workouts"
 end

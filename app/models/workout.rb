@@ -5,7 +5,6 @@ class Workout < ApplicationRecord
   validates_associated :workout_menus
   validates :start_time, presence: true
   validates :part, presence: true
-  validates :body_weight, numericality: { greater_than: 30, less_than: 150 }, allow_blank: true
   validates :sleep, presence: true
   validates :eat, presence: true
   validates :motivation, presence: true

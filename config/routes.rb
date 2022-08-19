@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'diet/new'
   get '/users/sign_in'
   post '/users/login'
   get '/users/logout'
@@ -7,5 +8,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update]
   resources :workouts
   resources :workout_menus
+  resources :diets
   get '/', to: 'home#top'
 end
