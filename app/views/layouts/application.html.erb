@@ -42,6 +42,7 @@
               </ul>
             <% else %>
               <ul class="navbar-nav mr-auto">
+                <li><%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, data: {turbo_method: :post}, class: "nav-link" %></li>
                 <li class="nav-item white"><%= link_to("ログイン", "/users/sign_in", data: {"turbo"=>false}, class: "nav-link") %></li>
                 <li class="nav-item white"><%= link_to("新規登録", "/users/new", data: {"turbo"=>false}, class: "nav-link") %></li>
               </ul>

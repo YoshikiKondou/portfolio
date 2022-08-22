@@ -16,7 +16,7 @@
                 <%= f.label :record_time, class: "col-form-label col-sm-4 col-form-label-sm" do %>
                   日付 <span class="badge bg-danger">必須</span>
                 <% end %>
-                <%= f.datetime_field :record_time, include_blank: "選択して下さい", name: "workout[start_time]", class: "form-control", required: true %>
+                <%= f.datetime_field :record_time, include_blank: "選択して下さい", name: "diet[record_time]", class: "form-control", required: true %>
                 <div class="invalid-feedback">
                   入力してください
                 </div>
@@ -69,12 +69,12 @@
             </div>
 
             <div class="form-group mb-4" id="datepicker-daterange">
-              <%= f.label :carbonhydrate, class: "col-form-label col-form-label-sm" do %>
+              <%= f.label :carbohydrate, class: "col-form-label col-form-label-sm" do %>
                 炭水化物(g) <span class="badge bg-danger">必須</span>
               <% end %>
               <div class="form-inline col-11">
                 <div class="input-daterange input-group">
-                  <%= f.number_field :carbonhydrate, placeholder: "炭水化物(g)", step: "0.1", class: "form-control carbonhydrate", type: "number", id: "C1", required: true %>
+                  <%= f.number_field :carbohydrate, placeholder: "炭水化物(g)", step: "0.1", class: "form-control carbonhydrate", type: "number", id: "C1", required: true %>
                   <span class="input-group-addon ms-2 inline"> ➡︎ </span>
                   <p class="answer form-control ms-2" id="C2"></p>
                   <span class="input-group-addon ms-2 inline"> kcal </span>

@@ -3,7 +3,7 @@
     <div class="col-sm">
       <h2 class="my-3 mb-5">トレーニング新規作成</h2>
     </div>
-    <%= render 'layouts/shared/error', obj: @user %>
+    <%= render 'layouts/shared/error', obj: @workout %>
     <% if flash[:failure] %>
       <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
     <% end %>

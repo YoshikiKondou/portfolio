@@ -1,6 +1,33 @@
 ---
 ja:
   activerecord:
+    attributes:
+      user:
+        name: "表示名"
+        age: "年齢"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+        email: "メールアドレス"
+        target_protein: "目標タンパク質量"
+        target_fat: "目標脂質量"
+        target_carbonhydrate: "目標炭水化物量"
+      workout_menu:
+        first_set_weight: "1セット目の重量"
+        second_set_weight: "2セット目の重量"
+        third_set_weight: "3セット目の重量"
+        fourth_set_weight: "4セット目の重量"
+        fifth_set_weight: "5セット目の重量"
+        first_set_rep: "1セット目の回数"
+        second_set_rep: "1セット目の回数"
+        third_set_rep: "1セット目の回数"
+        fourth_set_rep: "1セット目の回数"
+        fifth_set_rep: "1セット目の回数"
+      diet:
+        body_weight: "体重"
+        protein: "タンパク質"
+        fat: "脂質"
+        carbonhydrate: "炭水化物"
+        record_time: "記録日"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

@@ -16,6 +16,11 @@
 @import "application.bootstrap";
 
 /*application.html.erb*/
+
+li {
+  list-style: none;
+}
+
  #background {
   background-image: url("main1.jpg");
   height: 800px;

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'diet/new'
+  post '/guests/guest_sign_in', to: 'guests#guest_sign_in'
   get '/users/sign_in'
   post '/users/login'
   get '/users/logout'

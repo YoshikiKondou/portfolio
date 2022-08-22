@@ -4,6 +4,12 @@ class DietsController < ApplicationController
 
   def index
     @diets = Diet.all
+    @diet_by_day = @diets.group("date(record_time)")
+    @chartlabels = @diet_by_day.size.map(&:first).sort { |a,b| a <=> b }.to_json.html_safe
+    @proteindata = @diet_by_day.sum("protein * 4").map(&:second).to_json.html_safe
+    @fatdata = @diet_by_day.sum("fat * 9").map(&:second).to_json.html_safe
+    @carbohydratedata = @diet_by_day.sum("carbohydrate * 4").map(&:second).to_json.html_safe
+    @body_weightdata = @diet_by_day.sum(:body_weight).map(&:second).to_json.html_safe
   end
 
   def new

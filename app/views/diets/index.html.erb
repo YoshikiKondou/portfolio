@@ -1,0 +1,98 @@
+<div class="container-fluid p-lg-5 bg-light  mb-5">
+  <div class="container">
+    <div class="col-sm">
+      <h2 class="my-4">体重推移</h2>
+    </div>
+
+    <div style="diet-chart">
+      <div class="wrap-chart">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+    <script>
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: <%= @chartlabels %>,
+          datasets: [{
+            label: "体重推移",
+            data:  <%= @body_weightdata %>,
+            backgroundColor: 'rgba(255, 80, 120, 0.2)',
+            borderColor: 'rgba(255, 80, 120, 1.0)',
+            type: 'line',
+            yAxisID: "y-axis-2",
+            fill: false
+          }, {
+            label: "タンパク質",
+            borderWidth: 1,
+            backgroundColor: "#2e70a7",
+            borderColor: "#2e70a7",
+            yAxisID: "y-axis-1", 
+            data: <%= @proteindata %>
+          }, {
+            label: "脂質",
+            borderWidth: 1,
+            backgroundColor: "#4eadc7",
+            borderColor: "#4eadc7",
+            yAxisID: "y-axis-1", 
+            data: <%= @fatdata %>
+          }, {
+            label: "炭水化物",
+            borderWidth: 1,
+            backgroundColor: "#a7d8bf",
+            borderColor: "#a7d8bf",
+            yAxisID: "y-axis-1", 
+            data: <%= @carbohydratedata %>
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: '体重推移',
+            padding:3
+          },
+          scales: {
+            xAxes: [{
+              stacked: true,
+              categoryPercentage:0.4,
+              scaleLabel: {
+                display: true,
+                labelString: "日付",
+              }
+            }],
+            yAxes: [{
+              id: "y-axis-2",
+              type: "linear", 
+              position: "left",
+              scaleLabel: {
+                display: true,
+                labelString: "体重(kg)",
+              }
+            }, {
+              id: "y-axis-1",
+              type: "linear", 
+              position: "right",
+              scaleLabel: {
+                display: true,
+                labelString: "カロリー(kcal)",
+              },
+              stacked: true
+            }]
+          },
+          legend: {
+            labels: {
+              boxWidth: 30,
+              padding: 20
+            },
+            display: true
+          },
+          tooltips:{
+            mode:'label'
+          },
+          maintainAspectRatio: false,
+        }
+      });
+    </script>
+  </div>
+</div>
