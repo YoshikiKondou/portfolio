@@ -43,7 +43,7 @@
         <%= f.label :taget_protein, class: "col-form-label col-form-label-sm" do %>
           タンパク質(g) <span class="badge bg-danger">必須</span>
         <% end %>
-        <div class="form-inline col-11 col-md-4">
+        <div class="form-inline col-11 col-md-6">
           <div class="input-daterange input-group">
             <%= f.number_field :target_protein, placeholder: "タンパク質(g)", step: "0.1", class: "form-control protein", type: "number", id: "P1", required: true %>
             <span class="input-group-addon ms-2 inline"> ➡︎ </span>
@@ -59,7 +59,7 @@
         <%= f.label :target_fat, class: "col-form-label col-form-label-sm" do %>
           脂質(g) <span class="badge bg-danger">必須</span>
         <% end %>
-        <div class="form-inline col-11 col-md-4">
+        <div class="form-inline col-11 col-md-6">
           <div class="input-daterange input-group">
             <%= f.number_field :target_fat, placeholder: "脂質(g)", step: "0.1", class: "form-control fat", type: "number", id: "F1", required: true %>
             <span class="input-group-addon ms-2 inline"> ➡︎ </span>
@@ -75,7 +75,7 @@
         <%= f.label :target_carbonhydrate, class: "col-form-label col-form-label-sm" do %>
           炭水化物(g) <span class="badge bg-danger">必須</span>
         <% end %>
-        <div class="form-inline col-11 col-md-4">
+        <div class="form-inline col-11 col-md-6">
           <div class="input-daterange input-group">
             <%= f.number_field :target_carbohydrate, placeholder: "炭水化物(g)", step: "0.1", class: "form-control carbonhydrate", type: "number", id: "C1", required: true %>
             <span class="input-group-addon ms-2 inline"> ➡︎ </span>

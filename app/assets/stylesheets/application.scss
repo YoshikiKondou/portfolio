@@ -285,3 +285,19 @@ h2:after {
   width: 105px;
   height: 30px;
 }
+
+@media screen and (max-width: 830px){
+  .diet-table {display:none}
+}
+
+@media screen and (min-width: 830px){
+  .diet-index {display:none}
+}
+
+@media screen and (max-width: 550px){
+  .nutrients {display:none}
+}
+
+@media screen and (min-width: 550px){
+  .abbreviation {display:none}
+}

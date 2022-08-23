@@ -33,146 +33,148 @@
     </div>
   </div>
 
-  <table class="table table-bordered text-nowrap table-bordered table-hover mt-3">
-    <thead>
-      <tr>
-        <th class="text-center" scope="col">日付</th>
-        <th class="text-center" scope="col">体重</th>
-        <th class="text-center" scope="col">部位</th>
-        <th class="text-center" scope="col">トレーニング内容</th>
-        <th class="text-center" scope="col">1set</th>
-        <th class="text-center" scope="col">2set</th>
-        <th class="text-center" scope="col">3set</th>
-        <th class="text-center" scope="col">4set</th>
-        <th class="text-center" scope="col">5set</th>
-        <th class="text-center condition" scope="col">睡眠</th>
-        <th class="text-center condition" scope="col">食事</th>
-        <th class="text-center condition" scope="col">やる気</th>
-        <th class="text-center condition" scope="col">疲労度</th>
-        <th class="text-center condition" scope="col">筋肉の状態</th>
-    </thead>
-    <tbody>
-      <% if @workouts.count > 0 %>
-        <% @workouts.each do |workout| %>
-          <tr class="align-middle lh-2">
-            <td>
-              <div class="text-center">
-                <%= workout.start_time.strftime("%m月%-d日") %> 
-              </div>
-            </td>
-            <td>
-              <div class="text-center">
-                80kg
-              </div>
-            </td>
-            <td>
-              <div class="text-center">
-                <%= workout.part %>
-              </div>
-            </td>
-            <td class="text-left">
-              <% workout.workout_menus.each do |workout_menu| %>
-                <%= workout_menu.menu %>
-                <br>
-              <% end %>
-            </td>
-            <td>
-              <% workout.workout_menus.each do |workout_menu| %>
+  <div class="pb-3">
+    <table class="table text-nowrap table-bordered table-hover mt-3">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col">日付</th>
+          <th class="text-center" scope="col">体重</th>
+          <th class="text-center" scope="col">部位</th>
+          <th class="text-center" scope="col">トレーニング内容</th>
+          <th class="text-center" scope="col">1set</th>
+          <th class="text-center" scope="col">2set</th>
+          <th class="text-center" scope="col">3set</th>
+          <th class="text-center" scope="col">4set</th>
+          <th class="text-center" scope="col">5set</th>
+          <th class="text-center condition" scope="col">睡眠</th>
+          <th class="text-center condition" scope="col">食事</th>
+          <th class="text-center condition" scope="col">意欲</th>
+          <th class="text-center condition" scope="col">疲労度</th>
+          <th class="text-center condition" scope="col">筋肉の状態</th>
+      </thead>
+      <tbody>
+        <% if @workouts.count > 0 %>
+          <% @workouts.each do |workout| %>
+            <tr class="align-middle lh-2">
+              <td>
                 <div class="text-center">
-                  <%= workout_menu.first_set_weight %>×<%= workout_menu.first_set_rep %> 
-                  <br>
+                  <%= workout.start_time.strftime("%m月%-d日") %> 
                 </div>
-              <% end %>
-            </td>
-            <td>
-              <% workout.workout_menus.each do |workout_menu| %>
-                <% if workout_menu.second_set_weight? %>
-                  <div class="text-center">
-                    <%= workout_menu.second_set_weight %>×<%= workout_menu.second_set_rep %> 
-                    <br>
-                  </div>
-                <% end %>
-              <% end %>
-            </td>
-            <td>
-              <% workout.workout_menus.each do |workout_menu| %>
-                <% if workout_menu.third_set_weight? %>
-                  <div class="text-center">
-                    <%= workout_menu.third_set_weight %>×<%= workout_menu.third_set_rep %> 
-                    <br>
-                  </div>
-                <% end %>
-              <% end %>
-            </td>
-            <td>
-              <% workout.workout_menus.each do |workout_menu| %>
-                <% if workout_menu.fourth_set_weight? %>
-                  <div class="text-center">
-                    <%= workout_menu.fourth_set_weight %>×<%= workout_menu.fourth_set_rep %> 
-                    <br>
-                  </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  80kg
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  <%= workout.part %>
+                </div>
+              </td>
+              <td class="text-left">
+                <% workout.workout_menus.each do |workout_menu| %>
+                  <%= workout_menu.menu %>
                   <br>
                 <% end %>
-              <% end %>
-            </td>
-            <td>
-              <% workout.workout_menus.each do |workout_menu| %>
-                <% if workout_menu.fifth_set_weight? %>
+              </td>
+              <td>
+                <% workout.workout_menus.each do |workout_menu| %>
                   <div class="text-center">
-                    <%= workout_menu.fifth_set_weight %>×<%= workout_menu.fifth_set_rep %>
+                    <%= workout_menu.first_set_weight %> × <%= workout_menu.first_set_rep %> 
                     <br>
                   </div>
-                  <br>
                 <% end %>
-              <% end %>
-            </td>
-            <td class="condition">
-              <div class="text-center">
-                <%= workout.sleep %> 
-              </div>           
-            </td>
-            <td class="condition">
-              <div class="text-center">
-                <%= workout.eat %> 
-              </div>
-            </td>
-            <td class="condition">
-              <div class="text-center">
-                <%= workout.motivation %> 
-              </div>
-            </td>
-            <td class="condition">
-              <div class="text-center">
-                <%= workout.fatigue %> 
-              </div> 
-            </td>
-            <td class="condition">
-              <div class="text-center">
-                <%= workout.muscle %> 
-              </div>
-            </td>
-            <td>
-              <div class="text-center">
-                <%= link_to "確認", workout_path(workout), class: 'btn btn-danger btn-sm' %>
-              </div>
-            </td>
-            <td>
-              <div class="text-center">
-                <%= link_to "編集", edit_workout_path(workout), class: 'btn btn-danger btn-sm' %>
-              </div>
-            </td>
-            <td>
-              <div class="text-center">
-                <%= link_to "削除", workout_path(workout), class: 'btn btn-danger btn-sm', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
-              </div>
-            </td>
-          </tr>
+              </td>
+              <td>
+                <% workout.workout_menus.each do |workout_menu| %>
+                  <% if workout_menu.second_set_weight? %>
+                    <div class="text-center">
+                      <%= workout_menu.second_set_weight %> × <%= workout_menu.second_set_rep %> 
+                      <br>
+                    </div>
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                <% workout.workout_menus.each do |workout_menu| %>
+                  <% if workout_menu.third_set_weight? %>
+                    <div class="text-center">
+                      <%= workout_menu.third_set_weight %> × <%= workout_menu.third_set_rep %> 
+                      <br>
+                    </div>
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                <% workout.workout_menus.each do |workout_menu| %>
+                  <% if workout_menu.fourth_set_weight? %>
+                    <div class="text-center">
+                      <%= workout_menu.fourth_set_weight %> × <%= workout_menu.fourth_set_rep %> 
+                      <br>
+                    </div>
+                    <br>
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+                <% workout.workout_menus.each do |workout_menu| %>
+                  <% if workout_menu.fifth_set_weight? %>
+                    <div class="text-center">
+                      <%= workout_menu.fifth_set_weight %> × <%= workout_menu.fifth_set_rep %>
+                      <br>
+                    </div>
+                    <br>
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="condition">
+                <div class="text-center">
+                  <%= workout.sleep %> 
+                </div>           
+              </td>
+              <td class="condition">
+                <div class="text-center">
+                  <%= workout.eat %> 
+                </div>
+              </td>
+              <td class="condition">
+                <div class="text-center">
+                  <%= workout.motivation %> 
+                </div>
+              </td>
+              <td class="condition">
+                <div class="text-center">
+                  <%= workout.fatigue %> 
+                </div> 
+              </td>
+              <td class="condition">
+                <div class="text-center">
+                  <%= workout.muscle %> 
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  <%= link_to "確認", workout_path(workout), class: 'btn btn-danger btn-sm' %>
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  <%= link_to "編集", edit_workout_path(workout), class: 'btn btn-danger btn-sm' %>
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  <%= link_to "削除", workout_path(workout), class: 'btn btn-danger btn-sm', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <td>トレーニング履歴はありません</td>
         <% end %>
-      <% else %>
-        <td>トレーニング履歴はありません</td>
-      <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 
   <div class="workout-index">
     <div class="index">
@@ -200,26 +202,26 @@
                 <div class="box20 m-1 ms-2">
                   <div class="row">
                     <div class="col-6 col-md-4 ps-4">
-                      <span class="condition-detail">1st set:</span><%= workout_menu.first_set_weight %> kg×<%= workout_menu.first_set_rep %><span class="condition-detail">回</span>
+                      <span class="condition-detail">1st set: </span><%= workout_menu.first_set_weight %> kg × <%= workout_menu.first_set_rep %><span class="condition-detail">回</span>
                     </div>
                     <% if workout_menu.second_set_weight? %>
                       <div class="col-6 col-md-4 ps-3">
-                        <span class="condition-detail">2nd set:</span><%= workout_menu.second_set_weight %> kg×<%= workout_menu.second_set_rep %><span class="condition-detail">回</span>
+                        <span class="condition-detail">2nd set: </span><%= workout_menu.second_set_weight %> kg × <%= workout_menu.second_set_rep %><span class="condition-detail">回</span>
                       </div>
                     <% end %>
                     <% if workout_menu.third_set_weight? %>
                       <div class="col-6 col-md-4 ps-4">
-                        <span class="condition-detail">3rd set:</span><%= workout_menu.third_set_weight %> kg×<%= workout_menu.third_set_rep %><span class="condition-detail">回</span>
+                        <span class="condition-detail">3rd set: </span><%= workout_menu.third_set_weight %> kg × <%= workout_menu.third_set_rep %><span class="condition-detail">回</span>
                       </div>
                     <% end %>
                     <% if workout_menu.fourth_set_weight? %>
                       <div class="col-6 col-md-4 ps-3">
-                        <span class="condition-detail">4th set:</span><%= workout_menu.fourth_set_weight %> kg×<%= workout_menu.fourth_set_rep %><span class="condition-detail">回</span>
+                        <span class="condition-detail">4th set: </span><%= workout_menu.fourth_set_weight %> kg × <%= workout_menu.fourth_set_rep %><span class="condition-detail">回</span>
                       </div>
                     <% end %>
                     <% if workout_menu.fifth_set_weight? %>
                       <div class="col-6  col-md-4 ps-4">
-                        <span class="condition-detail">5th set:</span><%= workout_menu.fifth_set_weight %> kg×<%= workout_menu.fifth_set_rep %><span class="condition-detail">回</span>
+                        <span class="condition-detail">5th set: </span><%= workout_menu.fifth_set_weight %> kg × <%= workout_menu.fifth_set_rep %><span class="condition-detail">回</span>
                       </div>
                     <% end %>
                   </div>
@@ -241,24 +243,24 @@
                 </div>
               </div>
               <div class="row mt-2 ms-1">
-                  <div class="col-2">
-                    睡眠:<%= workout.sleep %>
-                  </div>
-                  <div class="col-2">
-                    食事:<%= workout.eat %>
-                  </div>
-                  <div class="col-2">
-                    意欲:<%= workout.motivation %>
-                  </div>
-                  <div class="col-2">
-                    疲労:<%= workout.fatigue %>
-                  </div>
-                  <div class="col-3">
-                    筋肉<span class="condition-detail">の状態</span>:<%= workout.muscle %>
-                  </div>
+                <div class="col-2">
+                  睡眠:<%= workout.sleep %>
+                </div>
+                <div class="col-2">
+                  食事:<%= workout.eat %>
+                </div>
+                <div class="col-2">
+                  意欲:<%= workout.motivation %>
+                </div>
+                <div class="col-2">
+                  疲労:<%= workout.fatigue %>
+                </div>
+                <div class="col-3">
+                  筋肉<span class="condition-detail">の状態</span>:<%= workout.muscle %>
+                </div>
               </div>
-                <%= link_to "編集", edit_workout_path(workout), class: 'btn btn-danger btn-sm' %>
-                <%= link_to "削除", workout_path(workout), class: 'btn btn-danger btn-sm m-2', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %> 
+                <%= link_to "編集", edit_workout_path(workout), class: 'btn btn-danger btn-sm mb-2' %>
+                <%= link_to "削除", workout_path(workout), class: 'btn btn-danger btn-sm ms-2 mb-2', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %> 
             </div>
           </div>
         <% end %>

@@ -8,7 +8,7 @@
         <%= f.label :record_time, class: "col-form-label" do %>
           日付 <span class="badge bg-secondary">任意</span>
         <% end %>
-        <div class="col-sm-9 form-inline  col-md-4">
+        <div class="col-sm-9 form-inline  col-lg-6">
           <div class="input-daterange input-group">
             <%= f.datetime_field :from_record_time, class: "form-control", value: @search_params[:from_record_time] %>
             <span class="input-group-addon ms-2 inline"> 〜 </span>
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="col-sm-12">
-        <%= f.submit "体重推移を見る", name: "commit", class: "btn btn-primary btn-block bg-danger" %>
+        <%= f.submit "期間を絞り込む", name: "commit", class: "btn btn-primary btn-block bg-danger" %>
       </div>
     <% end %>
     <div style="diet-chart">
@@ -110,72 +110,108 @@
         }
       });
     </script>
+    
+    <div class="pb-5">
+      <table class="diet-table text-nowrap table-bordered table-hover mt-3 col-12">
+        <thead>
+          <tr>
+            <th class="text-center" scope="col">日付</th>
+            <th class="text-center" scope="col">体重(kg)</th>
+            <th class="text-center" scope="col">総カロリー(kcal)</th>
+            <th class="text-center" scope="col">タンパク質(g)</th>
+            <th class="text-center" scope="col">脂質(g)</th>
+            <th class="text-center" scope="col">炭水化物(g)</th>
+        </thead>
+        <tbody>
+          <% if @diets.count > 0 %>
+            <% @diets.each do |diet| %>
+              <tr class="align-middle lh-2">
+                <td>
+                  <div class="text-center">
+                    <%= diet.record_time.strftime("%m月%-d日") %> 
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= diet.body_weight %>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= @total_calorie %>kcal
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= diet.protein %>(<%= @protein_index_data %>kcal)
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= diet.fat %>(<%= @fat_index_data %>kcal)
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= diet.carbohydrate %>(<%= @carbohydrate_index_data %>kcal)
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= link_to "編集", edit_diet_path(diet), data: {"turbo"=>false}, class: 'btn btn-danger btn-sm' %>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= link_to "削除", diet_path(diet), class: 'btn btn-danger btn-sm', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <td>入力履歴はありません</td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-    <table class="diet-table text-nowrap table-bordered table-hover mt-3 col-12">
-      <thead>
-        <tr>
-          <th class="text-center" scope="col">日付</th>
-          <th class="text-center" scope="col">体重(kg)</th>
-          <th class="text-center" scope="col">総カロリー(kcal)</th>
-          <th class="text-center" scope="col">タンパク質(g)</th>
-          <th class="text-center" scope="col">脂質(g)</th>
-          <th class="text-center" scope="col">炭水化物(g)</th>
-      </thead>
-      <tbody>
+    <div class="diet-index">
+      <p class="abbreviation">タンパク質:P 脂質:F 炭水化物:C</p>
+      <div class="index">
         <% if @diets.count > 0 %>
           <% @diets.each do |diet| %>
-            <tr class="align-middle lh-2">
-              <td>
-                <div class="text-center">
-                  <%= diet.record_time.strftime("%m月%-d日") %> 
+            <div class="workout-mini mb-3">
+              <div class="mini mt-1">
+                <div class="field form-row">
+                  <th>日付:</th>
+                    <%= diet.record_time.strftime("%F") %>
                 </div>
-              </td>
-              <td>
-                <div class="text-center">
-                  <%= diet.body_weight %>
+                <div class="row mt-1 mb-2">
+                  <div class="mt-1">
+                    <th>体重:</th>
+                      <%= diet.body_weight %>kg
+                  </div>
+                  <div class="row mt-1">
+                    <div class="col-4">
+                      <span class="nutrients">タンパク質:</span><span class="abbreviation">P:</span><%= diet.protein %>g
+                    </div>
+                    <div class="col-3">
+                      <span class="nutrients">脂質:</span><span class="abbreviation">F:</span><%= diet.fat %>g
+                    </div>
+                    <div class="col-4 ms-1">
+                      <span class="nutrients">炭水化物:</span><span class="abbreviation">C:</span><%= diet.carbohydrate %>g
+                    </div>
+                  </div>
                 </div>
-              </td>
-              <td>
-                <div class="text-center">
-                  <%= @total_calorie %>kcal
-                </div>
-              </td>
-              <td>
-                <div class="text-center">
-                  <%= diet.protein %>(<%= @protein_index_data %>kcal)
-                </div>
-              </td>
-              <td>
-                <div class="text-center">
-                  <%= diet.fat %>(<%= @fat_index_data %>kcal)
-                </div>
-              </td>
-              <td>
-                <div class="text-center">
-                  <%= diet.carbohydrate %>(<%= @carbohydrate_index_data %>kcal)
-                </div>
-              </td>
-              <td>
-                <div class="text-center">
-                  <%= link_to "確認", diet_path(diet), class: 'btn btn-danger btn-sm' %>
-                </div>
-              </td>
-              <td>
-                <div class="text-center">
-                  <%= link_to "編集", edit_diet_path(diet), class: 'btn btn-danger btn-sm' %>
-                </div>
-              </td>
-              <td>
-                <div class="text-center">
-                  <%= link_to "削除", diet_path(diet), class: 'btn btn-danger btn-sm', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
-                </div>
-              </td>
-            </tr>
+                  <%= link_to "編集", edit_diet_path(diet), class: 'btn btn-danger btn-sm mb-2' %>
+                  <%= link_to "削除", diet_path(diet), class: 'btn btn-danger btn-sm mb-2 ms-3', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+              </div>
+            </div>
           <% end %>
         <% else %>
-          <td>入力履歴はありません</td>
+          <td>トレーニング履歴はありません</td>
         <% end %>
-      </tbody>
-    </table>
+      </div>
+    </div>
   </div>
 </div>
