@@ -3,7 +3,23 @@
     <div class="col-sm">
       <h2 class="my-4">体重推移</h2>
     </div>
-
+    <%= form_with(scope: :search, model: @diet, method: :get, local: :true) do |f| %>
+      <div class="form-group mb-4" id="datepicker-daterange">
+        <%= f.label :record_time, class: "col-form-label" do %>
+          日付 <span class="badge bg-secondary">任意</span>
+        <% end %>
+        <div class="col-sm-9 form-inline  col-md-4">
+          <div class="input-daterange input-group">
+            <%= f.datetime_field :from_record_time, class: "form-control", value: @search_params[:from_record_time] %>
+            <span class="input-group-addon ms-2 inline"> 〜 </span>
+            <%= f.datetime_field :to_record_time, class: "form-control ms-2", value: @search_params[:to_record_time] %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <%= f.submit "体重推移を見る", name: "commit", class: "btn btn-primary btn-block bg-danger" %>
+      </div>
+    <% end %>
     <div style="diet-chart">
       <div class="wrap-chart">
         <canvas id="myChart"></canvas>
@@ -94,5 +110,72 @@
         }
       });
     </script>
+
+    <table class="diet-table text-nowrap table-bordered table-hover mt-3 col-12">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col">日付</th>
+          <th class="text-center" scope="col">体重(kg)</th>
+          <th class="text-center" scope="col">総カロリー(kcal)</th>
+          <th class="text-center" scope="col">タンパク質(g)</th>
+          <th class="text-center" scope="col">脂質(g)</th>
+          <th class="text-center" scope="col">炭水化物(g)</th>
+      </thead>
+      <tbody>
+        <% if @diets.count > 0 %>
+          <% @diets.each do |diet| %>
+            <tr class="align-middle lh-2">
+              <td>
+                <div class="text-center">
+                  <%= diet.record_time.strftime("%m月%-d日") %> 
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  <%= diet.body_weight %>
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  <%= @total_calorie %>kcal
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  <%= diet.protein %>(<%= @protein_index_data %>kcal)
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  <%= diet.fat %>(<%= @fat_index_data %>kcal)
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  <%= diet.carbohydrate %>(<%= @carbohydrate_index_data %>kcal)
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  <%= link_to "確認", diet_path(diet), class: 'btn btn-danger btn-sm' %>
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  <%= link_to "編集", edit_diet_path(diet), class: 'btn btn-danger btn-sm' %>
+                </div>
+              </td>
+              <td>
+                <div class="text-center">
+                  <%= link_to "削除", diet_path(diet), class: 'btn btn-danger btn-sm', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <td>入力履歴はありません</td>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

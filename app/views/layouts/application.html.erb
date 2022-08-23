@@ -35,8 +35,9 @@
                 <li class="nav-item"><%= link_to("トレーニング一覧", "/workouts", data: {"turbo"=>false}, class: "nav-link")%></li>
                 <li class="nav-item"><%= link_to("トレーニング新規作成", "/workouts/new", data: {"turbo"=>false}, class: "nav-link") %></li>
                 <li class="nav-item"><%= link_to("記録推移", "/workouts/graph", class: "nav-link") %></li>
-                <li class="nav-item"><%= link_to("体重推移", "/workouts/body_weight_graph", class: "nav-link") %></li>
+                <li class="nav-item"><%= link_to("体重推移(仮)", "/workouts/body_weight_graph", class: "nav-link") %></li>
                 <li class="nav-item"><%= link_to("体重・カロリー入力", "/diets/new", data: {"turbo"=>false}, class: "nav-link") %></li>
+                <li class="nav-item"><%= link_to("体重推移", "/diets", data: {"turbo"=>false}, class: "nav-link") %></li>
                 <li class="nav-item"><%= link_to "アカウント編集", edit_user_path(@user.id), data: {"turbo"=>false}, class: "nav-link" %></li>
                 <li class="nav-item"><%= link_to("ログアウト", "/users/logout", class: "nav-link") %></li>
               </ul>
