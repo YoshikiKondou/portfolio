@@ -21,9 +21,13 @@ li {
   list-style: none;
 }
 
+.black {
+  background-color: black;
+}
+
  #background {
   background-image: url("main1.jpg");
-  height: 800px;
+  height: 850px;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -115,6 +119,38 @@ h2:after {
   height: 4px;
   background: -webkit-linear-gradient(to right, rgb(230, 90, 90), transparent);
   background: linear-gradient(to right, rgb(230, 90, 90), transparent);
+}
+
+@media screen and (max-width: 460px){
+  .sub-title {display:none}
+}
+
+@media screen and (min-width: 460px){
+  .second-title {display:none}
+}
+
+.parent {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  margin: 0;
+  padding: 0;
+  width: 65%;
+}
+
+@media screen and (max-width: 1270px){
+  .introduction {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 450px){
+  .introduction {display: none}
+}
+
+@media screen and (min-width: 450px){
+  .introduction-small {display: none}
 }
 
 /* workout */

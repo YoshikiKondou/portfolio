@@ -21,21 +21,19 @@
     <header class="sticky-top">
       <nav class="navbar navbar-expand-lg navbar-light bg-light header">
         <div class="container-fluid">
-            <h3>Be Stronger</h3>
+            <h3 class="ms-1">Be Stronger<span class="mt-2 ms-2 sub-title lead"> 〜筋トレ記録アプリ〜</span><span class="mt-2 ms-2 second-title lead"> ~筋道~</span></h3>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarScroll">
             <% if current_user? %>
-              <div class="nav-item d-sm-inline-block ms-2 me-2"><%= @user.name %></div> 
               <% if @user.image? %> 
-                <%= image_tag @user.image.url, id: "icon-img" %> 
+                <%= image_tag @user.image.url, id: "icon-img", class: "ms-2" %> 
               <% end %>
               <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 150px;">
                 <li class="nav-item"><%= link_to("トレーニング一覧", "/workouts", data: {"turbo"=>false}, class: "nav-link")%></li>
                 <li class="nav-item"><%= link_to("トレーニング新規作成", "/workouts/new", data: {"turbo"=>false}, class: "nav-link") %></li>
                 <li class="nav-item"><%= link_to("記録推移", "/workouts/graph", class: "nav-link") %></li>
-                <li class="nav-item"><%= link_to("体重推移(仮)", "/workouts/body_weight_graph", class: "nav-link") %></li>
                 <li class="nav-item"><%= link_to("体重・カロリー入力", "/diets/new", data: {"turbo"=>false}, class: "nav-link") %></li>
                 <li class="nav-item"><%= link_to("体重推移", "/diets", data: {"turbo"=>false}, class: "nav-link") %></li>
                 <li class="nav-item"><%= link_to "アカウント編集", edit_user_path(@user.id), data: {"turbo"=>false}, class: "nav-link" %></li>
@@ -43,9 +41,9 @@
               </ul>
             <% else %>
               <ul class="navbar-nav mr-auto">
-                <li><%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, data: {turbo_method: :post}, class: "nav-link" %></li>
-                <li class="nav-item white"><%= link_to("ログイン", "/users/sign_in", data: {"turbo"=>false}, class: "nav-link") %></li>
-                <li class="nav-item white"><%= link_to("新規登録", "/users/new", data: {"turbo"=>false}, class: "nav-link") %></li>
+                <li class="ms-3"><%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, data: {turbo_method: :post}, class: "nav-link" %></li>
+                <li class="ms-3"><%= link_to("ログイン", "/users/sign_in", data: {"turbo"=>false}, class: "nav-link") %></li>
+                <li class="ms-3"><%= link_to("新規登録", "/users/new", data: {"turbo"=>false}, class: "nav-link") %></li>
               </ul>
             <% end %>
           </div>
