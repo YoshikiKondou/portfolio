@@ -86,7 +86,7 @@
         <th>筋肉の状態:</th>
         <%= @workout.muscle %>
       </div>
-      <%= link_to "編集", edit_workout_path(@workout.id), class: 'btn btn-danger btn-sm' %>
+      <%= link_to "編集", edit_workout_path(@workout.id),data: {"turbo"=>false}, class: 'btn btn-danger btn-sm' %>
       <%= link_to "削除", workout_path(@workout), class: 'btn btn-danger btn-sm m-2', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %> 
     </div>
   </div>

@@ -140,17 +140,17 @@ h2:after {
 }
 
 @media screen and (max-width: 1270px){
-  .introduction {
+  .parent {
     width: 70%;
   }
 }
 
 @media screen and (max-width: 450px){
-  .introduction {display: none}
+  .parent {display: none}
 }
 
 @media screen and (min-width: 450px){
-  .introduction-small {display: none}
+  .child {display: none}
 }
 
 /* workout */
@@ -251,6 +251,7 @@ h2:after {
   margin: 2em 0;
   top: 0;
 }
+
 .box20:before, .box20:after{ 
   position: absolute;
   top: 0;
@@ -260,18 +261,21 @@ h2:after {
   display: inline-block;
   box-sizing: border-box;
 }
+
 .box20:before{
   border-left: dotted 2px #f11a13;
   border-top: dotted 2px #f11a13;
   border-bottom: dotted 2px #f11a13;
   left: 0;
 }
+
 .box20:after{
   border-top: dotted 2px #f11a13;
   border-right: dotted 2px #f11a13;
   border-bottom: dotted 2px #f11a13;
   right: 0;
 }
+
 .box20 p {
   margin: 0; 
   padding: 0;
@@ -336,4 +340,16 @@ h2:after {
 
 @media screen and (min-width: 550px){
   .abbreviation {display:none}
+}
+
+.box9 {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #ff7d6e;
+  background: #ffebe9;
+  border-top: solid 10px #ff7d6e;
+}
+.box9 div {
+  margin: 0; 
+  padding: 0;
 }

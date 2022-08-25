@@ -111,7 +111,7 @@
       });
     </script>
     
-    <div class="pb-5">
+    <div class="pb-2">
       <table class="diet-table text-nowrap table-bordered table-hover mt-3 col-12">
         <thead>
           <tr>
@@ -176,12 +176,11 @@
     </div>
 
     <div class="diet-index">
-      <p class="abbreviation">タンパク質:P 脂質:F 炭水化物:C</p>
       <div class="index">
         <% if @diets.count > 0 %>
           <% @diets.each do |diet| %>
-            <div class="workout-mini mb-3">
-              <div class="mini mt-1">
+            <div class="box9 mb-3">
+              <div class=" mt-1">
                 <div class="field form-row">
                   <th>日付:</th>
                     <%= diet.record_time.strftime("%F") %>
@@ -191,16 +190,17 @@
                     <th>体重:</th>
                       <%= diet.body_weight %>kg
                   </div>
-                  <div class="row mt-1">
-                    <div class="col-4">
-                      <span class="nutrients">タンパク質:</span><span class="abbreviation">P:</span><%= diet.protein %>g
-                    </div>
-                    <div class="col-3">
-                      <span class="nutrients">脂質:</span><span class="abbreviation">F:</span><%= diet.fat %>g
-                    </div>
-                    <div class="col-4 ms-1">
-                      <span class="nutrients">炭水化物:</span><span class="abbreviation">C:</span><%= diet.carbohydrate %>g
-                    </div>
+                  <div class="mt-1">
+                    <th>タンパク質:</th>
+                      <%= diet.protein %>g
+                  </div>
+                  <div class="mt-1">
+                    <th>脂質:</th>
+                      <%= diet.fat %>g
+                  </div>
+                  <div class="mt-1">
+                    <th>炭水化物:</th>
+                      <%= diet.carbohydrate %>g
                   </div>
                 </div>
                   <%= link_to "編集", edit_diet_path(diet), class: 'btn btn-danger btn-sm mb-2' %>
