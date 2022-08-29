@@ -38,7 +38,6 @@
       <thead>
         <tr>
           <th class="text-center" scope="col">日付</th>
-          <th class="text-center" scope="col">体重</th>
           <th class="text-center" scope="col">部位</th>
           <th class="text-center" scope="col">トレーニング内容</th>
           <th class="text-center" scope="col">1set</th>
@@ -59,11 +58,6 @@
               <td>
                 <div class="text-center">
                   <%= workout.start_time.strftime("%m月%-d日") %> 
-                </div>
-              </td>
-              <td>
-                <div class="text-center">
-                  80kg
                 </div>
               </td>
               <td>
@@ -185,10 +179,6 @@
               <div class="field form-row">
                 <th>日付:</th>
                   <%= workout.start_time.strftime("%F") %>
-              </div>
-              <div class="mt-1">
-                <th>体重:</th>
-                  80kg
               </div>
               <div class="mt-1">
                 <th>部位:</th>

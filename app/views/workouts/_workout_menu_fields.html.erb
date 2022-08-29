@@ -6,7 +6,7 @@
         <%= f.label :menu, class: "col-form-label" do %>
           種目名 <span class="badge bg-danger">必須</span>
         <% end %>
-        <%= f.select :menu, Workout::SELECT_OPTIONS, { include_blank: "選択して下さい" }, { class: "form-control form-control-8 form-control-xs-12 z-index", id: "select-field", required: true } %>
+        <%= f.select :menu, Workout::SELECT_OPTIONS, { include_blank: "選択して下さい" }, {name: "workout_menus[menu]", class: "form-control form-control-8 form-control-xs-12 z-index", id: "select-field", required: true } %>
         <div class="invalid-feedback">
           選択してください
         </div>

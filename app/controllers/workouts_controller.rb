@@ -5,6 +5,7 @@ class WorkoutsController < ApplicationController
   def index
     @workouts = Workout.where(user_id: session[:user_id]).order(start_time: "desc").includes(:workout_menus)
     @workouts = Workout.where('part LIKE(?)', "%#{params[:search]}%") if params[:search].present?
+    @diets = Diet.select(:body_weight)
   end
 
   def show

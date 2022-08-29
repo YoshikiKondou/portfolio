@@ -1,5 +1,6 @@
 class Workout < ApplicationRecord
   belongs_to :user
+  has_one :diet
   has_many :workout_menus, dependent: :destroy
   accepts_nested_attributes_for :workout_menus, allow_destroy: true
   validates_associated :workout_menus
