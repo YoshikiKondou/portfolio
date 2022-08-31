@@ -67,6 +67,7 @@ group :test do
   gem "capybara", github: 'teamcapybara/capybara'
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rack_session_access'
 end
 
 group :production do
