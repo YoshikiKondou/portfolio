@@ -42,7 +42,7 @@
               <div class="course-item">
                 <%= image_tag "picture.jpg", height: '150', :style=>"width:200;", class: "course-item-img" %>
               </div>
-              <div id="grayDisplay"></div>
+              
             </div>
           </div>
         </div>
@@ -60,8 +60,8 @@
       </div>
       <h5>体調 ※ 1 : 悪い 〜 5 : 良い</h5>
       <div class="row">
-        <div class="col-sm col-md-2">
-          <div class="form-row mb-2">
+        <div class="col-sm col-md-4 col-lg-2">
+          <div class="form-row mb-3">
             <%= f.label :sleep, class: "col-form-label col-form-label-sm" do %>
               睡眠 <span class="badge bg-danger">必須</span>
             <% end %>
@@ -71,7 +71,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm col-md-2">
+        <div class="col-sm col-md-4 col-lg-2">
           <div class="form-row mb-2">
             <%= f.label :eat, class: "col-form-label col-form-label-sm" do %>
               食事 <span class="badge bg-danger">必須</span>
@@ -82,7 +82,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm col-md-2">
+        <div class="col-sm col-md-4 col-lg-2">
           <div class="form-row mb-8">
             <%= f.label :motivation, class: "col-form-label col-form-label-sm" do %>
               モチベーション <span class="badge bg-danger">必須</span>
@@ -95,7 +95,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm col-md-2">
+        <div class="col-sm col-md-4 col-lg-2">
           <div class="form-row mb-2">
             <%= f.label :fatigue, class: "col-form-label col-form-label-sm" do %>
               疲労 <span class="badge bg-danger">必須</span>
@@ -106,7 +106,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm col-md-2">
+        <div class="col-sm col-md-4 col-lg-2">
           <div class="form-row mb-2">
             <%= f.label :muscle, class: "col-form-label col-form-label-sm" do %>
               筋肉の状態 <span class="badge bg-danger">必須</span>
@@ -122,3 +122,4 @@
     <% end %>
   </div>
 </div>
+<div id="grayDisplay"></div>

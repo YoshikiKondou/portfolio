@@ -2,7 +2,6 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "jquery"
 import "cocoon"
-import "cocoon-js-vanilla";
 import "bootstrap"
 import "select2";
 
@@ -15,16 +14,6 @@ $('.reset').click(function(){
   $(this).parent().prev().children('.custom-file-label').html('ファイル選択...');
   $('.custom-file-input').val('');
 })
-
-//動的form作成時のselect2適応
-$('#select-field').select2({
-  theme: 'bootstrap-5'
-});
-
-
-$('#select-field').on('cocoon:after-insert', function(e, insertedItem) {
-  $(insertedItem).addClass('select2-hidden-accessible');
-});
 
 //画像拡大時の動作
 $(".course-item img").click(function () {

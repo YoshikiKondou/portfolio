@@ -1,0 +1,11 @@
+id: "select-field"
+
+//動的form作成時のselect2適応
+$('#select-field').select2({
+  theme: 'bootstrap-5'
+});
+
+
+$('#select-field').on('cocoon:after-insert', function(e, insertedItem) {
+  $(insertedItem).addClass('select2-hidden-accessible');
+});

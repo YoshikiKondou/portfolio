@@ -69,7 +69,8 @@ RSpec.describe 'Users', type: :system do
           fill_in 'user[email]', with: 'email@example.com'
           fill_in 'user[password]', with: 'password'
           fill_in 'user[password_confirmation]', with: 'password'
-          execute_script('window.scroll(0,10000);')
+          execute_script("window.scroll(0,10000);")
+          sleep 3
           click_button '更新'
           expect(page).to have_content 'ユーザー情報を更新しました'
           expect(current_path).to eq workouts_path

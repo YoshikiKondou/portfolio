@@ -28,8 +28,8 @@
       </div>
       <div class="form-row mb-4">
         <div class="col-md-4">
-        <%= f.label :pasword, "パスワード(変更する場合のみ入力)", class: "col-form-label" %>
-            <%= f.text_field :password, autocomplete: "new-password", placeholder: "パスワード", type: "password", name: "user[password]", id: "user_password", class: "form-control" %>
+          <%= f.label :pasword, "パスワード(変更する場合のみ入力)", class: "col-form-label" %>
+          <%= f.text_field :password, autocomplete: "new-password", placeholder: "パスワード", type: "password", name: "user[password]", id: "user_password", class: "form-control" %>
         </div>
       </div>
       <div class="form-row mb-4">
@@ -40,50 +40,35 @@
         </div>
       </div>
       <div class="form-group mb-4" id="datepicker-daterange">
-        <%= f.label :taget_protein, class: "col-form-label col-form-label-sm" do %>
-          タンパク質(g) <span class="badge bg-danger">必須</span>
-        <% end %>
+        <%= f.label :taget_protein, "タンパク質(g)", class: "col-form-label col-form-label-sm" %>
         <div class="form-inline col-11 col-md-6">
           <div class="input-daterange input-group">
-            <%= f.number_field :target_protein, placeholder: "タンパク質(g)", step: "0.1", class: "form-control protein", type: "number", id: "P1", required: true %>
+            <%= f.number_field :target_protein, placeholder: "タンパク質(g)", step: "0.1", class: "form-control protein", type: "number", id: "P1" %>
             <span class="input-group-addon ms-2 inline"> ➡︎ </span>
             <p class="answer form-control ms-2" id="P2"></p>
             <span class="input-group-addon ms-2 inline"> kcal </span>
-            <div class="invalid-feedback">
-              入力してください
-            </div>
           </div>
         </div>
       </div>
       <div class="form-group mb-4" id="datepicker-daterange">
-        <%= f.label :target_fat, class: "col-form-label col-form-label-sm" do %>
-          脂質(g) <span class="badge bg-danger">必須</span>
-        <% end %>
+        <%= f.label :target_fat, "脂質(g)", class: "col-form-label col-form-label-sm" %>
         <div class="form-inline col-11 col-md-6">
           <div class="input-daterange input-group">
-            <%= f.number_field :target_fat, placeholder: "脂質(g)", step: "0.1", class: "form-control fat", type: "number", id: "F1", required: true %>
+            <%= f.number_field :target_fat, placeholder: "脂質(g)", step: "0.1", class: "form-control fat", type: "number", id: "F1" %>
             <span class="input-group-addon ms-2 inline"> ➡︎ </span>
             <p class="answer form-control ms-2" id="F2"></p>
             <span class="input-group-addon ms-2 inline"> kcal </span>
-            <div class="invalid-feedback">
-              入力してください
-            </div>
           </div>
         </div>
       </div>
       <div class="form-group mb-4" id="datepicker-daterange">
-        <%= f.label :target_carbonhydrate, class: "col-form-label col-form-label-sm" do %>
-          炭水化物(g) <span class="badge bg-danger">必須</span>
-        <% end %>
+        <%= f.label :target_carbonhydrate, "炭水化物(g)", class: "col-form-label col-form-label-sm" %>
         <div class="form-inline col-11 col-md-6">
           <div class="input-daterange input-group">
-            <%= f.number_field :target_carbohydrate, placeholder: "炭水化物(g)", step: "0.1", class: "form-control carbonhydrate", type: "number", id: "C1", required: true %>
+            <%= f.number_field :target_carbohydrate, placeholder: "炭水化物(g)", step: "0.1", class: "form-control carbonhydrate", type: "number", id: "C1" %>
             <span class="input-group-addon ms-2 inline"> ➡︎ </span>
             <p class="answer form-control ms-2" id="C2"></p>
             <span class="input-group-addon ms-2 inline"> kcal </span>
-            <div class="invalid-feedback">
-              入力してください
-            </div>
           </div>
         </div>
       </div> 
