@@ -37,7 +37,7 @@
         data: {
           labels: <%= @chartlabels %>,
           datasets: [{
-            label: "体重推移",
+            label: "体重",
             data:  <%= @body_weightdata %>,
             backgroundColor: 'rgba(255, 80, 120, 0.2)',
             borderColor: 'rgba(255, 80, 120, 1.0)',
@@ -148,17 +148,17 @@
                 </td>
                 <td>
                   <div class="text-center">
-                    <%= diet.protein %>(<%= @protein_index_data[index] %>kcal)
+                    <%= diet.protein %>g (<%= @protein_index_data[index] %>kcal)
                   </div>
                 </td>
                 <td>
                   <div class="text-center">
-                    <%= diet.fat %>(<%= @fat_index_data[index] %>kcal)
+                    <%= diet.fat %>g (<%= @fat_index_data[index] %>kcal)
                   </div>
                 </td>
                 <td>
                   <div class="text-center">
-                    <%= diet.carbohydrate %>(<%= @carbohydrate_index_data[index] %>kcal)
+                    <%= diet.carbohydrate %>g (<%= @carbohydrate_index_data[index] %>kcal)
                   </div>
                 </td>
                 <td>
@@ -183,7 +183,7 @@
     <div class="diet-index">
       <div class="index">
         <% if @diets.count > 0 %>
-          <% @diets.each do |diet| %>
+          <% @diets.each_with_index do |diet, index| %>
             <div class="box9 mb-3">
               <div class=" mt-1">
                 <div class="field form-row">
@@ -196,16 +196,20 @@
                       <%= diet.body_weight %>kg
                   </div>
                   <div class="mt-1">
+                    <th>総カロリー:</th>
+                      <%= @total_calorie[index] %>kcal
+                  </div>
+                  <div class="mt-1">
                     <th>タンパク質:</th>
-                      <%= diet.protein %>g
+                      <%= diet.protein %>g (<%= @protein_index_data[index] %>kcal)
                   </div>
                   <div class="mt-1">
                     <th>脂質:</th>
-                      <%= diet.fat %>g
+                      <%= diet.fat %>g (<%= @fat_index_data[index] %>kcal)
                   </div>
                   <div class="mt-1">
                     <th>炭水化物:</th>
-                      <%= diet.carbohydrate %>g
+                      <%= diet.carbohydrate %>g (<%= @carbohydrate_index_data[index] %>kcal)
                   </div>
                 </div>
                   <%= link_to "編集", edit_diet_path(diet), class: 'btn btn-danger btn-sm mb-2' %>
