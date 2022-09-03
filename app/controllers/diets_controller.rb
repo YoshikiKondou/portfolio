@@ -3,20 +3,19 @@ class DietsController < ApplicationController
   before_action :set_user_id
 
   def index
-    @diets = Diet.all
     @search_params = diet_search_params
-    @diets = Diet.search(@search_params)
+    @diets = Diet.where(user_id: session[:user_id]).search(@search_params)
     @diet_by_day = @diets.group("date(record_time)")
     @chartlabels = @diet_by_day.size.map(&:first).sort { |a,b| a <=> b }.to_json.html_safe
     @proteindata = @diet_by_day.sum("protein * 4").map(&:second).to_json.html_safe
     @fatdata = @diet_by_day.sum("fat * 9").map(&:second).to_json.html_safe
     @carbohydratedata = @diet_by_day.sum("carbohydrate * 4").map(&:second).to_json.html_safe
     @body_weightdata = @diet_by_day.sum(:body_weight).map(&:second).to_json.html_safe
-    @diets = Diet.all.order(record_time: "desc")
-    @total_calorie = Diet.sum("protein * + fat * 9 + carbohydrate * 4")
-    @protein_index_data = Diet.group(:record_time).sum("protein * 4")
-    @fat_index_data = Diet.sum("fat * 9")
-    @carbohydrate_index_data = Diet.sum("carbohydrate * 4")
+    @diets = Diet.where(user_id: session[:user_id]).all.order(record_time: "desc")
+    @total_calorie = Diet.group(:record_time).order(record_time: "DESC").sum("protein * 4 + fat * 9 + carbohydrate * 4").values
+    @protein_index_data = Diet.group(:record_time).order(record_time: "DESC").sum("protein * 4").values
+    @fat_index_data = Diet.group(:record_time).order(record_time: "DESC").sum("fat * 9").values
+    @carbohydrate_index_data = Diet.group(:record_time).order(record_time: "DESC").sum("carbohydrate * 4").values
   end
 
   def new

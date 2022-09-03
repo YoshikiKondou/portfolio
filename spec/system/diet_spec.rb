@@ -2,54 +2,97 @@ require 'rails_helper'
 
 RSpec.describe 'Diets', type: :system do
   describe '体重・カロリー新規登録' do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
     context 'フォームの入力値が正常' do
       it '体重・カロリーの新規作成が成功する' do
+        page.set_rack_session(user_id: user.id)
         visit new_diet_path
+        fill_in 'diet[record_time]', with: '002020-10-06-10-06'
         fill_in 'diet[body_weight]', with: '50'
         fill_in 'diet[protein]', with: '50'
         fill_in 'diet[fat]', with: '50'
-        fill_in 'diet[carbonhydrate]', with: '50'
+        fill_in 'diet[carbohydrate]', with: '50'
+        execute_script("window.scroll(0,10000);")
+        sleep 3
         click_button '記録する'
         expect(page).to have_content '体重・カロリーを記録しました'
-        expect(current_path).to eq workouts_path
+        expect(current_path).to eq diets_path
       end
     end
-
-    context '名前が未入力' do
-      it 'ユーザーの新規作成が失敗する' do
-        visit new_user_path
-        fill_in 'user[name]', with: ''
-        fill_in 'user[email]', with: 'email@example.com'
-        fill_in 'user[password]', with: 'password'
-        fill_in 'user[password_confirmation]', with: 'password'
-        click_button '登録'
-        expect(current_path).not_to eq workouts_path
+    context '日付が未入力' do
+      it '体重・カロリーの記録が失敗する' do
+        page.set_rack_session(user_id: user.id)
+        visit new_diet_path
+        fill_in 'diet[record_time]', with: ''
+        fill_in 'diet[body_weight]', with: '50'
+        fill_in 'diet[protein]', with: '50'
+        fill_in 'diet[fat]', with: '50'
+        fill_in 'diet[carbohydrate]', with: '50'
+        execute_script("window.scroll(0,10000);")
+        sleep 3
+        click_button '記録する'
+        expect(current_path).not_to eq diets_path
       end
     end
-
-    context 'メールアドレスが未入力' do
-      it 'ユーザーの新規作成が失敗する' do
-        visit new_user_path
-        fill_in 'user[name]', with: 'name'
-        fill_in 'user[email]', with: ''
-        fill_in 'user[password]', with: 'password'
-        fill_in 'user[password_confirmation]', with: 'password'
-        click_button '登録'
-        expect(current_path).not_to eq workouts_path
+    context '体重が未入力' do
+      it '体重・カロリーの記録が失敗する' do
+        page.set_rack_session(user_id: user.id)
+        visit new_diet_path
+        fill_in 'diet[record_time]', with: '002020-10-06-10-06'
+        fill_in 'diet[body_weight]', with: ''
+        fill_in 'diet[protein]', with: '50'
+        fill_in 'diet[fat]', with: '50'
+        fill_in 'diet[carbohydrate]', with: '50'
+        execute_script("window.scroll(0,10000);")
+        sleep 3
+        click_button '記録する'
+        expect(current_path).not_to eq diets_path
       end
     end
-
-    context '登録済のメールアドレスを使用' do
-      it 'ユーザーの新規作成が失敗する' do
-        existed_user = FactoryBot.create(:user)
-        visit new_user_path
-        fill_in 'user[name]', with: 'name'
-        fill_in 'user[email]', with: existed_user.email
-        fill_in 'user[password]', with: 'password'
-        fill_in 'user[password_confirmation]', with: 'password'
-        click_button '登録'
-        expect(page).to have_content 'メールアドレスはすでに存在します'
-        expect(current_path).not_to eq workouts_path
+    context 'タンパク質が未入力' do
+      it '体重・カロリーの記録が失敗する' do
+        page.set_rack_session(user_id: user.id)
+        visit new_diet_path
+        fill_in 'diet[record_time]', with: '002020-10-06-10-06'
+        fill_in 'diet[body_weight]', with: '50'
+        fill_in 'diet[protein]', with: ''
+        fill_in 'diet[fat]', with: '50'
+        fill_in 'diet[carbohydrate]', with: '50'
+        execute_script("window.scroll(0,10000);")
+        sleep 3
+        click_button '記録する'
+        expect(current_path).not_to eq diets_path
+      end
+    end
+    context '脂質が未入力' do
+      it '体重・カロリーの記録が失敗する' do
+        page.set_rack_session(user_id: user.id)
+        visit new_diet_path
+        fill_in 'diet[record_time]', with: '002020-10-06-10-06'
+        fill_in 'diet[body_weight]', with: '50'
+        fill_in 'diet[protein]', with: '50'
+        fill_in 'diet[fat]', with: ''
+        fill_in 'diet[carbohydrate]', with: '50'
+        execute_script("window.scroll(0,10000);")
+        sleep 3
+        click_button '記録する'
+        expect(current_path).not_to eq diets_path
+      end
+    end
+    context '炭水化物が未入力' do
+      it '体重・カロリーの記録が失敗する' do
+        page.set_rack_session(user_id: user.id)
+        visit new_diet_path
+        fill_in 'diet[record_time]', with: '002020-10-06-10-06'
+        fill_in 'diet[body_weight]', with: '50'
+        fill_in 'diet[protein]', with: '50'
+        fill_in 'diet[fat]', with: ''
+        fill_in 'diet[carbohydrate]', with: '50'
+        execute_script("window.scroll(0,10000);")
+        sleep 3
+        click_button '記録する'
+        expect(current_path).not_to eq diets_path
       end
     end
   end

@@ -47,9 +47,8 @@ class WorkoutsController < ApplicationController
   end
 
   def graph
-    @workouts = Workout.all
     @search_params = workout_search_params
-    @workouts = Workout.eager_load(:workout_menus).search(@search_params).includes(:workout_menus)
+    @workouts = Workout.where(user_id: @user.id).search(@search_params).joins(:workout_menus)
     @menu_search = @search_params.present?
     @workout_by_day = @workouts.group("date(start_time)")
     @chartlabels = @workout_by_day.size.map(&:first).to_json.html_safe
@@ -60,13 +59,6 @@ class WorkoutsController < ApplicationController
     @muscledata = @workout_by_day.sum(:muscle).map(&:second).to_json.html_safe
     @workouts_by_day = @workouts.includes(:workout_menus).group("date(start_time)")
     @totalvolume = @workouts_by_day.sum("first_set_weight * first_set_rep").map(&:second).to_json.html_safe
-  end
-
-  def body_weight_graph
-    @workouts = Workout.all
-    @workout_by_day = @workouts.group("date(start_time)")
-    @chartlabels = @workout_by_day.size.map(&:first).sort { |a,b| a <=> b }.to_json.html_safe
-    @bodyweightdata = @workout_by_day.sum(:body_weight).map(&:second).to_json.html_safe
   end
 
   private

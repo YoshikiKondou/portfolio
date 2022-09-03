@@ -11,6 +11,14 @@ ja:
         target_protein: "目標タンパク質量"
         target_fat: "目標脂質量"
         target_carbonhydrate: "目標炭水化物量"
+      workout:
+        start_time: "トレーニング日"
+        part: "部位"
+        sleep: "睡眠"
+        eat: "食事"
+        motivation: ”モチベーション"
+        fatigue: "疲労度"
+        muscle: "筋肉の状態"
       workout_menu:
         first_set_weight: "1セット目の重量"
         second_set_weight: "2セット目の重量"

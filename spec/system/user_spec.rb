@@ -76,20 +76,56 @@ RSpec.describe 'Users', type: :system do
           expect(current_path).to eq workouts_path
         end
       end
+      context '名前が未入力' do
+        it 'ユーザーの編集が失敗する' do
+          page.set_rack_session(user_id: user.id)
+          visit edit_user_path(user)
+          fill_in 'user[name]', with: ''
+          fill_in 'user[email]', with: 'email@example.com'
+          fill_in 'user[password]', with: 'password'
+          fill_in 'user[password_confirmation]', with: 'password'
+          execute_script("window.scroll(0,10000);")
+          sleep 3
+          click_button '更新'
+          expect(current_path).not_to eq workouts_path
+        end
+      end
       context 'メールアドレスが未入力' do
-        it 'ユーザーの編集が失敗する'
+        it 'ユーザーの編集が失敗する' do
+          page.set_rack_session(user_id: user.id)
+          visit edit_user_path(user)
+          fill_in 'user[name]', with: 'name'
+          fill_in 'user[email]', with: ''
+          fill_in 'user[password]', with: 'password'
+          fill_in 'user[password_confirmation]', with: 'password'
+          execute_script("window.scroll(0,10000);")
+          sleep 3
+          click_button '更新'
+          expect(current_path).not_to eq workouts_path
+        end
       end
       context '登録済のメールアドレスを使用' do
-        it 'ユーザーの編集が失敗する'
+        it 'ユーザーの編集が失敗する' do
+          existed_user = FactoryBot.create(:user)
+          page.set_rack_session(user_id: user.id)
+          visit edit_user_path(user)
+          fill_in 'user[name]', with: 'name'
+          fill_in 'user[email]', with: existed_user.email
+          fill_in 'user[password]', with: 'password'
+          fill_in 'user[password_confirmation]', with: 'password'
+          execute_script("window.scroll(0,10000);")
+          sleep 3
+          click_button '更新'
+          expect(current_path).not_to eq workouts_path
+        end
       end
       context '他ユーザーの編集ページにアクセス' do
-        it '編集ページへのアクセスが失敗する'
-      end
-    end
- 
-    describe 'マイページ' do
-      context 'タスクを作成' do
-        it '新規作成したタスクが表示される'
+        it '編集ページへのアクセスが失敗する' do
+          other_user = FactoryBot.create(:user)
+          page.set_rack_session(user_id: user.id)
+          visit edit_user_path(other_user)
+          expect(current_path).to eq edit_user_path(user)
+        end
       end
     end
   end

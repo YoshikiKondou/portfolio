@@ -1,6 +1,5 @@
 class Workout < ApplicationRecord
   belongs_to :user
-  has_one :diet
   has_many :workout_menus, dependent: :destroy
   accepts_nested_attributes_for :workout_menus, allow_destroy: true
   validates_associated :workout_menus
@@ -14,7 +13,7 @@ class Workout < ApplicationRecord
 
   scope :search, -> (search_params) do
     return if search_params.blank?
-    menu_like(search_params[:menu]).from_start_time(search_params[:from_start_time]).to_start_time(search_params[:to_start_time])
+    menu_like(search_params[:workout_menus][:menu]).from_start_time(search_params[:from_start_time]).to_start_time(search_params[:to_start_time])
   end
   scope :menu_like, -> (menu) { where('workout_menus.menu LIKE ?', "#{menu}") if menu.present? }
   scope :from_start_time, -> (from) { where('? <= start_time', from) if from.present? }

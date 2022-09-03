@@ -3,6 +3,11 @@
     <div class="col-sm">
       <h2 class="my-4">体重推移</h2>
     </div>
+    <% if flash[:success] %>
+      <p class="success alert alert-success" role="alert"><%= flash[:success] %></p>
+    <% elsif flash[:failure] %>
+      <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
+    <% end %>
     <%= form_with(scope: :search, model: @diet, method: :get, local: :true) do |f| %>
       <div class="form-group mb-4" id="datepicker-daterange">
         <%= f.label :record_time, class: "col-form-label" do %>
@@ -124,7 +129,7 @@
         </thead>
         <tbody>
           <% if @diets.count > 0 %>
-            <% @diets.each do |diet| %>
+            <% @diets.each_with_index do |diet, index| %>
               <tr class="align-middle lh-2">
                 <td>
                   <div class="text-center">
@@ -138,22 +143,22 @@
                 </td>
                 <td>
                   <div class="text-center">
-                    <%= @total_calorie %>kcal
+                    <%= @total_calorie[index] %>kcal
                   </div>
                 </td>
                 <td>
                   <div class="text-center">
-                    <%= diet.protein %>(<%= @protein_index_data %>kcal)
+                    <%= diet.protein %>(<%= @protein_index_data[index] %>kcal)
                   </div>
                 </td>
                 <td>
                   <div class="text-center">
-                    <%= diet.fat %>(<%= @fat_index_data %>kcal)
+                    <%= diet.fat %>(<%= @fat_index_data[index] %>kcal)
                   </div>
                 </td>
                 <td>
                   <div class="text-center">
-                    <%= diet.carbohydrate %>(<%= @carbohydrate_index_data %>kcal)
+                    <%= diet.carbohydrate %>(<%= @carbohydrate_index_data[index] %>kcal)
                   </div>
                 </td>
                 <td>
