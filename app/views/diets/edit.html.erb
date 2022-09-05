@@ -7,7 +7,7 @@
     <% if flash[:failure] %>
       <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
     <% end %>
-    <%= form_with model: @diet, local: true, class: "needs-validation", html: {novalidate: true} do |f| %>
+    <%= form_with model: @diet, local: true, class: "needs-validation", html: { novalidate: true } do |f| %>
       <div class="row feature-wrapper">
         <div class="col-sm-9 col-lg-5 feature">
           <div class="form-group mb-1">
@@ -33,7 +33,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group mb-4" id="datepicker-daterange">
               <%= f.label :protein, class: "col-form-label col-form-label-sm" do %>
                 タンパク質(g) <span class="badge bg-danger">必須</span>
@@ -50,7 +49,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group mb-4" id="datepicker-daterange">
               <%= f.label :fat, class: "col-form-label col-form-label-sm" do %>
                 脂質(g) <span class="badge bg-danger">必須</span>
@@ -67,7 +65,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group mb-4" id="datepicker-daterange">
               <%= f.label :carbohydrate, class: "col-form-label col-form-label-sm" do %>
                 炭水化物(g) <span class="badge bg-danger">必須</span>
@@ -84,12 +81,11 @@
                 </div>
               </div>
             </div> 
-
             <div class="row">
               <div class="box1 col-8 mt-3 mb-3">
                 <span class="box-title">トータルカロリー</span>
                 <div class="form-group mb-4 mt-3" id="datepicker-daterange">
-                  <div class="col-sm-9 form-inline  col-9">
+                  <div class="col-sm-9 form-inline col-9">
                     <div class="input-daterange input-group">
                       <p class="answer form-control ms-2 total_cal col-6" id="X"></p>
                       <span class="input-group-addon ms-2 inline"> kcal </span>

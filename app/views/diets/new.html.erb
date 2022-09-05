@@ -1,4 +1,4 @@
-<div class="container-fluid p-lg-4 bg-light  mb-5">
+<div class="container-fluid p-lg-4 bg-light mb-5">
   <div class="container">
     <div class="col-sm">
       <h2 class="my-3 mb-5">体重・カロリー入力</h2>
@@ -7,13 +7,13 @@
     <% if flash[:failure] %>
       <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
     <% end %>
-    <%= form_with model: @diet, local: true, class: "needs-validation", html: {novalidate: true} do |f| %>
+    <%= form_with model: @diet, local: true, class: "needs-validation", html: { novalidate: true } do |f| %>
       <div class="row feature-wrapper">
         <div class="col-sm-9 col-lg-7 col-xl-5 feature">
           <div class="form-group mb-1">
             <div class="form-row mb-3">
               <div class="col-md-9">
-                <%= f.label :record_time, class: "col-form-label col-sm-4 col-form-label-sm" do %>
+                <%= f.label :record_time, class: "col-form-label col-form-label-sm col-sm-4" do %>
                   日付 <span class="badge bg-danger">必須</span>
                 <% end %>
                 <%= f.datetime_field :record_time, include_blank: "選択して下さい", name: "diet[record_time]", class: "form-control", required: true %>
@@ -33,7 +33,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group mb-4" id="datepicker-daterange">
               <%= f.label :protein, class: "col-form-label col-form-label-sm" do %>
                 タンパク質(g) <span class="badge bg-danger">必須</span>
@@ -50,7 +49,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group mb-4" id="datepicker-daterange">
               <%= f.label :fat, class: "col-form-label col-form-label-sm" do %>
                 脂質(g) <span class="badge bg-danger">必須</span>
@@ -67,7 +65,6 @@
                 </div>
               </div>
             </div>
-
             <div class="form-group mb-4" id="datepicker-daterange">
               <%= f.label :carbohydrate, class: "col-form-label col-form-label-sm" do %>
                 炭水化物(g) <span class="badge bg-danger">必須</span>
@@ -84,12 +81,11 @@
                 </div>
               </div>
             </div> 
-
             <div class="row">
               <div class="box1 col-8 mt-3 mb-3">
                 <span class="box-title">トータルカロリー</span>
                 <div class="form-group mb-4 mt-3" id="datepicker-daterange">
-                  <div class="col-sm-9 form-inline  col-9">
+                  <div class="col-sm-9 form-inline col-9">
                     <div class="input-daterange input-group">
                       <p class="answer form-control ms-2 total_cal col-6" id="X"></p>
                       <span class="input-group-addon ms-2 inline"> kcal </span>

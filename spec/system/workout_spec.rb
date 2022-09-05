@@ -4,13 +4,14 @@ RSpec.describe 'Workout', type: :system do
   let(:user) { create(:user) }
   let(:other_user) { create(:user) }
   let(:workout) { create(:workout) }
+  let(:workout_menus) { create(:workout_menus)}
   describe 'トレーニング新規登録' do
     before do
       page.set_rack_session(user_id: user.id)
       visit new_workout_path
     end
     context 'フォームの入力値が正常' do
-      it '体重・カロリーの新規作成が成功する' do
+      it 'トレーニングの新規作成が成功する' do
         fill_in 'workout[start_time]', with: '002020-10-06-10-06'
         select '背中', from: 'workout[part]'
         select 'チンニング', from: 'workout-menu'
@@ -209,23 +210,28 @@ RSpec.describe 'Workout', type: :system do
       end
     end
   end
-  describe '体重・カロリー編集' do
+  describe 'トレーニングメニュー編集' do
     before do
       page.set_rack_session(user_id: user.id)
-      visit edit_diet_path(diet)
+      visit edit_workout_path(workout)
     end
     context 'フォームの入力値が正常' do
-      it 'ユーザーの編集が成功する' do
-        fill_in 'diet[record_time]', with: '002020-10-10-10-10'
-        fill_in 'diet[body_weight]', with: '100'
-        fill_in 'diet[protein]', with: '100'
-        fill_in 'diet[fat]', with: '100'
-        fill_in 'diet[carbohydrate]', with: '100'
+      it 'トレーニングの編集が成功する' do
+        fill_in 'workout[start_time]', with: '002020-10-06-10-06'
+        select '背中', from: 'workout[part]'
+        select 'チンニング', from: 'workout-menu'
+        fill_in 'workout-first_set-weight', with: '10'
+        fill_in 'workout-first_set-rep', with: '10'
+        select 1, from: 'workout[sleep]'
+        select 1, from: 'workout[eat]'
+        select 1, from: 'workout[motivation]'
+        select 1, from: 'workout[fatigue]'
+        select 1, from: 'workout[muscle]'
         execute_script("window.scroll(0,10000);")
-        sleep 1
-        click_button '変更する'
-        expect(page).to have_content '体重・カロリーを更新しました'
-        expect(current_path).to eq diets_path
+        sleep 3
+        click_button '記録する'
+        expect(page).to have_content 'トレーニング内容を更新しました'
+        expect(current_path).to eq workouts_path
       end
     end
     context'日付が未入力' do

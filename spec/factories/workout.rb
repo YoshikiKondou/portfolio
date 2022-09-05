@@ -8,6 +8,6 @@ FactoryBot.define do
     fatigue { 5 }
     muscle { 5 }
     user
-    association :workout_menus
+    workout_menus
   end
 end

@@ -1,4 +1,4 @@
-<div class="container-fluid p-lg-5 bg-light  mb-5">
+<div class="container-fluid p-lg-5 bg-light mb-5">
   <div class="container">
     <div class="col-sm">
       <h2 class="my-4">体重推移</h2>
@@ -13,7 +13,7 @@
         <%= f.label :record_time, class: "col-form-label" do %>
           日付 <span class="badge bg-secondary">任意</span>
         <% end %>
-        <div class="col-sm-9 form-inline  col-lg-6">
+        <div class="col-sm-9 form-inline col-lg-6">
           <div class="input-daterange input-group">
             <%= f.datetime_field :from_record_time, class: "form-control", value: @search_params[:from_record_time] %>
             <span class="input-group-addon ms-2 inline"> 〜 </span>
@@ -38,7 +38,7 @@
           labels: <%= @chartlabels %>,
           datasets: [{
             label: "体重",
-            data:  <%= @body_weightdata %>,
+            data: <%= @body_weightdata %>,
             backgroundColor: 'rgba(255, 80, 120, 0.2)',
             borderColor: 'rgba(255, 80, 120, 1.0)',
             type: 'line',
@@ -71,12 +71,12 @@
           title: {
             display: true,
             text: '体重推移',
-            padding:3
+            padding: 3
           },
           scales: {
             xAxes: [{
               stacked: true,
-              categoryPercentage:0.4,
+              categoryPercentage: 0.4,
               scaleLabel: {
                 display: true,
                 labelString: "日付",
@@ -108,8 +108,8 @@
             },
             display: true
           },
-          tooltips:{
-            mode:'label'
+          tooltips: {
+            mode: 'label'
           },
           maintainAspectRatio: false,
         }
@@ -185,7 +185,7 @@
         <% if @diets.count > 0 %>
           <% @diets.each_with_index do |diet, index| %>
             <div class="box9 mb-3">
-              <div class=" mt-1">
+              <div class="mt-1">
                 <div class="field form-row">
                   <th>日付:</th>
                     <%= diet.record_time.strftime("%F") %>
@@ -213,7 +213,7 @@
                   </div>
                 </div>
                   <%= link_to "編集", edit_diet_path(diet), class: 'btn btn-danger btn-sm mb-2' %>
-                  <%= link_to "削除", diet_path(diet), class: 'btn btn-danger btn-sm mb-2 ms-3', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+                  <%= link_to "削除", diet_path(diet), class: 'btn btn-danger btn-sm mb-2 ms-3', data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
               </div>
             </div>
           <% end %>
