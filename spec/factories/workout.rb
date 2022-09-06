@@ -8,6 +8,8 @@ FactoryBot.define do
     fatigue { 5 }
     muscle { 5 }
     user
-    workout_menus
+    workout_menus {[
+      FactoryBot.build(:workout_menu, workout: nil)
+    ]}
   end
 end

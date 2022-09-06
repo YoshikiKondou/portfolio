@@ -1,4 +1,4 @@
-<div class="container-fluid p-lg-4 bg-light  mb-5">
+<div class="container-fluid p-lg-4 bg-light mb-5">
   <div class="container">
     <div class="col-sm">
       <h2 class="my-3 mb-5">トレーニング新規作成</h2>
@@ -42,7 +42,6 @@
               <div class="course-item">
                 <%= image_tag "picture.jpg", height: '150', :style=>"width:200;", class: "course-item-img" %>
               </div>
-              
             </div>
           </div>
         </div>
@@ -53,9 +52,9 @@
       <div id="detail-association-insertion-point"></div>
       <%= link_to_add_association "種目を追加", f, :workout_menus, class: "btn btn-secondary btn-block bg-danger", data: { association_insertion_node: '#detail-association-insertion-point', association_insertion_method: 'before' } %>
       <div class="form-row mb-4">
-        <div class="col-md-6">
+        <div class="col-md-9 col-xl-6">
           <%= f.label :memo, "メモ：", class: "col-form-label" %>
-          <%= f.text_area :memo, rows: "3", name: "workout[memo]", class: "form-control form-control" %>
+          <%= f.text_area :memo, rows: "3", name: "workout[memo]", class: "form-control" %>
         </div>
       </div>
       <h5>体調 ※ 1 : 悪い 〜 5 : 良い</h5>

@@ -1,4 +1,4 @@
-<div class="container-fluid p-lg-5 bg-light  mb-5">
+<div class="container-fluid p-lg-5 bg-light mb-5">
   <div class="container">
     <div class="col-sm">
       <h2 class="my-4">重量推移</h2>
@@ -11,7 +11,7 @@
         <%= f.label :start_time, class: "col-form-label" do %>
           トレーニング日 <span class="badge bg-secondary">任意</span>
         <% end %>
-        <div class="col-sm-9 form-inline  col-lg-6">
+        <div class="col-sm-9 form-inline col-lg-6">
           <div class="input-daterange input-group">
             <%= f.datetime_field :from_start_time, class: "form-control", value: @search_params[:from_start_time] %>
             <span class="input-group-addon ms-2 inline"> 〜 </span>

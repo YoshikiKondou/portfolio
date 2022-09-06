@@ -22,7 +22,7 @@
     </div>
     <div class="col-sm-5">
       <div class="form-group mb-1">
-        <div class="box1  z-indeximage">
+        <div class="box1 z-indeximage">
           <span class="box-title">MAX重量早見表(画像をクリック)</span>
           <div class="course-item">
             <%= image_tag "picture.jpg", height: '150', :style=>"width:200;", class: "course-item-img" %>
@@ -116,7 +116,6 @@
                       <%= workout_menu.fifth_set_weight %> × <%= workout_menu.fifth_set_rep %>
                       <br>
                     </div>
-                    <br>
                   <% end %>
                 <% end %>
               </td>
@@ -186,7 +185,7 @@
               <% workout.workout_menus.each do |workout_menu| %>
                 <div class="field mt-1">
                   <th>種目:</th>
-                    <%= workout_menu.menu %>
+                  <%= workout_menu.menu %>
                 </div>
                 <div class="box20 m-1 ms-2">
                   <div class="row">
@@ -209,7 +208,7 @@
                       </div>
                     <% end %>
                     <% if workout_menu.fifth_set_weight? %>
-                      <div class="col-6  col-md-4 ps-4">
+                      <div class="col-6 col-md-4 ps-4">
                         <span class="condition-detail">5th set: </span><%= workout_menu.fifth_set_weight %> kg × <%= workout_menu.fifth_set_rep %><span class="condition-detail">回</span>
                       </div>
                     <% end %>
