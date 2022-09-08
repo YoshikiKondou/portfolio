@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Diets', type: :system do
   let(:user) { create(:user) }
-  let(:other_user) { create(:user) }
-  let(:diet) { create(:diet) }
-  let(:other_diet) { create(:diet) }
+  let!(:diet) { create(:diet) }
+  let!(:other_diet) { create(:other_diet) }
   describe '体重・カロリー新規登録' do
     before do
       page.set_rack_session(user_id: user.id)
@@ -164,22 +163,11 @@ RSpec.describe 'Diets', type: :system do
   end
   describe "体重推移ページ" do
     before do
-      page.set_rack_session(user_id: user.id)
-      visit new_diet_path
-      fill_in 'diet[record_time]', with: '002020-10-06-10-06'
-      fill_in 'diet[body_weight]', with: '50'
-      fill_in 'diet[protein]', with: '50'
-      fill_in 'diet[fat]', with: '50'
-      fill_in 'diet[carbohydrate]', with: '50'
-      execute_script("window.scroll(0,10000);")
-      sleep 1
-      click_button '記録する'
-      expect(page).to have_content '体重・カロリーを記録しました'
-      expect(current_path).to eq diets_path
+      page.set_rack_session(user_id: Diet.last.user_id)
+      visit diets_path
     end
     context 'ページ遷移' do
       it '編集ボタンを押すと体重・カロリー編集ページに遷移する' do
-        diet = FactoryBot.create(:diet)
         execute_script("window.scroll(0,10000);")
         sleep 3
         click_on '編集'
@@ -192,6 +180,13 @@ RSpec.describe 'Diets', type: :system do
           click_on '削除'
         end
         expect(current_path).to eq diets_path
+      end
+    end
+    context 'データ数' do
+      it 'データ数が２つである' do
+        execute_script("window.scroll(0,10000);")
+        sleep 3
+        expect(page.all('.record_time').count).to eq 2
       end
     end
   end

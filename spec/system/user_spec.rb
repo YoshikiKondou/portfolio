@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
   let(:user) { create(:user) }
-  let(:other_user) { create(:user) }
   describe 'ログイン前' do
     describe 'ユーザー新規登録' do
       before do
@@ -61,7 +60,6 @@ RSpec.describe 'Users', type: :system do
       end
     end
   end
- 
   describe 'ログイン後' do
     before { login(user) }
     before do
