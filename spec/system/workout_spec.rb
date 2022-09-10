@@ -447,12 +447,31 @@ RSpec.describe 'Workout', type: :system do
         sleep 3
         expect(page.all('.start_time').count).to eq 2
       end
+      it 'トレーニングが表示されないこと' do
+        select '脚', from: 'search'
+        click_on '部位で絞り込む'
+        expect(page).to have_content 'トレーニング履歴はありません'
+      end
+      it 'トレーニングが表示されること' do
+        select '胸', from: 'search'
+        click_on '部位で絞り込む'
+        expect(page).to have_selector 'div', text: 'ベンチプレス'
+      end
     end
   end
   describe "記録推移ページ" do
     before do
       page.set_rack_session(user_id: Workout.last.user_id)
       visit workouts_graph_path
+    end
+    context "グラフ表示" do
+      it 'グラフにデータが反映されていること' do
+        select 'ベンチプレス', from: '種目'
+        fill_in 'search[from_start_time]', with: '002020-10-01-10-06'
+        fill_in 'search[to_start_time]', with: '002020-10-31-10-06'
+        click_on '重量推移を見る'
+        sleep 3
+      end
     end
     context "重量×回数" do
       it 'トレーニングの1set目の重量×回数がtotal_volumeと等しいこと' do

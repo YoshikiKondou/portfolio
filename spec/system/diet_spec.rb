@@ -189,5 +189,25 @@ RSpec.describe 'Diets', type: :system do
         expect(page.all('.record_time').count).to eq 2
       end
     end
+    context 'データ表示' do
+      it 'データが表示されていないこと' do
+        fill_in 'search[from_record_time]', with: '002010-10-01-10-06'
+        fill_in 'search[to_record_time]', with: '002010-10-31-10-06'
+        click_on '期間を絞り込む'
+        sleep 1
+        execute_script("window.scroll(0,10000);")
+        sleep 3
+        expect(page).to have_content '入力履歴はありません'
+      end
+      it 'データが表示されていること' do
+        fill_in 'search[from_record_time]', with: '002022-8-01-10-06'
+        fill_in 'search[to_record_time]', with: '002022-9-30-10-06'
+        click_on '期間を絞り込む'
+        sleep 1
+        execute_script("window.scroll(0,10000);")
+        sleep 3
+        expect(page).to have_selector 'div', text: 'タンパク質'
+      end
+    end
   end
 end

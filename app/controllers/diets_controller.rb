@@ -12,6 +12,8 @@ class DietsController < ApplicationController
     @carbohydratedata = @diet_by_day.sum("carbohydrate * 4").map(&:second).to_json.html_safe
     @body_weightdata = @diet_by_day.sum(:body_weight).map(&:second).to_json.html_safe
     @diets = Diet.where(user_id: session[:user_id]).all.order(record_time: "desc")
+    @search_params = diet_search_params
+    @diets = Diet.where(user_id: session[:user_id]).search(@search_params)
     @total_calorie = Diet.group(:record_time).order(record_time: "DESC").sum("protein * 4 + fat * 9 + carbohydrate * 4").values
     @protein_index_data = Diet.group(:record_time).order(record_time: "DESC").sum("protein * 4").values
     @fat_index_data = Diet.group(:record_time).order(record_time: "DESC").sum("fat * 9").values

@@ -13,7 +13,7 @@
         <%= form_with model: @workout, method: :get, local: :true do |f| %>
           <div class="form-row mb-2">
             <div class="col-md-9">
-              <%= f.select :search, ["胸", "腕", "肩", "背中", "脚", "四頭", "ハム、尻部", "腹筋"], {include_blank: "部位を選択"}, {class: "form-control mb-3 mt-3", required: true } %>
+              <%= f.select :search, ["胸", "腕", "肩", "背中", "脚", "四頭", "ハム、尻部", "腹筋"], {include_blank: "部位を選択"}, { class: "form-control mb-3 mt-3", id: "search", required: true } %>
               <%= f.submit '部位で絞り込む', name: "commit", class: "btn btn-primary btn-block mb-1 mt-3 bg-danger" %>
             </div>
           </div>
