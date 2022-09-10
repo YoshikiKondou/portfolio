@@ -20,7 +20,7 @@ class WorkoutsController < ApplicationController
 
   def create
     @workout = Workout.new(workout_params)
-    if @workout.save!
+    if @workout.save
       flash[:success] = "トレーニングを記録しました"
       redirect_to("/workouts")
     else

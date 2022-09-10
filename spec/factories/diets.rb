@@ -11,9 +11,9 @@ FactoryBot.define do
   factory :other_diet, class: Diet do
     record_time { "2022-08-11 23:14:33" }
     body_weight { 81 }
-    protein { 50 }
-    fat { 50 }
-    carbohydrate { 50 }
+    protein { 60 }
+    fat { 60 }
+    carbohydrate { 60 }
     user
   end
 end

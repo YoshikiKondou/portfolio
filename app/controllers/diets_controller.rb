@@ -26,7 +26,7 @@ class DietsController < ApplicationController
 
   def create
     @diet = Diet.new(diet_params)
-    if @diet.save!
+    if @diet.save
       flash[:success] = "体重・カロリーを記録しました"
       redirect_to("/diets")
     else

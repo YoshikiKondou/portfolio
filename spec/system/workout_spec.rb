@@ -442,6 +442,8 @@ RSpec.describe 'Workout', type: :system do
       end
     end
     context 'データ数' do
+      let!(:workout) { create(:workout, user_id: user.id) }
+      let!(:other_workout) { create(:other_workout, user_id: user.id) }
       it 'データ数が２つである' do
         execute_script("window.scroll(0,10000);")
         sleep 3
@@ -475,7 +477,11 @@ RSpec.describe 'Workout', type: :system do
     end
     context "重量×回数" do
       it 'トレーニングの1set目の重量×回数がtotal_volumeと等しいこと' do
-        expect().to eq @totalvolume
+        select 'ベンチプレス', from: '種目'
+        fill_in 'search[from_start_time]', with: '002020-10-01-10-06'
+        fill_in 'search[to_start_time]', with: '002020-10-31-10-06'
+        totalvolume = page.find('#volume')['data-volume'].to_i
+        expect(totalvolume).to eq 500
       end
     end
   end

@@ -19,7 +19,8 @@ ja:
         motivation: ”モチベーション"
         fatigue: "疲労度"
         muscle: "筋肉の状態"
-      workout_menu:
+        workout_menus: "種目入力欄"
+      workout_menus:
         first_set_weight: "1セット目の重量"
         second_set_weight: "2セット目の重量"
         third_set_weight: "3セット目の重量"
@@ -34,7 +35,7 @@ ja:
         body_weight: "体重"
         protein: "タンパク質"
         fat: "脂質"
-        carbonhydrate: "炭水化物"
+        carbohydrate: "炭水化物"
         record_time: "記録日"
     errors:
       messages:

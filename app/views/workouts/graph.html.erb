@@ -24,7 +24,7 @@
       </div>
     <% end %>
     <div style="opacity: <%= @menu_search ? 1 : 0 %>">
-      <div class="wrap-chart" data-totalvolume="<%= @totalvolume %>">
+      <div class="wrap-chart" id="volume" data-value="<%= @totalvolume %>" >
         <canvas id="myChart"></canvas>
       </div>
     </div>
