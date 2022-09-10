@@ -171,7 +171,7 @@ RSpec.describe 'Diets', type: :system do
         execute_script("window.scroll(0,10000);")
         sleep 3
         click_on '編集'
-        expect(current_path).to eq edit_diet_path(diet.id)
+        expect(current_path).to eq edit_diet_path(other_diet.id)
       end
       it '削除ボタンを押すと体重・カロリーデータを削除できる' do
         execute_script("window.scroll(0,10000);")

@@ -422,21 +422,21 @@ RSpec.describe 'Workout', type: :system do
     context 'ページ遷移' do
       it '確認ボタンを押すとトレーニング詳細ページに遷移する' do
         execute_script("window.scroll(0,10000);")
-        sleep 3
+        sleep 5
         click_on '確認'
-        expect(current_path).to eq workout_path(workout)
+        expect(current_path).to eq workout_path(other_workout.id)
       end
       it '編集ボタンを押すとトレーニング編集ページに遷移する' do
         execute_script("window.scroll(0,10000);")
         sleep 3
         click_on '編集'
-        expect(current_path).to eq edit_workout_path(workout)
+        expect(current_path).to eq edit_workout_path(other_workout.id)
       end
       it '削除ボタンを押すとトレーニングを削除できる' do
         execute_script("window.scroll(0,10000);")
         sleep 3
         page.dismiss_confirm("本当に削除しますか？") do
-          click_on '削除'
+        click_on '削除'
         end
         expect(current_path).to eq workouts_path
       end
@@ -479,9 +479,10 @@ RSpec.describe 'Workout', type: :system do
       it 'トレーニングの1set目の重量×回数がtotal_volumeと等しいこと' do
         select 'ベンチプレス', from: '種目'
         fill_in 'search[from_start_time]', with: '002020-10-01-10-06'
-        fill_in 'search[to_start_time]', with: '002020-10-31-10-06'
-        totalvolume = page.find('#volume')['data-volume'].to_i
-        expect(totalvolume).to eq 500
+        fill_in 'search[to_start_time]', with: '002022-10-31-10-06'
+        click_on '重量推移を見る'
+        totalvolume = page.find('#volume')['data-volume']
+        expect(totalvolume).to eq "[500.0]"
       end
     end
   end
