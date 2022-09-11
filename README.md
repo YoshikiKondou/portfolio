@@ -74,5 +74,5 @@ https://portfolio70606801.herokuapp.com/
 
 # 作成者
  
-* 作成者：近藤　義樹
+* 近藤　義樹
 
