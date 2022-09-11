@@ -69,7 +69,7 @@ https://github.com/YoshikiKondou/portfolio.git
 <br>
 https://portfolio70606801.herokuapp.com/
 <br>
-<img src="830ec217e900e4291ac1ccd3d9c3b7072d747df3 2">(https://user-images.githubusercontent.com/98332969/189526333-8d5e1798-bedd-4737-8433-ec36b1e056a8.png)
+[830ec217e900e4291ac1ccd3d9c3b7072d747df3 2](https://user-images.githubusercontent.com/98332969/189526333-8d5e1798-bedd-4737-8433-ec36b1e056a8.png)
 <br>
 
 # 作成者
