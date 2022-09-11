@@ -4,7 +4,7 @@ class WorkoutsController < ApplicationController
 
   def index
     @workouts = Workout.where(user_id: session[:user_id]).order(start_time: "DESC").includes(:workout_menus)
-    @workouts = Workout.where(user_id: session[:user_id]).where('part LIKE(?)', "%#{params[:search]}%") if params[:search].present?
+    @workouts = Workout.where(user_id: session[:user_id]).where('part LIKE(?)', "%#{params[:search]}%").order(start_time: "DESC") if params[:search].present?
   end
 
   def show
