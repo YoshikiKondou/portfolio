@@ -63,7 +63,6 @@
 日付、体重、タンパク質、脂質、炭水化物の入力が必須となります。<br>
 アカウント編集から目標のカロリー摂取量を保存しておけます。<br>
 <br>
-<br>
 
 # サイトURL
 https://github.com/YoshikiKondou/portfolio.git
