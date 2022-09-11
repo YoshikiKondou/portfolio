@@ -1,5 +1,5 @@
-<div class="container-fluid p-lg-4 bg-light mb-5">
-  <div class="container">
+<div class="container-fluid p-lg-4 bg-light mb-5 p-1">
+  <div class="container p-0">
     <div class="col-sm">
       <h2 class="my-3 mb-5">体重・カロリー入力</h2>
     </div>
@@ -9,9 +9,9 @@
     <% end %>
     <%= form_with model: @diet, local: true, class: "needs-validation", html: { novalidate: true } do |f| %>
       <div class="row feature-wrapper">
-        <div class="col-sm-9 col-lg-7 col-xl-5 feature">
+        <div class="col-xl-5 col-lg-7 feature">
           <div class="form-group mb-1">
-            <div class="form-row mb-3">
+            <div class="form-row mb-3 col-form-xs-4">
               <div class="col-md-9">
                 <%= f.label :record_time, class: "col-form-label col-form-label-sm col-sm-4" do %>
                   日付 <span class="badge bg-danger">必須</span>
