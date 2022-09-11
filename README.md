@@ -39,17 +39,17 @@
  
  # 機能一覧
  
--ユーザー登録、ログイン機能(devise)
--投稿機能
--画像投稿(refile)
--位置情報検索機能(geocoder)
--いいね機能(Ajax)
--ランキング機能
--コメント機能(Ajax)
--フォロー機能(Ajax)
--ページネーション機能(kaminari)
--無限スクロール(Ajax)
--検索機能(ransack)
+* ユーザー登録、ログイン機能(devise)
+* 投稿機能
+* 画像投稿(refile)
+*　位置情報検索機能(geocoder)
+* いいね機能(Ajax)
+* ランキング機能
+* コメント機能(Ajax)
+* フォロー機能(Ajax)
+* ページネーション機能(kaminari)
+* 無限スクロール(Ajax)
+* 検索機能(ransack)
  
 # Requirement
  
