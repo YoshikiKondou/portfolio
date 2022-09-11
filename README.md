@@ -67,10 +67,10 @@
 
 # ポートフォリオURL
 
-https://portfolio70606801.herokuapp.com/
+https://portfolio70606801.herokuapp.com/　<br>
 ゲストログインよりログインをお願い致します。
 <br>
-![830ec217e900e4291ac1ccd3d9c3b7072d747df3 2](https://user-images.githubusercontent.com/98332969/189528323-368d57d1-675d-42b7-b45a-7699cc203144.png)
+![830ec217e900e4291ac1ccd3d9c3b7072d747df3 2](https://user-images.githubusercontent.com/98332969/189528323-368d57d1-675d-42b7-b45a-7699cc203144.png) <br>
 スマホでの閲覧はこちらからどうぞ。
 <br>
 
