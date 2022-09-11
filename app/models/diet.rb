@@ -13,5 +13,4 @@ class Diet < ApplicationRecord
   
   scope :from_record_time, -> (from) { where('? <= record_time', from) if from.present? }
   scope :to_record_time, -> (to) { where('record_time <= ?', to) if to.present? }
-  
 end

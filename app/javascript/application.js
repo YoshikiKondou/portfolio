@@ -5,7 +5,7 @@ import "cocoon"
 import "bootstrap"
 import "select2";
 
-//画像選択、ファイル取り消し
+//画像選択
 $('.custom-file-input').on('change',function(){
   $(this).next('.custom-file-label').html($(this)[0].files[0].name);
 })
@@ -47,7 +47,6 @@ $("#grayDisplay").click(function () {
 })();
 
 //カロリー計算機能
-
 const P1 = document.getElementById('P1');
 const F1 = document.getElementById('F1');
 const C1 = document.getElementById('C1');
