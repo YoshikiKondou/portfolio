@@ -65,7 +65,7 @@
 アカウント編集から目標のカロリー摂取量を保存しておけます。<br>
 <br>
 
-# サイトURL
+# ポートフォリオURL
 https://github.com/YoshikiKondou/portfolio.git
 <br>
 https://portfolio70606801.herokuapp.com/
