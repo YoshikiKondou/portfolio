@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_18_141433) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_16_140056) do
   create_table "diets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.float "body_weight"
     t.float "protein"
@@ -20,6 +20,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_18_141433) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "memo"
+    t.text "Diet_memo"
+    t.text "calorie_memo"
     t.index ["user_id"], name: "index_diets_on_user_id"
   end
 

@@ -1,4 +1,4 @@
-<div class="container-fluid p-lg-5 bg-light mb-5">
+<div class="container-fluid p-lg-5 bg-light mb-5 p-0 m-0">
   <div class="container">
     <div class="col-sm">
       <h2 class="my-4">体重推移</h2>
@@ -191,7 +191,7 @@
                   <%= diet.record_time.strftime("%F") %>
                 </div>
                 <div class="row mt-1 mb-2">
-                  <div class="mt-1">
+                  <div class="weight">
                     <th>体重:</th>
                     <%= diet.body_weight %>kg
                   </div>
@@ -211,9 +211,24 @@
                     <th>炭水化物:</th>
                     <%= diet.carbohydrate %>g (<%= @carbohydrate_index_data[index] %>kcal)
                   </div>
-                </div>
-                  <%= link_to "編集", edit_diet_path(diet), class: 'btn btn-danger btn-sm mb-2' %>
-                  <%= link_to "削除", diet_path(diet), class: 'btn btn-danger btn-sm mb-2 ms-3', data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+                  <div class="memo">
+                    <p class="mt-2">
+                      <span>メモ:</span>
+                      <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                        メモを開く
+                      </button>
+                    </p>
+                    <div class="height-auto">
+                      <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                        <div class="card card-body col-md-6 mb-1">
+                          <%= diet.calorie_memo %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <%= link_to "編集", edit_diet_path(diet), class: 'btn btn-danger btn-sm mb-2 col-3' %>
+                  <%= link_to "削除", diet_path(diet), class: 'btn btn-danger btn-sm mb-2 ms-3 col-3', data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
               </div>
             </div>
           <% end %>

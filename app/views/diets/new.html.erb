@@ -94,6 +94,14 @@
                 </div> 
               </div>
             </div>
+            <div class="form-row mb-4">
+              <div class="memo">
+                <%= f.label :calorie_memo, class: "col-form-label col-form-label-sm" do %>
+                  メモ <span class="badge bg-secondary">任意</span>
+                <% end %>
+                <%= f.text_area :calorie_memo, rows: "3", class: "form-control" %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
