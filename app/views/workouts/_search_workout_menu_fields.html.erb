@@ -1,0 +1,10 @@
+<div class="nested-fields">
+  <div class="form-row mb-2">
+    <div class="col-md-4">
+      <%= f.label :menu, class: "col-form-label" do %>
+        種目 <span class="badge bg-danger">必須</span>
+      <% end %>
+      <%= f.select :menu, Workout::SELECT_OPTIONS, { include_blank: "選択して下さい" }, { class: "form-control", required: true } %>
+    </div>
+  </div>
+</div>

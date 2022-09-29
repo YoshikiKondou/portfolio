@@ -1,0 +1,113 @@
+<div class="container-fluid p-lg-5 bg-light mb-5 p-1">
+  <div class="container p-0">
+    <div class="col-sm">
+      <h2 class="my-4">アカウント編集</h2>
+    </div>
+    <%= render 'layouts/shared/error', obj: @user %>
+    <% if flash[:failure] %>
+      <p class="failure"><%= flash[:failure] %></p>
+    <% end %>
+    <%= form_with model: @user, url: user_path, html: { method: :patch, multipart: true }, class: "needs-validation" do |f| %>
+      <div class="form-row mb-4">
+        <div class="col-md-4">
+          <%= f.label :name, "名前(変更する場合のみ入力)", class: "col-form-label" %>
+          <%= f.text_field :name, autocomplete: "name", placeholder: "ユーザー名", type: "text", name: "user[name]", id: "user_name", class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-row mb-4">
+        <div class="col-md-2">
+          <%= f.label :age, "年齢", class: "col-form-label" %>
+          <%= f.number_field :age, autocomplete: "age", placeholder: "年齢", type: "integer", name: "user[age]", id: "user_age", class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-row mb-4">
+        <div class="col-md-5">
+          <%= f.label :email, "メールアドレス", class: "col-form-label" %>
+          <%= f.text_field :email, autocomplete: "email", placeholder: "メールアドレス", type: "email",  name: "user[email]", id: "user_email", class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-row mb-4">
+        <div class="col-md-4">
+          <%= f.label :pasword, "パスワード(変更する場合のみ入力)", class: "col-form-label" %>
+          <%= f.text_field :password, autocomplete: "new-password", placeholder: "パスワード", type: "password", name: "user[password]", id: "user_password", class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-row mb-4">
+        <div class="col-md-4">
+          <%= f.label :password_confirmation, "パスワード確認用", class: "col-form-label" %>
+            <%= f.text_field :password_confirmation, placeholder: "パスワード確認", type: "password", name: "user[password_confirmation]", id: "user_password", class: "form-control" %>
+          <small id="passwordHelpBlock" class="form-text text-muted">パスワードは、6文字以上で入力してください</small>
+        </div>
+      </div>
+      <div class="form-group mb-4" id="datepicker-daterange">
+        <%= f.label :taget_protein, "タンパク質(g)", class: "col-form-label col-form-label-sm" %>
+        <div class="form-inline col-11 col-md-6">
+          <div class="input-daterange input-group">
+            <%= f.number_field :target_protein, placeholder: "タンパク質(g)", step: "0.1", class: "form-control protein", type: "number", id: "P1" %>
+            <span class="input-group-addon ms-2 inline"> ➡︎ </span>
+            <p class="answer form-control ms-2" id="P2"></p>
+            <span class="input-group-addon ms-2 inline"> kcal </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-4" id="datepicker-daterange">
+        <%= f.label :target_fat, "脂質(g)", class: "col-form-label col-form-label-sm" %>
+        <div class="form-inline col-11 col-md-6">
+          <div class="input-daterange input-group">
+            <%= f.number_field :target_fat, placeholder: "脂質(g)", step: "0.1", class: "form-control fat", type: "number", id: "F1" %>
+            <span class="input-group-addon ms-2 inline"> ➡︎ </span>
+            <p class="answer form-control ms-2" id="F2"></p>
+            <span class="input-group-addon ms-2 inline"> kcal </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-4" id="datepicker-daterange">
+        <%= f.label :target_carbonhydrate, "炭水化物(g)", class: "col-form-label col-form-label-sm" %>
+        <div class="form-inline col-11 col-md-6">
+          <div class="input-daterange input-group">
+            <%= f.number_field :target_carbohydrate, placeholder: "炭水化物(g)", step: "0.1", class: "form-control carbonhydrate", type: "number", id: "C1" %>
+            <span class="input-group-addon ms-2 inline"> ➡︎ </span>
+            <p class="answer form-control ms-2" id="C2"></p>
+            <span class="input-group-addon ms-2 inline"> kcal </span>
+          </div>
+        </div>
+      </div> 
+      <div class="row">
+        <div class="box1 col-8 mt-3 mb-3 col-md-3 col-lg-3">
+          <span class="box-title">トータルカロリー</span>
+          <div class="form-group mb-4 mt-3" id="datepicker-daterange">
+            <div class="col-sm-9 form-inline col-9">
+              <div class="input-daterange input-group">
+                <p class="answer form-control ms-2 total_cal col-6" id="X"></p>
+                <span class="input-group-addon ms-2 inline"> kcal </span>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+      <div class="form-row mb-4">
+        <div class="col-md-6">
+          <%= f.label :introduction, "自己紹介", class: "col-form-label" %>
+          <%= f.text_area :introduction, rows: "5", placeholder: "自己紹介を入力", name: "user[introduction]", id: "user_introduction", class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-row mb-4">
+        <%= f.label :image, "画像を選択", class: "col-form-label" %>
+        <div class="input-group">
+          <div class="custom-file">
+            <%= f.file_field :image, class: "custom-file-input", id: "customFile" %>
+            <label class="custom-file-label" for="customFile" data-browse="参照">ファイル選択...</label>
+          </div>
+          <div class="input-group-append">
+            <button type="button" class="btn btn-outline-danger ms-2 reset">取消</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-12">
+            <%= f.submit "更新", name: "commit", class: "btn btn-primary btn-block bg-danger" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

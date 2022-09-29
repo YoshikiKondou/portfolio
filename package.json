@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "bootstrap": "^5.2.0",
+    "bootstrap-icons": "^1.9.1",
+    "chart.js": "^2.7.1",
+    "cocoon-js-vanilla": "^1.2.0",
+    "sass": "^1.54.0"
+  },
+  "scripts": {
+    "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  }
+}

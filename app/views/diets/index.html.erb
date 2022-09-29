@@ -1,0 +1,241 @@
+<div class="container-fluid p-lg-5 bg-light mb-5 p-0 m-0">
+  <div class="container">
+    <div class="col-sm">
+      <h2 class="my-4">体重推移</h2>
+    </div>
+    <% if flash[:success] %>
+      <p class="success alert alert-success" role="alert"><%= flash[:success] %></p>
+    <% elsif flash[:failure] %>
+      <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
+    <% end %>
+    <%= form_with(scope: :search, model: @diet, method: :get, local: :true) do |f| %>
+      <div class="form-group mb-4" id="datepicker-daterange">
+        <%= f.label :record_time, class: "col-form-label" do %>
+          日付 <span class="badge bg-secondary">任意</span>
+        <% end %>
+        <div class="col-sm-9 form-inline col-lg-6">
+          <div class="input-daterange input-group">
+            <%= f.datetime_field :from_record_time, class: "form-control", value: @search_params[:from_record_time] %>
+            <span class="input-group-addon ms-2 inline"> 〜 </span>
+            <%= f.datetime_field :to_record_time, class: "form-control ms-2", value: @search_params[:to_record_time] %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <%= f.submit "期間を絞り込む", name: "commit", class: "btn btn-primary btn-block bg-danger" %>
+      </div>
+    <% end %>
+    <div style="diet-chart">
+      <div class="wrap-chart" id="diet-chart" data-volume="<= @total_calorie %>">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+    <script>
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: <%= @chartlabels %>,
+          datasets: [{
+            label: "体重",
+            data: <%= @body_weightdata %>,
+            backgroundColor: 'rgba(255, 80, 120, 0.2)',
+            borderColor: 'rgba(255, 80, 120, 1.0)',
+            type: 'line',
+            yAxisID: "y-axis-2",
+            fill: false
+          }, {
+            label: "タンパク質",
+            borderWidth: 1,
+            backgroundColor: "#2e70a7",
+            borderColor: "#2e70a7",
+            yAxisID: "y-axis-1", 
+            data: <%= @proteindata %>
+          }, {
+            label: "脂質",
+            borderWidth: 1,
+            backgroundColor: "#4eadc7",
+            borderColor: "#4eadc7",
+            yAxisID: "y-axis-1", 
+            data: <%= @fatdata %>
+          }, {
+            label: "炭水化物",
+            borderWidth: 1,
+            backgroundColor: "#a7d8bf",
+            borderColor: "#a7d8bf",
+            yAxisID: "y-axis-1", 
+            data: <%= @carbohydratedata %>
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: '体重推移',
+            padding: 3
+          },
+          scales: {
+            xAxes: [{
+              stacked: true,
+              categoryPercentage: 0.4,
+              scaleLabel: {
+                display: true,
+                labelString: "日付",
+              }
+            }],
+            yAxes: [{
+              id: "y-axis-2",
+              type: "linear", 
+              position: "left",
+              scaleLabel: {
+                display: true,
+                labelString: "体重(kg)",
+              }
+            }, {
+              id: "y-axis-1",
+              type: "linear", 
+              position: "right",
+              scaleLabel: {
+                display: true,
+                labelString: "カロリー(kcal)",
+              },
+              stacked: true
+            }]
+          },
+          legend: {
+            labels: {
+              boxWidth: 30,
+              padding: 20
+            },
+            display: true
+          },
+          tooltips: {
+            mode: 'label'
+          },
+          maintainAspectRatio: false,
+        }
+      });
+    </script>
+    
+    <div class="pb-2">
+      <table class="diet-table text-nowrap table-bordered table-hover mt-3 col-12">
+        <thead>
+          <tr>
+            <th class="text-center" scope="col">日付</th>
+            <th class="text-center" scope="col">体重(kg)</th>
+            <th class="text-center" scope="col">総カロリー(kcal)</th>
+            <th class="text-center" scope="col">タンパク質(g)</th>
+            <th class="text-center" scope="col">脂質(g)</th>
+            <th class="text-center" scope="col">炭水化物(g)</th>
+        </thead>
+        <tbody>
+          <% if @diets.count > 0 %>
+            <% @diets.each_with_index do |diet, index| %>
+              <tr class="align-middle lh-2">
+                <td>
+                  <div class="text-center record_time">
+                    <%= diet.record_time.strftime("%m月%-d日") %> 
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= diet.body_weight %>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= @total_calorie[index] %>kcal
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= diet.protein %>g (<%= @protein_index_data[index] %>kcal)
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= diet.fat %>g (<%= @fat_index_data[index] %>kcal)
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= diet.carbohydrate %>g (<%= @carbohydrate_index_data[index] %>kcal)
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= link_to "編集", edit_diet_path(diet), data: {"turbo"=>false}, class: 'btn btn-danger btn-sm' %>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-center">
+                    <%= link_to "削除", diet_path(diet), class: 'btn btn-danger btn-sm', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <td>入力履歴はありません</td>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="diet-index">
+      <div class="index">
+        <% if @diets.count > 0 %>
+          <% @diets.each_with_index do |diet, index| %>
+            <div class="box9 mb-3">
+              <div class="mt-1">
+                <div class="field form-row">
+                  <th>日付:</th>
+                  <%= diet.record_time.strftime("%F") %>
+                </div>
+                <div class="row mt-1 mb-2">
+                  <div class="weight">
+                    <th>体重:</th>
+                    <%= diet.body_weight %>kg
+                  </div>
+                  <div class="mt-1">
+                    <th>総カロリー:</th>
+                    <%= @total_calorie[index] %>kcal
+                  </div>
+                  <div class="mt-1">
+                    <th>タンパク質:</th>
+                    <%= diet.protein %>g (<%= @protein_index_data[index] %>kcal)
+                  </div>
+                  <div class="mt-1">
+                    <th>脂質:</th>
+                    <%= diet.fat %>g (<%= @fat_index_data[index] %>kcal)
+                  </div>
+                  <div class="mt-1">
+                    <th>炭水化物:</th>
+                    <%= diet.carbohydrate %>g (<%= @carbohydrate_index_data[index] %>kcal)
+                  </div>
+                  <div class="memo">
+                    <p class="mt-2">
+                      <span>メモ:</span>
+                      <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                        メモを開く
+                      </button>
+                    </p>
+                    <div class="height-auto">
+                      <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                        <div class="card card-body col-md-6 mb-1">
+                          <%= diet.calorie_memo %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <%= link_to "編集", edit_diet_path(diet), class: 'btn btn-danger btn-sm mb-2 col-3' %>
+                  <%= link_to "削除", diet_path(diet), class: 'btn btn-danger btn-sm mb-2 ms-3 col-3', data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <td>トレーニング履歴はありません</td>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+<div class="container-fluid p-lg-5 bg-light mb-5 p-0">
+  <div class="container">
+    <div class="col-sm">
+      <h2 class="my-4">重量推移</h2>
+    </div>
+    <%= form_with(scope: :search, model: @workout, method: :get, local: :true) do |f| %>
+      <%= f.fields_for :workout_menus do |form| %>
+        <%= render "workouts/search_workout_menu_fields", f: form %>
+      <% end %>
+      <div class="form-group mb-4" id="datepicker-daterange">
+        <%= f.label :start_time, class: "col-form-label" do %>
+          トレーニング日 <span class="badge bg-secondary">任意</span>
+        <% end %>
+        <div class="col-sm-9 form-inline col-lg-6">
+          <div class="input-daterange input-group">
+            <%= f.datetime_field :from_start_time, class: "form-control", value: @search_params[:from_start_time] %>
+            <span class="input-group-addon ms-2 inline"> 〜 </span>
+            <%= f.datetime_field :to_start_time, class: "form-control ms-2", value: @search_params[:to_start_time] %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <%= f.submit "重量推移を見る", name: "commit", class: "btn btn-primary btn-block bg-danger" %>
+      </div>
+    <% end %>
+    <div style="opacity: <%= @menu_search ? 1 : 0 %>">
+      <div class="wrap-chart" id="volume" data-volume="<%= @totalvolume %>" >
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+    <script>
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: <%= @chartlabels %>,
+          datasets: [{
+            label: "重量×回数",
+            data:  <%= @totalvolume %>,
+            backgroundColor: 'rgba(255, 80, 120, 0.2)',
+            borderColor: 'rgba(255, 80, 120, 1.0)',
+            type: 'line',
+            yAxisID: "y-axis-2",
+            fill: false
+          }, {
+            label: "睡眠",
+            borderWidth: 1,
+            backgroundColor: "#121554",
+            borderColor: "#121554",
+            yAxisID: "y-axis-1", 
+            data: <%= @sleepdata %>
+          }, {
+            label: "食事",
+            borderWidth: 1,
+            backgroundColor: "#1d3681",
+            borderColor: "#1d3681",
+            yAxisID: "y-axis-1", 
+            data: <%= @eatdata %>
+          }, {
+            label: "モチベーション",
+            borderWidth: 1,
+            backgroundColor: "#2e70a7",
+            borderColor: "#2e70a7",
+            yAxisID: "y-axis-1", 
+            data: <%= @motivationdata %>
+          }, {
+            label: "疲労",
+            borderWidth: 1,
+            backgroundColor: "#4eadc7",
+            borderColor: "#4eadc7",
+            yAxisID: "y-axis-1", 
+            data: <%= @fatiguedata %>
+          }, {
+            label: "筋肉の状態",
+            borderWidth: 1,
+            backgroundColor: "#a7d8bf",
+            borderColor: "#a7d8bf",
+            yAxisID: "y-axis-1", 
+            data: <%= @muscledata %>
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: '重量推移',
+            padding:3
+          },
+          scales: {
+            xAxes: [{
+              stacked: true,
+              categoryPercentage:0.4,
+              scaleLabel: {
+                display: true,
+                labelString: "日付",
+              }
+            }],
+            yAxes: [{
+              id: "y-axis-2",
+              type: "linear", 
+              position: "left",
+              scaleLabel: {
+                display: true,
+                labelString: "重量×回数(kg)",
+              }
+            }, {
+              id: "y-axis-1",
+              type: "linear", 
+              position: "right",
+              ticks: {
+                max: 30,
+                min: 0,
+                stepSize: 5,
+              },
+              scaleLabel: {
+                display: true,
+                labelString: "体調(１〜３０)",
+              },
+              stacked: true
+            }]
+          },
+          legend: {
+            labels: {
+              boxWidth: 30,
+              padding: 20
+            },
+            display: true
+          },
+          tooltips:{
+            mode:'label'
+          },
+          maintainAspectRatio: false,
+        }
+      });
+    </script>
+  </div>
+</div>

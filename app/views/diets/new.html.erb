@@ -1,0 +1,111 @@
+<div class="container-fluid p-lg-4 bg-light mb-5 p-3">
+  <div class="container p-0">
+    <div class="col-sm">
+      <h2 class="my-3 mb-5">体重・カロリー入力</h2>
+    </div>
+    <%= render 'layouts/shared/error', obj: @diet %>
+    <% if flash[:failure] %>
+      <p class="failure alert alert-danger" role="alert"><%= flash[:failure] %></p>
+    <% end %>
+    <%= form_with model: @diet, local: true, class: "needs-validation", html: { novalidate: true } do |f| %>
+      <div class="row feature-wrapper">
+        <div class="col-xl-5 col-lg-7 feature">
+          <div class="form-group mb-1">
+            <div class="form-row mb-3 col-form-xs-4">
+              <div class="col-md-9">
+                <%= f.label :record_time, class: "col-form-label col-form-label-sm col-sm-4" do %>
+                  日付 <span class="badge bg-danger">必須</span>
+                <% end %>
+                <%= f.datetime_field :record_time, include_blank: "選択して下さい", name: "diet[record_time]", class: "form-control", required: true %>
+                <div class="invalid-feedback">
+                  入力してください
+                </div>
+              </div>
+            </div>
+            <div class="form-row mb-3">
+              <div class="col-md-9">
+                <%= f.label :body_weight, class: "col-form-label col-form-label-sm" do %>
+                  体重 <span class="badge bg-danger">必須</span>
+                <% end %>
+                <%= f.number_field :body_weight, placeholder: "体重(kg)", step: "0.1", class: "form-control", required: true %>
+                <div class="invalid-feedback">
+                  入力してください
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-4" id="datepicker-daterange">
+              <%= f.label :protein, class: "col-form-label col-form-label-sm" do %>
+                タンパク質(g) <span class="badge bg-danger">必須</span>
+              <% end %>
+              <div class="form-inline col-11">
+                <div class="input-daterange input-group">
+                  <%= f.number_field :protein, placeholder: "タンパク質(g)", step: "0.1", class: "form-control protein", type: "number", id: "P1", required: true %>
+                  <span class="input-group-addon ms-2 inline"> ➡︎ </span>
+                  <p class="answer form-control ms-2" id="P2"></p>
+                  <span class="input-group-addon ms-2 inline"> kcal </span>
+                  <div class="invalid-feedback">
+                    入力してください
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-4" id="datepicker-daterange">
+              <%= f.label :fat, class: "col-form-label col-form-label-sm" do %>
+                脂質(g) <span class="badge bg-danger">必須</span>
+              <% end %>
+              <div class="form-inline col-11">
+                <div class="input-daterange input-group">
+                  <%= f.number_field :fat, placeholder: "脂質(g)", step: "0.1", class: "form-control fat", type: "number", id: "F1", required: true %>
+                  <span class="input-group-addon ms-2 inline"> ➡︎ </span>
+                  <p class="answer form-control ms-2" id="F2"></p>
+                  <span class="input-group-addon ms-2 inline"> kcal </span>
+                  <div class="invalid-feedback">
+                    入力してください
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-4" id="datepicker-daterange">
+              <%= f.label :carbohydrate, class: "col-form-label col-form-label-sm" do %>
+                炭水化物(g) <span class="badge bg-danger">必須</span>
+              <% end %>
+              <div class="form-inline col-11">
+                <div class="input-daterange input-group">
+                  <%= f.number_field :carbohydrate, placeholder: "炭水化物(g)", step: "0.1", class: "form-control carbonhydrate", type: "number", id: "C1", required: true %>
+                  <span class="input-group-addon ms-2 inline"> ➡︎ </span>
+                  <p class="answer form-control ms-2" id="C2"></p>
+                  <span class="input-group-addon ms-2 inline"> kcal </span>
+                  <div class="invalid-feedback">
+                    入力してください
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <div class="row">
+              <div class="box1 col-8 mt-3 mb-3">
+                <span class="box-title">トータルカロリー</span>
+                <div class="form-group mb-4 mt-3" id="datepicker-daterange">
+                  <div class="col-sm-9 form-inline col-9">
+                    <div class="input-daterange input-group">
+                      <p class="answer form-control ms-2 total_cal col-6" id="X"></p>
+                      <span class="input-group-addon ms-2 inline"> kcal </span>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+            </div>
+            <div class="form-row mb-4">
+              <div class="memo">
+                <%= f.label :calorie_memo, class: "col-form-label col-form-label-sm" do %>
+                  メモ <span class="badge bg-secondary">任意</span>
+                <% end %>
+                <%= f.text_area :calorie_memo, rows: "3", class: "form-control" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= f.submit '記録する', name: "commit", class: "btn btn-primary btn-block col-md-1 bg-danger" %>
+    <% end %>
+  </div>
+</div>

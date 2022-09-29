@@ -1,0 +1,89 @@
+<div class="container-fluid p-lg-5 bg-light  mb-5">
+  <h2>トレーニング内容詳細</h2>
+  <div class="workout-mini mb-2 mt-5">
+    <div class="mini mt-5 mb-5">
+      <div class="field form-row">
+        <th>日付:</th>
+        <%= @workout.start_time.strftime("%F") %>
+      </div>
+      <div class="mt-1">
+        <th>部位:</th>
+        <%= @workout.part %>
+      </div>
+      <% @workout.workout_menus.each do |workout_menu| %>
+        <div class="field mt-1">
+          <th>種目:</th>
+          <%= workout_menu.menu %>
+        </div>
+        <div class="box20 m-1 ms-2 col-4">
+          <div class="detail-menu">
+            <div class="row">
+              <div class="col-auto ms-4">
+                <span class="condition-detail">1st set: </span><%= workout_menu.first_set_weight %> kg×<%= workout_menu.first_set_rep %> 回
+              </div>
+              <div class="col-auto ms-4">
+                <% if workout_menu.second_set_weight? %>
+                  <span class="condition-detail">2nd set: </span><%= workout_menu.second_set_weight %> kg×<%= workout_menu.second_set_rep %> 回
+                <% end %>
+              </div>
+              <div class="col-auto ms-4">
+                <% if workout_menu.third_set_weight? %>
+                  <span class="condition-detail">3rd set: </span><%= workout_menu.third_set_weight %> kg×<%= workout_menu.third_set_rep %> 回
+                <% end %>
+              </div>
+              <div class="col-auto ms-4">
+                <% if workout_menu.fourth_set_weight? %>
+                  <span class="condition-detail">4th set: </span><%= workout_menu.fourth_set_weight %> kg×<%= workout_menu.fourth_set_rep %> 回
+                <% end %>
+              </div>
+              <div class="col-auto ms-4">
+                <% if workout_menu.fifth_set_weight? %>
+                  <span class="condition-detail">5th set: </span><%= workout_menu.fifth_set_weight %> kg×<%= workout_menu.fifth_set_rep %> 回
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="memo">
+        <p class="mt-3">
+          <span>メモ:</span>
+          <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+            メモを開く
+          </button>
+        </p>
+        <div class="height-auto">
+          <div class="collapse collapse-horizontal" id="collapseWidthExample">
+            <div class="card card-body col-md-6">
+              <%= @workout.memo %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>-----------------------------------------------------</p>
+      <h5>体調チェック ※ 1 : 悪い 〜 5 : 良い</h5>
+      <div class="field form-row">
+        <th>睡眠:</th>
+        <%= @workout.sleep %>
+      </div>
+      <div class="field form-row">
+        <th>食事:</th>
+        <%= @workout.eat %>
+      </div>
+      <div class="field form-row">
+        <th>モチベーション:</th>
+        <%= @workout.motivation %>
+      </div>
+      <div class="field form-row">
+        <th>疲労度:</th>
+        <%= @workout.fatigue %>
+      </div>
+      <div class="field form-row">
+        <th>筋肉の状態:</th>
+        <%= @workout.muscle %>
+      </div>
+      <%= link_to "編集", edit_workout_path(@workout.id),data: {"turbo"=>false}, class: 'btn btn-danger btn-sm' %>
+      <%= link_to "削除", workout_path(@workout), class: 'btn btn-danger btn-sm m-2', data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %> 
+    </div>
+  </div>
+</div>  
