@@ -7,10 +7,10 @@ class DietsController < ApplicationController
     @diets = Diet.where(user_id: session[:user_id]).search(@search_params)
     @diet_by_day = @diets.group("date(record_time)")
     @chartlabels = @diet_by_day.size.map(&:first).sort { |a,b| a <=> b }.to_json.html_safe
-    @proteindata = @diet_by_day.sum("protein * 4").map(&:second).sort { |a,b| a <=> b }.to_json.html_safe
-    @fatdata = @diet_by_day.sum("fat * 9").map(&:second).sort { |a,b| a <=> b }.to_json.html_safe
-    @carbohydratedata = @diet_by_day.sum("carbohydrate * 4").map(&:second).to_json.html_safe
-    @body_weightdata = @diet_by_day.sum(:body_weight).map(&:second).sort { |a,b| a <=> b }.to_json.html_safe
+    @proteindata = @diet_by_day.sum("protein * 4").sort { |a,b| a <=> b }.map(&:second).to_json.html_safe
+    @fatdata = @diet_by_day.sum("fat * 9").map(&:second).to_json.html_safe
+    @carbohydratedata = @diet_by_day.sum("carbohydrate * 4").sort { |a,b| a <=> b }.map(&:second).to_json.html_safe
+    @body_weightdata = @diet_by_day.sum(:body_weight).sort { |a,b| a <=> b }.map(&:second).to_json.html_safe
     @diets = Diet.where(user_id: session[:user_id]).all.order(record_time: "desc")
     @search_params = diet_search_params
     @diets = Diet.where(user_id: session[:user_id]).order(record_time: "DESC").search(@search_params)
